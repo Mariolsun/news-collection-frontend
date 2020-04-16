@@ -4,7 +4,7 @@ const isDev = process.env.NODE_ENV === 'development';
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackMd5Hash = require('webpack-md5-hash'); // добавили плагин
+const WebpackMd5Hash = require('webpack-md5-hash');
 
 module.exports = {
   entry: { main: './src/index.js' },
@@ -12,14 +12,13 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[chunkhash].js'
   },
-// указали путь к файлу, в квадратных скобках куда вставлять сгенерированный хеш
   module: {
     rules: [
         {
         test: /\.css$/i,
         use: [
                         (isDev ? 'style-loader' : MiniCssExtractPlugin.loader),
-                        'css-loader', 
+                        'css-loader',
                         'postcss-loader'
                 ]
 },
@@ -57,8 +56,8 @@ module.exports = {
       }
     ]
   },
-  
-  plugins: [ 
+
+  plugins: [
 
     new webpack.DefinePlugin({
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
