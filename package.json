@@ -1,0 +1,47 @@
+{
+  "name": "frontend",
+  "version": "0.0.1",
+  "description": "Фронтэнд диплома на Яндекс.Практикуме.  \r ## Описание:\r На главной странице находится строка поиска новостей (используется news api), информация об авторе. Кнопки авторизации и перехода к странице с сохраненными пользователем новостями.",
+  "main": "src/\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[D\u001b[D\u001b[D\u001b[D./sr\u001b[2~c/index.js\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001bcript/index.js",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production rimraf dist && webpack --mode production",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --watch",
+    "deploy": "cross-env NODE_ENV=production gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariolsun/news-collection-frontend.git"
+  },
+  "author": "Sergey Zvorygin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mariolsun/news-collection-frontend/issues"
+  },
+  "homepage": "https://github.com/mariolsun/news-collection-frontend#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "autoprefixer": "^9.7.4",
+    "babel-loader": "^8.0.6",
+    "cross-env": "^7.0.0",
+    "css-loader": "^3.4.2",
+    "cssnano": "^4.1.10",
+    "file-loader": "^5.0.2",
+    "gh-pages": "~2.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "image-webpack-loader": "^6.0.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-loader": "^3.0.0",
+    "style-loader": "^1.1.3",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.3",
+    "webpack-md5-hash": "0.0.6"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "core-js": "^3.4.1"
+  }
+}
