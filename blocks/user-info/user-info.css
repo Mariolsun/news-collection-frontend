@@ -1,0 +1,22 @@
+@import url(./__photo/user-info__photo.css);
+@import url(./__data/user-info__data.css);
+@import url(./__name/user-info__name.css);
+@import url(./__job/user-info__job.css);
+@import url(./__button/_type/user-info__button_type_edit.css);
+@import url(./__button/_type/user-info__button_type_add.css);
+@import url(./type/_authorized/user-info_authorized.css);
+@import url(./type/_unauthorized/user-info_unauthorized.css);
+
+.user-info {
+  position: relative;
+  align-items: flex-start;
+  color: white;
+  width: 100%;
+}
+
+@media screen and (max-width: 980px) {
+  .user-info {
+    flex-direction: column;
+    align-items: center;
+  }
+}

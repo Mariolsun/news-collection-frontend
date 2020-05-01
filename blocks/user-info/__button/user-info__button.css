@@ -1,0 +1,14 @@
+@import url(./_type/user-info__button_type_edit.css);
+@import url(./_type/user-info__button_type_add.css);
+
+.user-info__button {
+  position: absolute;
+  top: 16px;
+  right: 0;
+}
+
+@media screen and (max-width: 980px) {
+  .user-info__button {
+    position: static;
+  }
+}

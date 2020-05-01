@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>NewsCollection</title>
+  <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
+</head>
+<body>
+  <div class="root">
+
+    <header class="header root__section">
+      <img src="<%=require('../images/logo.svg').default%>" alt="mesto logo" class="logo">
+    </header>
+   <section class="lead root__section">
+     <h1 class="lead__title"></h1>
+     <p class="lead__description"></p>
+     <form class="lead__find-form">
+       <input type="text" name="article-theme" class="lead__input">
+       <button class="button lead__button"></button>
+     </form>
+   </section>
+   <section class="about root__section">
+    <img src="" alt="" class="about__photo">
+    <h2 class="about__title"></h2>
+    <p class="about__text"></p>
+   </section>
+  <footer class="footer root__section"></footer>
+  </div>
+
+  <template id='popup_type_add'>
+        <div class="popup__content">
+          <img src="<%=require('../images/close.svg').default%>" alt="" class="popup__close">
+          <h3 class="popup__title">Новое место</h3>
+          <form class="popup__form" name="add">
+              <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Название">
+              <div class="popup__validate-alert popup__validate-alert_type_name">Это обязательное поле</div>
+              <input type="text" name="link" class="popup__input popup__input_type_link-url" placeholder="Ссылка на картинку">
+              <div class="popup__validate-alert popup__validate-alert_type_link-url">Это обязательное поле</div>
+              <button type class="button popup__button popup__button_disabled">+</button>
+          </form>
+        </div>
+  </template>
+
+  <template id='popup_type_edit'>
+        <div class="popup__content">
+          <img src="<%=require('../images/close.svg').default%>" alt="" class="popup__close">
+          <h3 class="popup__title">Редактировать профиль</h3>
+          <form class="popup__form" name="edit">
+              <input type="text" name="name" class="popup__input popup__input_type_username" placeholder="Имя" value = 'Jacques Cousteau'>
+              <div class="popup__validate-alert popup__validate-alert_type_username">Это обязательное поле</div>
+              <input type="text" name="link" class="popup__input popup__input_type_userinfo" placeholder="О себе" value = 'Sailor, Researcher'>
+              <div class="popup__validate-alert popup__validate-alert_type_userinfo">Это обязательное поле</div>
+              <button type class="button popup__button">Сохранить</button>
+          </form>
+        </div>
+  </template>
+
+
+  <template id="place-card">
+      <div class="place-card__image" style="background-image: url(https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg)">
+        <button class="place-card__delete-icon"></button>
+      </div>
+      <div class="place-card__description">
+        <h3 class="place-card__name">Камчатка</h3>
+        <div class="place-card__likes">
+          <button class="place-card__like-icon"></button>
+          <div class="place-card__likes-amount"></div>
+        </div>
+      </div>
+  </template>
+
+  <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
+
+
+</body>
+</html>
+
+
+

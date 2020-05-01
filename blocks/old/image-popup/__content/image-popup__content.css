@@ -1,0 +1,6 @@
+.popup__content_type_image {
+  display: block;
+  background: transparent;
+  position: relative;
+  box-sizing: border-box;
+}
