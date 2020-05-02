@@ -13,15 +13,18 @@
         <p class="header__title">NewsExplorer</p>
         <nav class="header__navbar">
           <a href="#" class="header__navbar-item header__navbar-item_visible header__navbar-item_active-page">Главная</a>
-          <a href="#" class="header__navbar-item header__navbar-item_inactive-page">Сохраненные статьи</a>
+          <a href="#" class="header__navbar-item header__navbar-item_inactive-page">Сохранённые статьи</a>
           <button class="button button_type_auth button_theme_white header__navbar-item header__navbar-item_visible">Авторизоваться</button>
-          <button class="button button_type_user button_theme_white header__navbar-item">User</button>
+          <button class="button button_type_logout button_theme_white header__navbar-item">
+              User
+              <img src="<%=require('./images/logout-icon-white.png').default%>" alt="" class="header__logout-icon">
+          </button>
         </nav>
       </header>
     <main class="content">
       <section class="lead">
 
-    <img class="lead__image "src="<%=require('../images/lead.jpg').default%>" alt="">
+    <img class="lead__image "src="<%=require('./images/lead.jpg').default%>" alt="">
         <h1 class="lead__title">Что в мире творится?</h1>
         <p class="lead__description">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете</p>
         <form class="lead__find-form">

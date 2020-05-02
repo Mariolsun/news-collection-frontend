@@ -1,7 +1,7 @@
 import '../style/style.css';
 const navBar = document.querySelector('.header__navbar');
 const authButton =navBar.querySelector('.button_type_auth');
-const userButton = navBar.querySelector('.button_type_user');
+const userButton = navBar.querySelector('.button_type_logout');
 const savedArticlesPage = document.querySelector('.header__navbar-item_inactive-page');
 
 
