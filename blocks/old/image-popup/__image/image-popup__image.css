@@ -1,9 +1,0 @@
-.image-popup__image {
-  position: absolute;
-  max-width: 80vw;
-  max-height: 80vh;
-  object-fit: fill;
-  background: transparent;
-  position: relative;
-  box-sizing: border-box;
-}

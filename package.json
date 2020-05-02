@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.0.1",
   "description": "Фронтэнд диплома на Яндекс.Практикуме.  \r ## Описание:\r На главной странице находится строка поиска новостей (используется news api), информация об авторе. Кнопки авторизации и перехода к странице с сохраненными пользователем новостями.",
-  "main": "src/\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[D\u001b[D\u001b[D\u001b[D./sr\u001b[2~c/index.js\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001bcript/index.js",
+  "main": "./src/js/index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production rimraf dist && webpack --mode production",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --watch",

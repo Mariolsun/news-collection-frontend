@@ -4,14 +4,15 @@ const isDev = process.env.NODE_ENV === 'development';
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackMd5Hash = require('webpack-md5-hash');
+const WebpackMd5Hash = require('webpack-md5-hash'); // добавили плагин
 
 module.exports = {
-  entry: { main: './src/index.js' },
+  entry: { main: './src/js/index.js' },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[chunkhash].js'
   },
+// указали путь к файлу, в квадратных скобках куда вставлять сгенерированный хеш
   module: {
     rules: [
         {
@@ -22,24 +23,12 @@ module.exports = {
                         'postcss-loader'
                 ]
 },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        use:  [
-           {
-             loader: 'file-loader',
-            },
-          ],
-       },
        {
         test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
-          'file-loader',
+          'file-loader?name=./images/[name].[ext]',
           {
             loader: 'image-webpack-loader',
-            options: {
-              bypassOnDebug: true, // webpack@1.x
-              disable: true, // webpack@2.x and newer
-            },
           },
         ],
       },

@@ -11,7 +11,10 @@
   <div class="root">
 
     <header class="header root__section">
-      <img src="<%=require('../images/logo.svg').default%>" alt="mesto logo" class="logo">
+      <p class="header__title"></p>
+      <nav class="header__navbar">
+      <img src="<%=require('../images/lead.jpg').default%>" alt="">
+      </nav>
     </header>
    <section class="lead root__section">
      <h1 class="lead__title"></h1>
@@ -31,7 +34,7 @@
 
   <template id='popup_type_add'>
         <div class="popup__content">
-          <img src="<%=require('../images/close.svg').default%>" alt="" class="popup__close">
+          <img src="<%=require('./images/close.svg').default%>" alt="" class="popup__close">
           <h3 class="popup__title">Новое место</h3>
           <form class="popup__form" name="add">
               <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Название">
@@ -45,7 +48,7 @@
 
   <template id='popup_type_edit'>
         <div class="popup__content">
-          <img src="<%=require('../images/close.svg').default%>" alt="" class="popup__close">
+          <img src="<%=require('./images/close.svg').default%>" alt="" class="popup__close">
           <h3 class="popup__title">Редактировать профиль</h3>
           <form class="popup__form" name="edit">
               <input type="text" name="name" class="popup__input popup__input_type_username" placeholder="Имя" value = 'Jacques Cousteau'>
