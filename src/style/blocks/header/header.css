@@ -1,7 +1,11 @@
 @import url(./__main/header__main.css);
+@import url(./__navbar/header__navbar.css);
+@import url(./__navbar-item/header__navbar-item.css);
+@import url(./__navbar-item/_visible/header__navbar-item_visible.css);
 
 .header {
   height: 80px;
+  max-width: 1232px;
   display: flex;
   justify-content: space-between;
   align-items: center;
