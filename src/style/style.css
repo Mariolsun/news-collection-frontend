@@ -9,7 +9,17 @@
 @import url(./blocks/place-card/place-card.css);
 @import url(./blocks/popup/popup.css);
 @import url(./blocks/lead/lead.css);
+@import url(./blocks/content/content.css);
 
 body {
-  background-color: white;
+  margin: 0;
 }
+
+.page {
+  margin: 0 auto;
+
+  max-width: 1440px;
+}
+
+
+

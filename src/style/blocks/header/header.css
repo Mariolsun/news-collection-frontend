@@ -1,6 +1,39 @@
+@import url(./__main/header__main.css);
+
 .header {
-  min-height: 132px;
+  height: 80px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #A5A5A5;
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  color: white;
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 24px;
+}
+
+@media screen and (max-width: 767px) {
+  .header {
+    height: 56px;
+    padding: 0 16px;
+    width: calc(100% - 32px);
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .header {
+    padding: 0 40px;
+    height: 66px;
+    width: calc(100% - 80px);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .header {
+    padding: 0 104px;
+    width: calc(100% - 208px);
+  }
 }

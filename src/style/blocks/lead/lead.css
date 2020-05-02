@@ -1,4 +1,8 @@
-.lead {
-  background-image: url(../../../images/lead.jpg);
+@import url(./__image/lead__image.css);
+@import url(./__title/lead__title.css);
 
+.lead {
+  position: relative;
+  margin: 0;
+  margin-top: 80px;
 }
