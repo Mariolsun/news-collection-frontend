@@ -1,12 +1,14 @@
 @import url(./__main/header__main.css);
 @import url(./__navbar/header__navbar.css);
+@import url(./__navbar/_visible/header__navbar_visible.css);
+@import url(./__mobile-menu-close/header__mobile-menu-close.css);
 @import url(./__navbar-item/header__navbar-item.css);
 @import url(./__navbar-item/_visible/header__navbar-item_visible.css);
 
 .header {
   height: 80px;
   max-width: 1232px;
-  display: flex;
+  display: none;
   justify-content: space-between;
   align-items: center;
   box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.2);

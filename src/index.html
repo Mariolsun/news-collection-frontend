@@ -9,15 +9,31 @@
 </head>
 <body>
     <div class="page">
-      <header class="header">
+      <header class="header header_type_desktop">
         <p class="header__title">NewsExplorer</p>
-        <nav class="header__navbar">
+        <nav class="header__navbar header__navbar_visible">
           <a href="#" class="header__navbar-item header__navbar-item_visible header__navbar-item_active-page">Главная</a>
           <a href="#" class="header__navbar-item header__navbar-item_inactive-page">Сохранённые статьи</a>
           <button class="button button_type_auth button_theme_white header__navbar-item header__navbar-item_visible">Авторизоваться</button>
           <button class="button button_type_logout button_theme_white header__navbar-item">
               User
-              <img src="<%=require('./images/logout-icon-white.png').default%>" alt="" class="header__logout-icon">
+              <img src="<%=require('./images/logout-icon-white.png').default%>" alt="Logout icon" class="header__logout-icon">
+          </button>
+        </nav>
+      </header>
+
+      <header class="header header_type_mobile">
+        <p class="header__title">NewsExplorer</p>
+        <button class="button button_type_mobile-menu button_theme_white header__navbar-item header__navbar-item_visible">
+          <img src="<%=require('./images/mobile-menu-white.png').default%>" alt="Mobile menu icon" class="header__mobile-menu-icon">
+        </button>
+        <img src="<%=require('./images/mobile-menu-close.png').default%>" alt="Mobile menu close button" class="header__mobile-menu-close">
+        <nav class="header__navbar header__navbar_type_mobile">
+          <a href="#" class="header__navbar-item header__navbar-item_visible header__navbar-item_active-page">Главная</a>
+          <a href="#" class="header__navbar-item header__navbar-item_inactive-page">Сохранённые статьи</a>
+          <button class="button button_type_logout button_theme_white header__navbar-item">
+            User
+            <img src="<%=require('./images/logout-icon-white.png').default%>" alt="Logout icon" class="header__logout-icon">
           </button>
         </nav>
       </header>
