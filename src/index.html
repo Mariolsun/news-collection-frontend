@@ -38,11 +38,11 @@
         </nav>
       </header>
     <main class="content">
+      <img class="lead__image "src="<%=require('./images/lead.jpg').default%>" alt="">
       <section class="lead">
 
-    <img class="lead__image "src="<%=require('./images/lead.jpg').default%>" alt="">
         <h1 class="lead__title">Что в мире творится?</h1>
-        <p class="lead__description">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете</p>
+        <p class="lead__description">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
         <form class="lead__find-form">
           <input type="text" name="article-theme" class="lead__input">
           <button class="button lead__button"></button>
@@ -57,48 +57,6 @@
     </main>
     <footer class="footer"></footer>
     </div>
-
-    <template id='popup_type_add'>
-          <div class="popup__content">
-            <img src="<%=require('./images/close.svg').default%>" alt="" class="popup__close">
-            <h3 class="popup__title">Новое место</h3>
-            <form class="popup__form" name="add">
-                <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Название">
-                <div class="popup__validate-alert popup__validate-alert_type_name">Это обязательное поле</div>
-                <input type="text" name="link" class="popup__input popup__input_type_link-url" placeholder="Ссылка на картинку">
-                <div class="popup__validate-alert popup__validate-alert_type_link-url">Это обязательное поле</div>
-                <button type class="button popup__button popup__button_disabled">+</button>
-            </form>
-          </div>
-    </template>
-
-    <template id='popup_type_edit'>
-          <div class="popup__content">
-            <img src="<%=require('./images/close.svg').default%>" alt="" class="popup__close">
-            <h3 class="popup__title">Редактировать профиль</h3>
-            <form class="popup__form" name="edit">
-                <input type="text" name="name" class="popup__input popup__input_type_username" placeholder="Имя" value = 'Jacques Cousteau'>
-                <div class="popup__validate-alert popup__validate-alert_type_username">Это обязательное поле</div>
-                <input type="text" name="link" class="popup__input popup__input_type_userinfo" placeholder="О себе" value = 'Sailor, Researcher'>
-                <div class="popup__validate-alert popup__validate-alert_type_userinfo">Это обязательное поле</div>
-                <button type class="button popup__button">Сохранить</button>
-            </form>
-          </div>
-    </template>
-
-
-    <template id="place-card">
-        <div class="place-card__image" style="background-image: url(https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg)">
-          <button class="place-card__delete-icon"></button>
-        </div>
-        <div class="place-card__description">
-          <h3 class="place-card__name">Камчатка</h3>
-          <div class="place-card__likes">
-            <button class="place-card__like-icon"></button>
-            <div class="place-card__likes-amount"></div>
-          </div>
-        </div>
-    </template>
 
     <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 

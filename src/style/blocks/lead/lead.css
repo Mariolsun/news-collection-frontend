@@ -1,15 +1,16 @@
 @import url(./__image/lead__image.css);
 @import url(./__title/lead__title.css);
+@import url(./__description/lead__description.css);
+@import url(./__find-form/lead__find-form.css);
 
 .lead {
   position: relative;
   margin: 0;
   margin-top: 80px;
-  max-width: 288px;
+  max-width: 608px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
+  align-content: center;
   color: white;
 
 }
