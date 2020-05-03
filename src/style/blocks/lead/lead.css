@@ -1,5 +1,7 @@
 @import url(./__image/lead__image.css);
 @import url(./__title/lead__title.css);
+@import url(./__input/lead__input.css);
+@import url(./__button/lead__button.css);
 @import url(./__description/lead__description.css);
 @import url(./__find-form/lead__find-form.css);
 
@@ -12,7 +14,6 @@
   flex-direction: column;
   align-content: center;
   color: white;
-
 }
 
 @media screen and (max-width: 767px) {

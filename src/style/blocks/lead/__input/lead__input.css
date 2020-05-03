@@ -1,0 +1,10 @@
+.lead__input {
+  padding: 0;
+  border: 0;
+  border-radius: 100px;
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 95%;
+  max-width: 560px;
+}

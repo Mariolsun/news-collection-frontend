@@ -1,4 +1,5 @@
 @import url(./blocks/button/button.css);
+@import url(./blocks/button/_type/button_type_mobile-menu.css);
 @import url(./vendor/fonts.css);
 @import url(./blocks/root/root.css);
 @import url(./blocks/header/header.css);

@@ -1,6 +1,5 @@
 @import url(./_theme/button_theme_black.css);
 @import url(./_theme/button_theme_white.css);
-@import url(./_type/button_type_mobile-menu.css);
 
 .button {
   background-color: transparent;
@@ -20,5 +19,6 @@
 }
 
 .button:focus {
-  outline-color: greenyellow;
+  border: 1px solid greenyellow;
+  outline: none;
 }

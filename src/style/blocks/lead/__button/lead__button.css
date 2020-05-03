@@ -1,0 +1,8 @@
+.lead__button {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: #2f71e5;
+  z-index: 1;
+  height: 64px;
+}
