@@ -8,23 +8,24 @@
 .lead {
   position: relative;
   margin: 0;
-  margin-top: 80px;
+  padding-top: 80px;
   max-width: 608px;
   display: flex;
   flex-direction: column;
   align-content: center;
   color: white;
+  z-index: -1;
 }
 
 @media screen and (max-width: 767px) {
   .lead {
-    margin-top: 56px;
+    padding-top: 56px;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .lead {
-    margin-top: 66px;
+    padding-top: 66px;
   }
 }
 

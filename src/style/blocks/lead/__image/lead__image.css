@@ -1,24 +1,31 @@
 .lead__image {
   position: absolute;
-  left: -104px;
   z-index: -1;
   max-width: 1440px;
+  object-fit: none;
+  object-position: 50% 50%;
+  max-height: 576px;
+  width: 100%;
 }
 
 @media screen and (max-width: 767px) {
   .lead__image {
-    left: -16px;
+    width: auto;
+    max-height: 536px;
+    object-fit: fill;
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1023px) {
+@media screen and (min-width: 768px) and (max-width: 1439px) {
   .lead__image {
-    left: -40px;
+    width: calc(100% + 80px);
+    max-height: 400px;
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1440px) {
   .lead__image {
+    object-position: 50% -190px;
   }
 }
 

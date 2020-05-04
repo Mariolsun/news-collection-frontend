@@ -1,6 +1,6 @@
 .content {
   position: relative;
-  margin: 0 auto;
+  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,18 +8,18 @@
 
 @media screen and (max-width: 767px) {
   .content {
-      width: calc(100% - 32px);
+      padding: 0 16px;
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1023px) {
+@media screen and (min-width: 768px) and (max-width: 1439px) {
   .content {
-      width: calc(100% - 80px);
+      padding: 0 40px;
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1440px) {
   .content {
-      width: calc(100% - 208px);
+      padding: 0 104px;
   }
 }

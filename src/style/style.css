@@ -6,13 +6,10 @@
 @import url(./blocks/header/_type/header_type_mobile.css);
 @import url(./blocks/header/_type/header_type_desktop.css);
 @import url(./blocks/logo/logo.css);
-@import url(./blocks/profile/profile.css);
-@import url(./blocks/user-info/user-info.css);
-@import url(./blocks/places-list/places-list.css);
-@import url(./blocks/place-card/place-card.css);
 @import url(./blocks/popup/popup.css);
 @import url(./blocks/lead/lead.css);
 @import url(./blocks/content/content.css);
+@import url(./blocks/about/about.css);
 
 body {
   margin: 0;
@@ -20,7 +17,7 @@ body {
 
 .page {
   margin: 0 auto;
-
+  overflow: hidden;
   max-width: 1440px;
 }
 
