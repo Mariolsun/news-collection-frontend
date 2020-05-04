@@ -2,30 +2,33 @@
   position: absolute;
   z-index: -1;
   max-width: 1440px;
-  object-fit: none;
   object-position: 50% 50%;
-  max-height: 576px;
-  width: 100%;
+  width: 1440px;
+  top: -80px;
 }
 
 @media screen and (max-width: 767px) {
   .lead__image {
-    width: auto;
+    top: 0px;
+    left: calc((100vw - 804px)/2);
     max-height: 536px;
-    object-fit: fill;
-    object-position: 50% 100%;
+    width: 804px;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .lead__image {
-    max-height: 400px;
+    top: -66px;
+    object-position: 50% -70px;
+    max-width: 100%;
+    min-height: 400px;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .lead__image {
-    object-position: 50% -190px;
+    top: -56px;
+    object-position: 50% -135px;
   }
 }
 

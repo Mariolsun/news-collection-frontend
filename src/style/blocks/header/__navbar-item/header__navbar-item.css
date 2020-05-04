@@ -20,3 +20,7 @@
   border-bottom: 3px solid white;
   height: 100%;
 }
+
+.header__navbar-item:last-of-type {
+  margin-right: 0;
+}

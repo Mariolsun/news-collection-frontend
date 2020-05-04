@@ -9,25 +9,26 @@
   position: relative;
   margin: 0;
   padding-top: 80px;
-  max-width: 608px;
   display: flex;
   flex-direction: column;
   align-content: center;
+  overflow: hidden;
   color: white;
   z-index: -1;
+  width: calc(100% + 208px);
 }
 
 @media screen and (max-width: 767px) {
   .lead {
     padding-top: 56px;
-    max-width: 288px;
+    width: calc(100% + 32px);
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .lead {
     padding-top: 66px;
-    max-width: 448px;
+    width: calc(100% + 80px);
   }
 }
 
