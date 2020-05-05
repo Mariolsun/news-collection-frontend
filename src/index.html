@@ -23,7 +23,7 @@
         </nav>
       </header>
 
-      <header class="header header_type_mobile">
+  <!--    <header class="header header_type_mobile">
         <p class="header__title">NewsExplorer</p>
         <button class="button button_type_mobile-menu button_theme_white header__navbar-item header__navbar-item_visible">
           <img src="<%=require('./images/mobile-menu-white.png').default%>" alt="Mobile menu icon" class="header__mobile-menu-icon">
@@ -37,7 +37,7 @@
             <img src="<%=require('./images/logout-icon-white.png').default%>" alt="Logout icon" class="header__logout-icon">
           </button>
         </nav>
-      </header>
+      </header> -->
 
     <main class="content">
 
@@ -257,6 +257,49 @@
       </div>
     </footer>
     </div>
+
+    <template id='popup_type_login'>
+      <div class="popup__content">
+        <img src="<%=require('./images/close.svg').default%>" alt="" class="popup__close">
+        <h3 class="popup__title">Вход</h3>
+        <form class="popup__form" name="login">
+            <h4 class="popup__input-title">Email</h4>
+            <input type="text" name="email" class="popup__input popup__input_type_email" placeholder="Введите почту">
+            <div class="popup__validate-alert popup__validate-alert_type_email">Это обязательное поле</div>
+            <h4 class="popup__input-title">Пароль</h4>
+            <input type="password" name="password" class="popup__input popup__input_type_password" placeholder="Введите пароль">
+            <div class="popup__validate-alert popup__validate-alert_type_password">Это обязательное поле</div>
+            <button type class="button button_visible popup__button popup__button_disabled">Войти</button>
+        </form>
+        <p class="popup__other-auth-offer">
+            или
+            <button class="popup__other-auth-btn">Зарегистрироваться</button>
+        </p>
+      </div>
+    </template>
+
+    <template id='popup_type_signup'>
+      <div class="popup__content">
+        <img src="<%=require('./images/close.svg').default%>" alt="" class="popup__close">
+        <h3 class="popup__title">Регистрация</h3>
+        <form class="popup__form" name="signup">
+            <h4 class="popup__input-title">Email</h4>
+            <input type="text" name="email" class="popup__input popup__input_type_email" placeholder="Введите почту">
+            <div class="popup__validate-alert popup__validate-alert_type_email">Это обязательное поле</div>
+            <h4 class="popup__input-title">Пароль</h4>
+            <input type="password" name="password" class="popup__input popup__input_type_password" placeholder="Введите пароль">
+            <div class="popup__validate-alert popup__validate-alert_type_password">Это обязательное поле</div>
+            <h4 class="popup__input-title">Имя</h4>
+            <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Введите Имя">
+            <div class="popup__validate-alert popup__validate-alert_type_name">Это обязательное поле</div>
+            <button type class="button button_visible popup__button popup__button_disabled">Зарегистрироваться</button>
+        </form>
+        <p class="popup__other-auth-offer">
+            или
+            <button class="popup__other-auth-btn">Войти</button>
+        </p>
+      </div>
+    </template>
 
     <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 

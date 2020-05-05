@@ -1,0 +1,12 @@
+.popup__other-auth-btn {
+  display: inline;
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 15px;
+  background-color: white;
+  color: #2f71e5;
+}

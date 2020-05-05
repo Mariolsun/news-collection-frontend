@@ -1,6 +1,5 @@
 .lead__image {
   position: absolute;
-  z-index: -1;
   max-width: 1440px;
   object-position: 50% 50%;
   width: 1440px;
