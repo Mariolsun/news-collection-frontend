@@ -1,0 +1,9 @@
+.footer__links-container {
+  margin: 0;
+  display: flex;
+  margin-right: 45px;
+}
+
+.footer__links:last-of-type {
+  margin-right: 0;
+}

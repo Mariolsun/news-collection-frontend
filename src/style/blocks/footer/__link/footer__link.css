@@ -1,0 +1,10 @@
+.footer__link {
+  display: block;
+  margin-right: 35px;
+  text-decoration: none;
+  color: #1a1b22;
+}
+
+.footer__link:last-of-type {
+  margin-right: 0;
+}
