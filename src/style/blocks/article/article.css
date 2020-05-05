@@ -16,17 +16,19 @@
   border-radius: 15px;
   overflow: hidden;
   background-color: white;
+  display: none;
 }
 
 @media screen and (max-width: 767px) {
   .article {
-    max-width: 288px;
+    min-width: 288px;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .article {
-    max-width: 224px;
+    min-width: 224px;
+    max-width: 300px;
   }
 }
 

@@ -3,5 +3,22 @@
   display: grid;
   grid-gap: 16px;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
 }
 
+
+@media screen and (max-width: 767px) {
+  .articles__container {
+    grid-auto-flow: row;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .articles__container {
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .articles__container {
+  }
+}

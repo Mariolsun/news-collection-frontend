@@ -1,0 +1,12 @@
+.articles__show-more-btn {
+  color: #1a1b22;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 24px;
+  align-self: center;
+  border: none;
+  width: 288px;
+  height: 64px;
+  margin: 64px auto 80px;
+}

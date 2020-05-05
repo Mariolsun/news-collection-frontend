@@ -1,10 +1,12 @@
 @import url(./__container/articles__container.css);
+@import url(./__show-more-btn/articles__show-more-btn.css);
 
 .articles {
   background-color: #f5f6f7;
   padding: 0 104px;
   width: 100%;
   max-width: 1440px;
+  display: none;
 }
 
 @media screen and (max-width: 767px) {
