@@ -1,16 +1,16 @@
 .lead__find-form {
   position: relative;
-  margin: 64px 0 80px;
+  margin: 64px 0 0;
   display: flex;
   flex-direction: row-reverse;
   height: 64px;
-  max-width: 608px;
+  width: 100%;
 }
 
 @media screen and (max-width: 767px) {
   .lead__find-form {
     flex-direction: column;
-    margin: 122px 0 32px;
+    margin: 43% 0 0;
     height: 100%;
   }
 }
@@ -20,7 +20,6 @@
     font-size: 36px;
     line-height: 40px;
     max-height: 56px;
-    margin: 48px 0 48px;
   }
 }
 

@@ -4,6 +4,7 @@
 @import url(./__button/lead__button.css);
 @import url(./__description/lead__description.css);
 @import url(./__find-form/lead__find-form.css);
+@import url(./__content/lead__content.css);
 
 .lead {
   position: relative;

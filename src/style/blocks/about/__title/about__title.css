@@ -1,16 +1,13 @@
-.lead__title {
-  font-size: 60px;
+.about__title {
+  margin: 0 0 24px;
+  font-size: 40px;
+  line-height: 46px;
   font-weight: normal;
-  line-height: 64px;
-  margin: 0 0 32px;
-
-  max-width: 288px;
 }
 
-
 @media screen and (max-width: 767px) {
-  .lead__title {
-    font-size: 36px;
+  .about__title {
+    font-size: 30px;
     line-height: 40px;
 
     margin: 0 0 16px;
@@ -18,8 +15,8 @@
 }
 
 @media screen and (min-width: 768px) and (max-width: 1439px) {
-  .lead__title {
-    font-size: 36px;
+  .about__title {
+    font-size: 30px;
     line-height: 40px;
 
     margin: 0 0 16px;
@@ -27,7 +24,7 @@
 }
 
 @media screen and (min-width: 1440px) {
-  .lead__title {
+  .about__title {
   }
 
 }

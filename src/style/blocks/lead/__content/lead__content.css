@@ -1,0 +1,27 @@
+.lead__content {
+  position: relative;
+  margin: 80px auto 80px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  max-width: 608px;
+}
+
+@media screen and (max-width: 767px) {
+  .lead__content {
+    margin: 30px auto 32px;
+    max-width: 288px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .lead__content {
+    margin: 38px auto 48px;
+    max-width: 448px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .lead__content {
+  }
+}

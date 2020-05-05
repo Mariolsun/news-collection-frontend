@@ -18,7 +18,7 @@
           <button class="button button_type_auth button_theme_white header__navbar-item header__navbar-item_visible">Авторизоваться</button>
           <button class="button button_type_logout button_theme_white header__navbar-item">
               User
-              <img src="<%=require('./images/logout-icon-white.png').default%>" alt="Logout icon" class="header__logout-icon">
+              <img src="<%=require('./images/logout-icon-white.png').default%>" alt="Иконка выхода пользователя" class="header__logout-icon">
           </button>
         </nav>
       </header>
@@ -42,20 +42,23 @@
     <main class="content">
 
       <section class="lead">
-        <img src="<%=require('./images/lead-sized.jpg').default%>" alt="" class="lead__image">
-        <h1 class="lead__title">Что в мире творится?</h1>
-        <p class="lead__description">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
-        <form class="lead__find-form">
-          <input type="text" name="article-theme" class="lead__input">
-          <button class="button lead__button">Искать</button>
-        </form>
-
+        <img src="<%=require('./images/lead-sized.jpg').default%>" alt="Фоновая картинка с мобильным устройством" class="lead__image">
+        <div class="lead__content">
+          <h1 class="lead__title">Что в мире творится?</h1>
+          <p class="lead__description">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
+          <form class="lead__find-form">
+            <input type="text" name="article-theme" class="lead__input">
+            <button class="button lead__button">Искать</button>
+          </form>
+        </div>
       </section>
       <section class="about">
-        lorem ipsum
-        <img src="" alt="" class="about__photo">
-        <h2 class="about__title"></h2>
-        <p class="about__text"></p>
+        <img src="<%=require('./images/avatar.png').default%>" alt="Фото автора проекта" class="about__photo">
+        <div class="about__info">
+          <h2 class="about__title">Об авторе</h2>
+          <p class="about__text">Это блок с описанием автора проекта. Здесь следует указать, как вас зовут, чем вы занимаетесь, какими технологиями разработки владеете.</p>
+          <p class="about__text">Также можно рассказать о процессе обучения в Практикуме, чемы вы тут научились, и чем можете помочь потенциальным заказчикам</p>
+        </div>
       </section>
     </main>
     <footer class="footer"></footer>

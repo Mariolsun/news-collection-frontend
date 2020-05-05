@@ -19,6 +19,7 @@
   .lead__description{
     font-size: 18px;
     line-height: 24px;
+    max-width: 452px;
   }
 }
 
