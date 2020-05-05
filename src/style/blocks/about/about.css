@@ -21,11 +21,13 @@
 @media screen and (max-width: 767px) {
   .about {
     flex-direction: column;
+    margin: 32px 0 80px;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .about {
+    margin: 40px 0 72px;
   }
 }
 
