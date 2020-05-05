@@ -11,6 +11,7 @@ const mobileNavBar = document.querySelector('.header__navbar_type_mobile');
 const findButton = document.querySelector('.lead__button');
 const foundArticles = document.querySelectorAll('.article');
 const articlesSection = document.querySelector('.articles');
+const articlesContainer = document.querySelector('.articles__container');
 const showMoreBtn = document.querySelector('.articles__show-more-btn');
 
 authButton.addEventListener('click', function(event) {
@@ -59,3 +60,15 @@ showMoreBtn.addEventListener('click', function(event) {
   }
 
 });
+
+articlesContainer.addEventListener('click', function(event) {
+  event.preventDefault();
+  if (event.target.classList.contains('article__button_type_toggle-save')) {
+    if(event.target.style.backgroundImage.includes("bookmark-marked.png")) {
+      event.target.style.backgroundImage = "url('../../../../../images/bookmark.png')"
+    } else {
+        console.log(`click on bookmark ${typeof event.target.style.backgroundImage}`);
+        event.target.style.backgroundImage = "url('../../../../../images/bookmark-marked.png')";
+    }
+  }
+})
