@@ -1,5 +1,6 @@
 @import url(./__links/footer__links.css);
 @import url(./__links-container/footer__links-container.css);
+@import url(./__links-container/_type/footer__links-container_type_social.css);
 @import url(./__link/footer__link.css);
 @import url(./__link/_type/footer__link_type_facebook.css);
 @import url(./__link/_type/footer__link_type_github.css);

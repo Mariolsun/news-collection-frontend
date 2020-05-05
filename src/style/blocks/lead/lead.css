@@ -15,7 +15,6 @@
   align-content: center;
   overflow: hidden;
   color: white;
-  z-index: -1;
   width: calc(100% + 208px);
 }
 
