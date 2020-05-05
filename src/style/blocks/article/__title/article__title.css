@@ -1,0 +1,29 @@
+.article__title {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 30px;
+  color: #1a1b22;
+  margin: 12px 0 16px;
+}
+
+@media screen and (max-width: 767px) {
+  .article__title {
+    font-size: 22px;
+    line-height: 26px;
+    margin: 10px 0 10px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .article__title {
+    font-size: 22px;
+    line-height: 24px;
+    margin: 12px 0 10px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .article__title {
+  }
+}

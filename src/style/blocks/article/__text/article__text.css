@@ -1,0 +1,30 @@
+.article__text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1a1b22;
+  margin: 0 0 18px;
+
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+}
+
+@media screen and (max-width: 767px) {
+  .article__text {
+    margin: 0 0 8px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .article__text {
+    margin: 0 0 12px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .article__text {
+  }
+}

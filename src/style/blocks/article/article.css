@@ -1,4 +1,10 @@
 @import url(./__button/article__button.css);
+@import url(./__image/article__image.css);
+@import url(./__date/article__date.css);
+@import url(./__title/article__title.css);
+@import url(./__source/article__source.css);
+@import url(./__text/article__text.css);
+@import url(./__content/article__content.css);
 @import url(./__options-bar/article_options-bar.css);
 @import url(./__save-options/article__save-options.css);
 @import url(./__button/_type/article__button_type_options.css);
