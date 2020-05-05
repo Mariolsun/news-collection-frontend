@@ -1,0 +1,13 @@
+.article__button {
+  border: none;
+  border-radius: 8px;
+  background-color: white;
+  color: black;
+  height: 40px;
+  width: auto;
+  padding: 0 12px;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 12px;
+  margin-right: 5px;
+}

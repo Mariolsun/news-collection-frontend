@@ -1,0 +1,30 @@
+@import url(./__button/article__button.css);
+@import url(./__options-bar/article_options-bar.css);
+@import url(./__save-options/article__save-options.css);
+@import url(./__button/_type/article__button_type_options.css);
+@import url(./__button/_type/article__button_type_toggle-save.css);
+
+.article {
+  position: relative;
+  max-width: 400px;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: white;
+}
+
+@media screen and (max-width: 767px) {
+  .article {
+    max-width: 288px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .article {
+    max-width: 224px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .article {
+  }
+}

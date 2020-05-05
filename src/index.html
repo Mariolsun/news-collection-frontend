@@ -52,6 +52,25 @@
           </form>
         </div>
       </section>
+      <section class="articles">
+        <h2 class="articles__title">Результаты поиска</h2>
+        <div class="articles__container">
+          <div class="article articles__card">
+            <div class="article__options-bar">
+              <div class="article__save-options">
+                <button class="button button_visible article__button article__button_type_options">Войдите, чтобы сохранять статьи</button>
+                <button class="button button_visible article__button article__button_type_toggle-save"></button>
+              </div>
+              <button class="button button_visible article__button article__button_type_keyword">Природа</button>
+            </div>
+            <img src="<%=require('./images/article-image.png').default%>" alt="" class="article__image">
+            <p class="article__date">2 августа, 2019</p>
+            <h3 class="article__title">Национальное достояние - парки</h3>
+            <p class="article__text">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться система национальных парков - охраняемых территорий, где и сегодня каждый может приобщиться к природе.</p>
+            <p class="article__source">ЛЕНТА.РУ</p>
+          </div>
+        </div>
+      </section>
       <section class="about">
         <img src="<%=require('./images/avatar.png').default%>" alt="Фото автора проекта" class="about__photo">
         <div class="about__info">
@@ -69,8 +88,8 @@
           <a href="" class="footer__link">Яндекс.Практикум</a>
         </div>
         <div class="footer__links-container footer__links-container_type_social">
-          <a href="#" class="footer__link footer__link_type_facebook"></a>
           <a href="#" class="footer__link footer__link_type_github"></a>
+          <a href="#" class="footer__link footer__link_type_facebook"></a>
         </div>
       </div>
     </footer>

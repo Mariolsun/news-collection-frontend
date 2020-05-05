@@ -1,0 +1,23 @@
+.articles {
+  background-color: #f5f6f7;
+  padding: 0 104px;
+  width: 100%;
+  max-width: 1440px;
+}
+
+@media screen and (max-width: 767px) {
+  .articles {
+    padding: 0 16px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .articles {
+    padding: 0 40px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .articles {
+  }
+}

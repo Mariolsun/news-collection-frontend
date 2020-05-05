@@ -8,3 +8,21 @@
 .footer__link:last-of-type {
   margin-right: 0;
 }
+
+@media screen and (max-width: 767px) {
+  .footer__link {
+    margin-bottom: 24px;
+    flex-direction: column-reverse;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .footer__link {
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .footer__link {
+  }
+}
+

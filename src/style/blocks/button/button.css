@@ -17,6 +17,7 @@
   align-items: center;
   cursor: pointer;
   text-align: center;
+  display: none;
 }
 
 .button:focus {

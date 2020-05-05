@@ -1,5 +1,6 @@
 @import url(./blocks/button/button.css);
 @import url(./blocks/button/_type/button_type_mobile-menu.css);
+@import url(./blocks/button/_visible/button_visible.css);
 @import url(./vendor/fonts.css);
 @import url(./blocks/header/header.css);
 @import url(./blocks/header/_type/header_type_mobile.css);
@@ -8,6 +9,8 @@
 @import url(./blocks/content/content.css);
 @import url(./blocks/about/about.css);
 @import url(./blocks/footer/footer.css);
+@import url(./blocks/articles/articles.css);
+@import url(./blocks/article/article.css);
 
 
 body {
