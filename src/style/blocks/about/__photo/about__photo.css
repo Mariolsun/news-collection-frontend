@@ -6,7 +6,8 @@
 
 @media screen and (max-width: 767px) {
   .about__photo {
-    max-width: 94%;
+    max-width: 300px;
+    width: 94%;
     margin: 0 auto 0;
   }
 }
