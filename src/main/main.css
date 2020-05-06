@@ -1,0 +1,46 @@
+@import url(../style/blocks/button/button.css);
+@import url(../style/blocks/button/_type/button_type_mobile-menu.css);
+@import url(../style/blocks/button/_visible/button_visible.css);
+@import url(../style/blocks/button/_theme/button_theme_black.css);
+@import url(../style/blocks/button/_theme/button_theme_white.css);
+@import url(../style/vendor/fonts.css);
+@import url(../style/blocks/header/header.css);
+@import url(../style/blocks/header/_type/header_type_mobile.css);
+@import url(../style/blocks/header/_type/header_type_desktop.css);
+@import url(../style/blocks/lead/lead.css);
+@import url(../style/blocks/content/content.css);
+@import url(../style/blocks/about/about.css);
+@import url(../style/blocks/footer/footer.css);
+@import url(../style/blocks/articles/articles.css);
+@import url(../style/blocks/article/article.css);
+@import url(../style/blocks/article/_visible/article_visible.css);
+@import url(../style/blocks/articles/_visible/articles_visible.css);
+@import url(../style/blocks/article/_saved/article_saved.css);
+@import url(../style/blocks/popup/popup.css);
+
+
+
+
+
+body {
+  margin: 0;
+}
+
+.page {
+    --main-black: #1a1b22;
+    --main-blue: #2f71e5;
+    --blue-hover: #347eff;
+    --blue-btn-pressed: #2a65cc;
+    --main-gray: #b6bcbf;
+    --gray-bg-articles: #f5f6f7;
+    --gray-btn-locked: #e6e8eb;
+    --main-white: white;
+
+
+  margin: 0 auto;
+  overflow: hidden;
+  max-width: 1440px;
+}
+
+
+

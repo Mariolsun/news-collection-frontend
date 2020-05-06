@@ -1,12 +1,6 @@
 .article__button_type_toggle-save {
-  background-image: url(../../../../../images/bookmark.png);
   background-repeat: no-repeat;
   background-position: center;
   width: 40px;
 }
 
-
-
-.article__button_type_toggle-save:hover {
-  background-image: url(../../../../../images/bookmark-hover.png);
-}

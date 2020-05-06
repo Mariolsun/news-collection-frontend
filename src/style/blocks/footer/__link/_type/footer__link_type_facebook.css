@@ -1,5 +1,5 @@
 .footer__link_type_facebook {
-  background-image: url(../../../../../images/fb.png);
+  background-image: url('~images/fb.png');
   height: 24px;
   width: 24px;
 }

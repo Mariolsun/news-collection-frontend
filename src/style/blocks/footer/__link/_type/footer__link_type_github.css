@@ -1,5 +1,5 @@
 .footer__link_type_github {
-  background-image: url(../../../../../images/github.png);
+  background-image: url('~images/github.png');
   width: 24px;
   height: 24px;
 }

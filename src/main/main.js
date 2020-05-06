@@ -1,4 +1,4 @@
-import '../style/style.css';
+import './main.css';
 import PopupLogin from '../js/components/PopupLogin';
 import PopupSignup from '../js/components/PopupSignup';
 import PopupSuccessSignup from '../js/components/PopupSuccessSignup';

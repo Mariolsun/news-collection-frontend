@@ -7,10 +7,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash'); // добавили плагин
 
 module.exports = {
-  entry: { main: './src/js/index.js' },
+  entry: {
+    main: './src/main/main.js',
+    savedArticles: './src/savedArticles/savedArticles.js'
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[chunkhash].js'
+    filename: '[name]/[name].[chunkhash].js'
   },
 // указали путь к файлу, в квадратных скобках куда вставлять сгенерированный хеш
   module: {
@@ -18,7 +21,7 @@ module.exports = {
         {
         test: /\.css$/i,
         use: [
-                        (isDev ? 'style-loader' : MiniCssExtractPlugin.loader),
+                        MiniCssExtractPlugin.loader,
                         'css-loader',
                         'postcss-loader'
                 ]
@@ -53,12 +56,19 @@ module.exports = {
     }),
 
     new MiniCssExtractPlugin({
-        filename: 'style.[contenthash].css'
+        filename: '[name]/[name].[contenthash].css'
     }),
     new HtmlWebpackPlugin({
       inject: false,
+      hash: true,
       template: './src/index.html',
       filename: 'index.html',
+    }),
+    new HtmlWebpackPlugin({
+      inject: false,
+      hash: true,
+      template: './src/savedArticles/index.html',
+      filename: './savedArticles/index.html',
     }),
     new OptimizeCssAssetsPlugin({
         assetNameRegExp: /\.css$/g,

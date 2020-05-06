@@ -1,0 +1,24 @@
+
+
+body {
+  margin: 0;
+}
+
+.page {
+    --main-black: #1a1b22;
+    --main-blue: #2f71e5;
+    --blue-hover: #347eff;
+    --blue-btn-pressed: #2a65cc;
+    --main-gray: #b6bcbf;
+    --gray-bg-articles: #f5f6f7;
+    --gray-btn-locked: #e6e8eb;
+    --main-white: white;
+
+
+  margin: 0 auto;
+  overflow: hidden;
+  max-width: 1440px;
+}
+
+
+

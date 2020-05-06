@@ -14,8 +14,8 @@
       <header class="header header_type_desktop">
         <p class="header__title">NewsExplorer</p>
         <nav class="header__navbar header__navbar_visible">
-          <a href="#" class="header__navbar-item header__navbar-item_visible header__navbar-item_active-page">Главная</a>
-          <a href="#" class="header__navbar-item header__navbar-item_inactive-page">Сохранённые статьи</a>
+          <a href='#' class="header__navbar-item header__navbar-item_visible header__navbar-item_active-page">Главная</a>
+          <a href="./savedArticles/index.html" class="header__navbar-item header__navbar-item_inactive-page">Сохранённые статьи</a>
           <button class="button button_type_auth button_theme_white header__navbar-item header__navbar-item_visible">Авторизоваться</button>
           <button class="button button_type_logout button_theme_white header__navbar-item">
               User
@@ -77,8 +77,12 @@
           <a href="" class="footer__link">Яндекс.Практикум</a>
         </div>
         <div class="footer__links-container footer__links-container_type_social">
-          <a href="#" class="footer__link footer__link_type_github"></a>
-          <a href="#" class="footer__link footer__link_type_facebook"></a>
+          <a href="#" class="footer__link footer__link_type_github">
+            <img src="<%=require('./images/github.png').default%>" alt="" class="footer__icon_type_github">
+          </a>
+          <a href="#" class="footer__link footer__link_type_facebook">
+            <img src="<%=require('./images/fb.png').default%>" alt="" class="footer__icon_type_facebook">
+          </a>
         </div>
       </div>
     </footer>
@@ -88,7 +92,9 @@
       <div class="article__options-bar">
         <div class="article__save-options">
           <button class="button button_visible article__button article__button_type_options">Войдите, чтобы сохранять статьи</button>
-          <button class="button button_visible article__button article__button_type_toggle-save"></button>
+          <button class="button button_visible article__button article__button_type_toggle-save">
+            <img src="<%=require('./images/bookmark.png').default%>" alt="" class="article__bookmark-icon">
+          </button>
         </div>
         <button class="button button_visible article__button article__button_type_keyword">Temple</button>
       </div>
