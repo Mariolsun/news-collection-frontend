@@ -6,6 +6,7 @@ import Validation from '../js/utils/validation';
 import User from '../js/components/User';
 import Article from '../js/components/Article';
 import articles from '../js/data/articles';
+import savedArticles from '../js/data/savedArticles';
 
 const navBar = document.querySelector('.header__navbar');
 const authButton =navBar.querySelector('.button_type_auth');
@@ -49,7 +50,8 @@ const validation = new Validation(validationMessages, users);
 
 const popupLogin = new PopupLogin(loginPopupTemplate, sectionToAppend, validation);
 
-const user = new User(logoutBtns, )
+const user = new User(logoutBtns, savedArticles, 'Грета');
+
 const popupSignup = new PopupSignup(signupPopupTemplate, sectionToAppend, validation);
 
 const popupSuccessSignup = new PopupSuccessSignup(successfulSignupTemplate, sectionToAppend);

@@ -19,7 +19,7 @@
           <button class="button button_type_auth button_theme_black header__navbar-item header__navbar-item_visible">Авторизоваться</button>
           <button class="button button_type_logout button_theme_black header__navbar-item">
               User
-              <img src="<%=require('../images/logout-icon-black.png').default%>" alt="Иконка выхода пользователя" class="header__logout-icon">
+              <img src="../<%=require('../images/logout-icon-black.png').default%>" alt="Иконка выхода пользователя" class="header__logout-icon">
           </button>
         </nav>
       </header>
@@ -27,15 +27,15 @@
   <header class="header header_type_mobile">
         <p class="header__title">NewsExplorer</p>
         <button class="button button_type_mobile-menu button_theme_black header__navbar-item header__navbar-item_visible">
-          <img src="<%=require('../images/mobile-menu-black.png').default%>" alt="Mobile menu icon" class="header__mobile-menu-icon">
+          <img src="../<%=require('../images/mobile-menu-black.png').default%>" alt="Mobile menu icon" class="header__mobile-menu-icon">
         </button>
-        <img src="<%=require('../images/mobile-menu-close.png').default%>" alt="Mobile menu close button" class="header__mobile-menu-close">
+        <img src="../<%=require('../images/mobile-menu-close.png').default%>" alt="Mobile menu close button" class="header__mobile-menu-close">
         <nav class="header__navbar header__navbar_type_mobile">
           <a href="#" class="header__navbar-item header__navbar-item_visible header__navbar-item_inactive-page">Главная</a>
           <a href="#" class="header__navbar-item header__navbar-item_active-page">Сохранённые статьи</a>
           <button class="button button_type_logout button_theme_black header__navbar-item">
             User
-            <img src="<%=require('../images/logout-icon-black.png').default%>" alt="Logout icon" class="header__logout-icon">
+            <img src="../<%=require('../images/logout-icon-black.png').default%>" alt="Logout icon" class="header__logout-icon">
           </button>
         </nav>
       </header>
@@ -50,7 +50,7 @@
             <span class="info__keywords">Природа, Тайга и 2 другим</span>
         </p>
       </section>
-      <section class="articles">
+      <section class="articles articles_visible">
         <div class="articles__container">
 
         </div>
@@ -66,10 +66,10 @@
         </div>
         <div class="footer__links-container footer__links-container_type_social">
           <a href="#" class="footer__link footer__link_type_github">
-            <img src="<%=require('../images/github.png').default%>" alt="" class="footer__icon_type_github">
+            <img src="../<%=require('../images/github.png').default%>" alt="" class="footer__icon_type_github">
           </a>
           <a href="#" class="footer__link footer__link_type_facebook">
-            <img src="<%=require('../images/fb.png').default%>" alt="" class="footer__icon_type_facebook">
+            <img src="../<%=require('../images/fb.png').default%>" alt="" class="footer__icon_type_facebook">
           </a>
         </div>
       </div>
@@ -81,12 +81,12 @@
         <div class="article__save-options">
           <button class="button button_visible article__button article__button_type_options">Войдите, чтобы сохранять статьи</button>
           <button class="button button_visible article__button article__button_type_toggle-save">
-            <img src="<%=require('../images/bookmark.png').default%>" alt="" class="article__bookmark-icon">
+            <img src="../<%=require('../images/bookmark.png').default%>" alt="" class="article__bookmark-icon">
           </button>
         </div>
         <button class="button button_visible article__button article__button_type_keyword">Temple</button>
       </div>
-      <img src="<%=require('../images/plant.png').default%>" alt="" class="article__image">
+      <img src="../<%=require('../images/plant.png').default%>" alt="" class="article__image">
       <div class="article__content">
         <p class="article__date">2 августа, 1812</p>
         <h3 class="article__title">Национальное достояние - templates</h3>

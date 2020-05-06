@@ -17,6 +17,7 @@ export default class Article {
     this.text = this.block.querySelector('.article__text');
     this.title = this.block.querySelector('.article__title');
     this.source = this.block.querySelector('.article__source');
+    this.keyword = this.block.querySelector('.article__button_type_keyword');
 
     this.render = this.render.bind(this);
     this.visible = this.visible.bind(this);
@@ -47,6 +48,7 @@ export default class Article {
     this.title.textContent = this.data.title;
     this.text.textContent = this.data.text;
     this.source.textContent = this.data.source;
+    this.keyword.textContent = this.data.keyword;
   }
 
 }
