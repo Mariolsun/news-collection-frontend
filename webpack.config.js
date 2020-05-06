@@ -24,7 +24,7 @@ module.exports = {
                 ]
 },
        {
-        test: /\.(gif|png|jpe?g|svg)$/i,
+        test: /\.(gif|png|jpe?g|svg|ico)$/i,
         use: [
           'file-loader?name=./images/[name].[ext]',
           {
@@ -58,7 +58,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: false,
       template: './src/index.html',
-      filename: 'index.html'
+      filename: 'index.html',
     }),
     new OptimizeCssAssetsPlugin({
         assetNameRegExp: /\.css$/g,
