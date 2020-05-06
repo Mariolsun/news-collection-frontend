@@ -15,6 +15,7 @@
 @import url(./blocks/article/article.css);
 @import url(./blocks/article/_visible/article_visible.css);
 @import url(./blocks/articles/_visible/articles_visible.css);
+@import url(./blocks/article/_saved/article_saved.css);
 @import url(./blocks/popup/popup.css);
 
 

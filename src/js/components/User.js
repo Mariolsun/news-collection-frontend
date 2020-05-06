@@ -1,7 +1,7 @@
 export default class User {
-  constructor(logoutBtn, savedArticles, name, loggedIn = true) {
+  constructor(logoutBtns, savedArticles, name, loggedIn = true) {
     this.loggedIn = loggedIn;
-    this.logoutBtns = document.querySelectorAll('button_type_logout');
+    this.logoutBtns = logoutBtns;
     this.articles = savedArticles;
     this.name = name;
 

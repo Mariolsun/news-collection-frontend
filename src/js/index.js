@@ -1,24 +1,33 @@
 import '../style/style.css';
-import Popup from '../js/components/Popup';
 import PopupLogin from '../js/components/PopupLogin';
 import PopupSignup from '../js/components/PopupSignup';
 import PopupSuccessSignup from '../js/components/PopupSuccessSignup';
 import Validation from '../js/utils/validation';
+import User from '../js/components/User';
+import Article from '../js/components/Article';
+import articles from '../js/data/articles';
 
 const navBar = document.querySelector('.header__navbar');
 const authButton =navBar.querySelector('.button_type_auth');
 const userButton = navBar.querySelector('.button_type_logout');
 const savedArticlesPage = document.querySelector('.header__navbar-item_inactive-page');
-
+const logoutBtns = document.querySelectorAll('.button_type_logout');
 const mobileMenuButton = document.querySelector('.button_type_mobile-menu');
 const mobileMenuClose = document.querySelector('.header__mobile-menu-close');
 const mobileNavBar = document.querySelector('.header__navbar_type_mobile');
-
+const sectionToAppend = document.querySelector('.page');
 const findButton = document.querySelector('.lead__button');
 const foundArticles = document.querySelectorAll('.article');
 const articlesSection = document.querySelector('.articles');
 const articlesContainer = document.querySelector('.articles__container');
 const showMoreBtn = document.querySelector('.articles__show-more-btn');
+
+
+const loginPopupTemplate = document.getElementById('popup_type_login');
+const articleTemplate = document.getElementById('article');
+const signupPopupTemplate = document.getElementById('popup_type_signup');
+const successfulSignupTemplate = document.getElementById('popup_type_success-signup');
+
 
 
 const validationMessages = {
@@ -36,13 +45,92 @@ const users = [
 ]
 
 
+const validation = new Validation(validationMessages, users);
+
+const popupLogin = new PopupLogin(loginPopupTemplate, sectionToAppend, validation);
+
+const user = new User(logoutBtns, )
+const popupSignup = new PopupSignup(signupPopupTemplate, sectionToAppend, validation);
+
+const popupSuccessSignup = new PopupSuccessSignup(successfulSignupTemplate, sectionToAppend);
+
+
+const signupBlock = document.querySelector('.popup_type_signup');
+const loginBlock = document.querySelector('.popup_type_login');
+
+const loginOfferSignup = loginBlock.querySelector('.popup__other-auth-btn');
+const signupOfferLogin = signupBlock.querySelector('.popup__other-auth-btn');
+
+
+
+const loginBtn = popupSuccessSignup.block.querySelector('.popup__other-auth-btn');
+
+const submitSignupBtn = popupSignup.block.querySelector('.popup__button');
+
+
+
+
+
+
+
+loginOfferSignup.addEventListener('click', event => {
+  popupLogin.close(event);
+  popupSignup.open();
+});
+
+signupOfferLogin.addEventListener('click', event => {
+  popupSignup.close(event);
+  popupLogin.open();
+})
+
+
+submitSignupBtn.addEventListener('click', event => {
+  event.preventDefault();
+  popupSignup.close(event);
+  popupSuccessSignup.open();
+})
+
+loginBtn.addEventListener('click', event => {
+  popupSuccessSignup.close(event);
+  popupLogin.open();
+})
+
+
+
+authButton.addEventListener('click', popupLogin.open);
+
+
+
+
+findButton.addEventListener('click', function(event) {
+  console.log('click on find button');
+  event.preventDefault();
+  articles.forEach((article) => {
+    let newArticle = new Article(articlesContainer, articleTemplate, article);
+    newArticle.visible(true);
+
+  })
+  articlesSection.classList.toggle('articles_visible');
+})
+
+
+
+
+
+
+
+
+
+
+
+
 /*authButton.addEventListener('click', function(event) {
   console.log('click on authbutton');
   event.preventDefault();
   authButton.classList.remove('header__navbar-item_visible');
   userButton.classList.add('header__navbar-item_visible');
   savedArticlesPage.classList.add('header__navbar-item_visible');
-})*/
+})
 
 userButton.addEventListener('click', function(event) {
   console.log('click on userbutton');
@@ -52,15 +140,12 @@ userButton.addEventListener('click', function(event) {
 })
 
 
-/*mobileMenuButton.addEventListener('click', function(event) {
+mobileMenuButton.addEventListener('click', function(event) {
   console.log('click on mobile menu button');
   mobileNavBar.classList.add('header__navbar_visible');
   mobileMenuClose.setAttribute('display', 'inline');
-})*/
-
-window.addEventListener('resize', function(event) {
-  console.log('resize event');
 })
+
 
 
 findButton.addEventListener('click', function(event) {
@@ -95,52 +180,4 @@ articlesContainer.addEventListener('click', function(event) {
   }
 })
 
-
-const validation = new Validation(validationMessages, users);
-
-const sectionToAppend = document.querySelector('.page');
-const loginPopupTemplate = document.getElementById('popup_type_login');
-const popupLogin = new PopupLogin(loginPopupTemplate, sectionToAppend, validation);
-
-authButton.addEventListener('click', popupLogin.open);
-
-
-
-const signupPopupTemplate = document.getElementById('popup_type_signup');
-const popupSignup = new PopupSignup(signupPopupTemplate, sectionToAppend, validation);
-
-const signupBlock = document.querySelector('.popup_type_signup');
-const loginBlock = document.querySelector('.popup_type_login');
-console.log(`${signupBlock.classList}!`)
-const loginOfferSignup = loginBlock.querySelector('.popup__other-auth-btn');
-const signupOfferLogin = signupBlock.querySelector('.popup__other-auth-btn');
-
-console.log(`${loginOfferSignup.classList}!`);
-loginOfferSignup.addEventListener('click', event => {
-  popupLogin.close(event);
-  popupSignup.open();
-});
-
-signupOfferLogin.addEventListener('click', event => {
-  popupSignup.close(event);
-  popupLogin.open();
-})
-
-const successfulSignupTemplate = document.getElementById('popup_type_success-signup');
-const popupSuccessSignup = new PopupSuccessSignup(successfulSignupTemplate, sectionToAppend);
-
-const loginBtn = popupSuccessSignup.block.querySelector('.popup__other-auth-btn');
-
-const submitSignupBtn = popupSignup.block.querySelector('.popup__button');
-submitSignupBtn.classList.toggle('popup__button_disabled');
-
-submitSignupBtn.addEventListener('click', event => {
-  event.preventDefault();
-  popupSignup.close(event);
-  popupSuccessSignup.open();
-})
-
-loginBtn.addEventListener('click', event => {
-  popupSuccessSignup.close(event);
-  popupLogin.open();
-})
+*/
