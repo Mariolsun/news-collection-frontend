@@ -7,7 +7,7 @@
 @import url(./__copyright/footer__copyright.css);
 
 .footer {
-  color: #1a1b22;
+  color: var(--main-black);
   font-size: 18px;
   line-height: 24px;
   font-weight: normal;

@@ -3,5 +3,5 @@
   border: none;
   margin: 0;
   padding: 0;
-  color: #2f71e5;
+  color: var(--main-blue);
 }

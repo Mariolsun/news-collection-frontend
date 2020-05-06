@@ -1,5 +1,5 @@
 .article__date {
-  color: #b6bcbf;
+  color: var(--main-gray);
   font-size: 18px;
   line-height: 24px;
   font-weight: normal;

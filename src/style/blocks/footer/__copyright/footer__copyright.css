@@ -1,5 +1,5 @@
 .footer__copyright {
-  color: #b6bcbf;
+  color: var(--main-gray);
   font-size: 16px;
   line-height: 22px;
 }

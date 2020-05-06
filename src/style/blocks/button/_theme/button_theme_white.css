@@ -1,4 +1,8 @@
 .button_theme_white {
-  border: 1px solid white;
-  color: white;
+  border: 1px solid var(--main-white);
+  color: var(--main-white);
+}
+
+.button_theme_white:hover {
+  opacity: 0.9;
 }

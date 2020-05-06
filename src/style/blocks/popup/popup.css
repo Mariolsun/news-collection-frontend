@@ -11,6 +11,7 @@
 @import url(./_is-opened/popup_is-opened.css);
 @import url(./__image/popup__image.css);
 @import url(./__validate-alert/popup__validate-alert.css);
+@import url(./__validate-alert/_type/popup__validate-alert_type_email-not-free.css);
 @import url(./__input-title/popup__input-title.css);
 
 .popup {

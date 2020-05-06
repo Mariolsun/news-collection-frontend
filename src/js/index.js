@@ -3,6 +3,7 @@ import Popup from '../js/components/Popup';
 import PopupLogin from '../js/components/PopupLogin';
 import PopupSignup from '../js/components/PopupSignup';
 import PopupSuccessSignup from '../js/components/PopupSuccessSignup';
+import Validation from '../js/utils/validation';
 
 const navBar = document.querySelector('.header__navbar');
 const authButton =navBar.querySelector('.button_type_auth');
@@ -18,6 +19,21 @@ const foundArticles = document.querySelectorAll('.article');
 const articlesSection = document.querySelector('.articles');
 const articlesContainer = document.querySelector('.articles__container');
 const showMoreBtn = document.querySelector('.articles__show-more-btn');
+
+
+const validationMessages = {
+  required: 'Это обязательное поле',
+  incorrectNameLength: 'Должно быть от 2 до 30 символов',
+  incorrectPasswordLength: 'Должно быть от 8 символов',
+  invalidEmail: 'Неправильный формат email',
+  incorrectCredentials: 'Неправильные email или пароль',
+  userAlreadyExist: 'Такой пользователь уже есть',
+};
+
+const users = [
+  'example@test.com',
+  'mariolsun@test.com'
+]
 
 
 /*authButton.addEventListener('click', function(event) {
@@ -79,16 +95,19 @@ articlesContainer.addEventListener('click', function(event) {
   }
 })
 
+
+const validation = new Validation(validationMessages, users);
+
 const sectionToAppend = document.querySelector('.page');
 const loginPopupTemplate = document.getElementById('popup_type_login');
-const popupLogin = new PopupLogin(loginPopupTemplate, sectionToAppend);
+const popupLogin = new PopupLogin(loginPopupTemplate, sectionToAppend, validation);
 
 authButton.addEventListener('click', popupLogin.open);
 
 
 
 const signupPopupTemplate = document.getElementById('popup_type_signup');
-const popupSignup = new PopupSignup(signupPopupTemplate, sectionToAppend);
+const popupSignup = new PopupSignup(signupPopupTemplate, sectionToAppend, validation);
 
 const signupBlock = document.querySelector('.popup_type_signup');
 const loginBlock = document.querySelector('.popup_type_login');

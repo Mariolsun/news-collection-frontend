@@ -23,9 +23,11 @@ export default class Popup {
 
   buttonRender(element, result) {
     if (result) {
+      console.log('valid is ok, enabling submit btn');
       element.removeAttribute('disabled');
       element.classList.remove('popup__button_disabled');
     } else {
+      console.log('valid is not ok, disabling submit btn');
       element.setAttribute('disabled', true);
       element.classList.add('popup__button_disabled');
     }

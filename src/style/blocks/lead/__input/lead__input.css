@@ -36,5 +36,5 @@
 }
 
 .lead__input::placeholder {
-  color: #b6bcbf;
+  color: var(--main-gray);
 }

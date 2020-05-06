@@ -6,7 +6,7 @@
 .about {
   overflow: hidden;
   width: 100%;
-  background-color: white;
+  background-color: var(--main-white);
   z-index: 1;
   display: flex;
   margin: 80px 0;

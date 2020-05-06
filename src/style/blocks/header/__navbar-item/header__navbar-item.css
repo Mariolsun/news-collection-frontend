@@ -2,7 +2,8 @@
 .header__navbar-item {
   display: flex;
   text-decoration: none;
-  color: white;
+  color: var(--main-white);
+  background-color: transparent;
   margin: auto 32px auto 0;
   justify-content: center;
   display: none;
@@ -10,7 +11,7 @@
 
 .header__navbar-item_inactive-page {
   border-bottom: none;
-  color: #b6bcbf;
+  color: var(--main-gray);
 }
 
 .header__navbar-item_active-page {

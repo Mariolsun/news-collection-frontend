@@ -2,7 +2,7 @@
   display: block;
   margin-right: 35px;
   text-decoration: none;
-  color: #1a1b22;
+  color: var(--main-black);
 }
 
 .footer__link:last-of-type {

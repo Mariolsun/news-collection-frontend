@@ -3,7 +3,7 @@
   font-weight: normal;
   font-size: 16px;
   line-height: 22px;
-  color: #1a1b22;
+  color: var(--main-black);
   margin: 0 0 18px;
 
   overflow: hidden;

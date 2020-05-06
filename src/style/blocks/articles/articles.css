@@ -2,7 +2,7 @@
 @import url(./__show-more-btn/articles__show-more-btn.css);
 
 .articles {
-  background-color: #f5f6f7;
+  background-color: var(--gray-bg-articles);
   padding: 0 104px;
   width: 100%;
   max-width: 1440px;

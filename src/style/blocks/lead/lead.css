@@ -14,7 +14,7 @@
   flex-direction: column;
   align-content: center;
   overflow: hidden;
-  color: white;
+  color: var(--main-white);
   width: calc(100% + 208px);
 }
 

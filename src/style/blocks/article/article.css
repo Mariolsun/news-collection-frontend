@@ -15,7 +15,7 @@
   max-width: 400px;
   border-radius: 15px;
   overflow: hidden;
-  background-color: white;
+  background-color: var(--main-white);
   display: none;
 }
 

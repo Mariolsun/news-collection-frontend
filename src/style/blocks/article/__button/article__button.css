@@ -1,7 +1,7 @@
 .article__button {
   border: none;
   border-radius: 8px;
-  background-color: white;
+  background-color: var(--main-white);
   color: black;
   height: 40px;
   width: auto;

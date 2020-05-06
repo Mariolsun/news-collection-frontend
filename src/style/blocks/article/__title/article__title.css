@@ -3,7 +3,7 @@
   font-weight: normal;
   font-size: 26px;
   line-height: 30px;
-  color: #1a1b22;
+  color: var(--main-black);
   margin: 12px 0 16px;
 }
 
