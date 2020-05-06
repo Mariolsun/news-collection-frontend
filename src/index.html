@@ -301,6 +301,14 @@
       </div>
     </template>
 
+    <template id='popup_type_success-signup'>
+      <div class="popup__content">
+        <img src="<%=require('./images/close.svg').default%>" alt="" class="popup__close">
+        <h3 class="popup__title">Пользователь успешно зарегистрирован</h3>
+        <button class="popup__other-auth-btn">Выполнить вход</button>
+      </div>
+    </template>
+
     <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 
 </body>

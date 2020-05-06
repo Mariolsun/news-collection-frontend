@@ -2,6 +2,7 @@ import '../style/style.css';
 import Popup from '../js/components/Popup';
 import PopupLogin from '../js/components/PopupLogin';
 import PopupSignup from '../js/components/PopupSignup';
+import PopupSuccessSignup from '../js/components/PopupSuccessSignup';
 
 const navBar = document.querySelector('.header__navbar');
 const authButton =navBar.querySelector('.button_type_auth');
@@ -103,5 +104,24 @@ loginOfferSignup.addEventListener('click', event => {
 
 signupOfferLogin.addEventListener('click', event => {
   popupSignup.close(event);
+  popupLogin.open();
+})
+
+const successfulSignupTemplate = document.getElementById('popup_type_success-signup');
+const popupSuccessSignup = new PopupSuccessSignup(successfulSignupTemplate, sectionToAppend);
+
+const loginBtn = popupSuccessSignup.block.querySelector('.popup__other-auth-btn');
+
+const submitSignupBtn = popupSignup.block.querySelector('.popup__button');
+submitSignupBtn.classList.toggle('popup__button_disabled');
+
+submitSignupBtn.addEventListener('click', event => {
+  event.preventDefault();
+  popupSignup.close(event);
+  popupSuccessSignup.open();
+})
+
+loginBtn.addEventListener('click', event => {
+  popupSuccessSignup.close(event);
   popupLogin.open();
 })
