@@ -79,9 +79,9 @@
     <template id="article">
       <div class="article__options-bar">
         <div class="article__save-options">
-          <button class="button button_visible article__button article__button_type_options">Войдите, чтобы сохранять статьи</button>
+          <button class="button button_visible article__button article__button_type_options">Убрать из сохранённых</button>
           <button class="button button_visible article__button article__button_type_toggle-save">
-            <img src="../<%=require('../images/bookmark.png').default%>" alt="" class="article__bookmark-icon">
+            <img src="../<%=require('../images/trash-icon.png').default%>" alt="" class="article__bookmark-icon">
           </button>
         </div>
         <button class="button button_visible article__button article__button_type_keyword">Temple</button>
@@ -95,57 +95,7 @@
       </div>
     </template>
 
-    <template id='popup_type_login'>
-      <div class="popup__content">
-        <img src="<%=require('../images/close.svg').default%>" alt="" class="popup__close">
-        <h3 class="popup__title">Вход</h3>
-        <form class="popup__form" name="login">
-            <h4 class="popup__input-title">Email</h4>
-            <input type="text" name="email" class="popup__input popup__input_type_email" placeholder="Введите почту">
-            <div class="popup__validate-alert popup__validate-alert_type_email">Это обязательное поле</div>
-            <h4 class="popup__input-title">Пароль</h4>
-            <input type="password" name="password" class="popup__input popup__input_type_password" placeholder="Введите пароль">
-            <div class="popup__validate-alert popup__validate-alert_type_password">Это обязательное поле</div>
-            <button type class="button button_visible popup__button popup__button_disabled">Войти</button>
-        </form>
-        <p class="popup__other-auth-offer">
-            или
-            <button class="popup__other-auth-btn">Зарегистрироваться</button>
-        </p>
-      </div>
-    </template>
 
-    <template id='popup_type_signup'>
-      <div class="popup__content">
-        <img src="<%=require('../images/close.svg').default%>" alt="" class="popup__close">
-        <h3 class="popup__title">Регистрация</h3>
-        <form class="popup__form" name="signup">
-            <h4 class="popup__input-title">Email</h4>
-            <input type="text" name="email" class="popup__input popup__input_type_email" placeholder="Введите почту">
-            <div class="popup__validate-alert popup__validate-alert_type_email">Это обязательное поле</div>
-            <h4 class="popup__input-title">Пароль</h4>
-            <input type="password" name="password" class="popup__input popup__input_type_password" placeholder="Введите пароль">
-            <div class="popup__validate-alert popup__validate-alert_type_password">Это обязательное поле</div>
-            <h4 class="popup__input-title">Имя</h4>
-            <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Введите Имя">
-            <div class="popup__validate-alert popup__validate-alert_type_name">Это обязательное поле</div>
-            <div class="popup__validate-alert popup__validate-alert_type_email-not-free">Проверка email</div>
-            <button type class="button button_visible popup__button popup__button_disabled">Зарегистрироваться</button>
-        </form>
-        <p class="popup__other-auth-offer">
-            или
-            <button class="popup__other-auth-btn">Войти</button>
-        </p>
-      </div>
-    </template>
-
-    <template id='popup_type_success-signup'>
-      <div class="popup__content">
-        <img src="<%=require('../images/close.svg').default%>" alt="" class="popup__close">
-        <h3 class="popup__title">Пользователь успешно зарегистрирован</h3>
-        <button class="popup__other-auth-btn">Выполнить вход</button>
-      </div>
-    </template>
 
     <script src="<%= htmlWebpackPlugin.files.chunks.savedArticles.entry %>"></script>
 

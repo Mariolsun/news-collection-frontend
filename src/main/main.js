@@ -10,7 +10,6 @@ import savedArticles from '../js/data/savedArticles';
 
 const navBar = document.querySelector('.header__navbar');
 const authButton =navBar.querySelector('.button_type_auth');
-const userButton = navBar.querySelector('.button_type_logout');
 const savedArticlesPage = document.querySelector('.header__navbar-item_inactive-page');
 const logoutBtns = document.querySelectorAll('.button_type_logout');
 const mobileMenuButton = document.querySelector('.button_type_mobile-menu');
