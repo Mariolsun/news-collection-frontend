@@ -1,5 +1,6 @@
 .articles__show-more-btn {
-  color: #1a1b22;
+  color: var(--main-black);
+  background-color: var(--main-white);
   font-weight: 500;
   font-style: normal;
   font-size: 18px;
@@ -10,4 +11,9 @@
   height: 64px;
   margin: 64px auto 80px;
   display: none;
+}
+
+
+.articles__show-more-btn:hover {
+  opacity: 0.85;
 }
