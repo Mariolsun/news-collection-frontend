@@ -13,9 +13,10 @@
 @import url(./__validate-alert/popup__validate-alert.css);
 @import url(./__validate-alert/_type/popup__validate-alert_type_email-not-free.css);
 @import url(./__input-title/popup__input-title.css);
+@import url(./__inputs/popup__inputs.css);
 
 .popup {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -26,4 +27,5 @@
   justify-content: center;
   display: none;
   z-index: 10;
+  outline: none;
 }

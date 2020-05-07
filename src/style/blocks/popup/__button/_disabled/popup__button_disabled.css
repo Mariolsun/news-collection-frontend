@@ -1,8 +1,10 @@
 .popup__button_disabled {
   width: 100%;
-  height: 50px;
-  border: 1px solid rgba(0, 0, 0, .2);
-  background-color: var(--main-white);
-  color: rgba(0, 0, 0, .2);
-  font-size: 36px;
+  background-color: var(--gray-btn-locked);
+  color: var(--main-gray);
+}
+
+.popup__button_disabled:hover {
+  background-color: var(--gray-btn-locked);
+  cursor: initial;
 }

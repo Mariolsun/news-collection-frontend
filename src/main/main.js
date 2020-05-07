@@ -164,21 +164,26 @@ const submitLoginBtn = popupLogin.block.querySelector('.popup__button');
 
 
 loginOfferSignup.addEventListener('click', event => {
+  if(popupLogin.isMobile()) popupSignup.open(true);
+  else popupSignup.open();
+
   popupLogin.close(event);
-  popupSignup.open();
 });
 
 signupOfferLogin.addEventListener('click', event => {
+  if(popupSignup.isMobile()) popupLogin.open(true);
+  else popupLogin.open();
+
   popupSignup.close(event);
-  popupLogin.open();
 })
 
 
 submitSignupBtn.addEventListener('click', event => {
   event.preventDefault();
   user.updateUserName(popupSignup.nameInput.value)
+  if(popupSignup.isMobile()) popupSuccessSignup.open(true);
+  else popupSuccessSignup.open();
   popupSignup.close(event);
-  popupSuccessSignup.open();
 })
 
 loginOfferBtn.addEventListener('click', event => {

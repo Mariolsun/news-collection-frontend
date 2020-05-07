@@ -9,4 +9,5 @@
   line-height: 15px;
   background-color: var(--main-white);
   color: var(--main-blue);
+  cursor: pointer;
 }

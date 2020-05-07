@@ -116,12 +116,14 @@
         <img src="<%=require('./images/close.svg').default%>" alt="" class="popup__close">
         <h3 class="popup__title">Вход</h3>
         <form class="popup__form" name="login">
-            <h4 class="popup__input-title">Email</h4>
-            <input type="text" name="email" class="popup__input popup__input_type_email" placeholder="Введите почту">
-            <div class="popup__validate-alert popup__validate-alert_type_email">Это обязательное поле</div>
-            <h4 class="popup__input-title">Пароль</h4>
-            <input type="password" name="password" class="popup__input popup__input_type_password" placeholder="Введите пароль">
-            <div class="popup__validate-alert popup__validate-alert_type_password">Это обязательное поле</div>
+            <div class="popup__inputs">
+              <h4 class="popup__input-title">Email</h4>
+              <input type="text" name="email" class="popup__input popup__input_type_email" placeholder="Введите почту">
+              <div class="popup__validate-alert popup__validate-alert_type_email">Это обязательное поле</div>
+              <h4 class="popup__input-title">Пароль</h4>
+              <input type="password" name="password" class="popup__input popup__input_type_password" placeholder="Введите пароль">
+              <div class="popup__validate-alert popup__validate-alert_type_password">Это обязательное поле</div>
+            </div>
             <button type class="button popup__button popup__button_disabled">Войти</button>
         </form>
         <p class="popup__other-auth-offer">
@@ -158,7 +160,7 @@
     <template id='popup_type_success-signup'>
       <div class="popup__content">
         <img src="<%=require('./images/close.svg').default%>" alt="" class="popup__close">
-        <h3 class="popup__title">Пользователь успешно зарегистрирован</h3>
+        <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
         <button class="popup__other-auth-btn">Выполнить вход</button>
       </div>
     </template>

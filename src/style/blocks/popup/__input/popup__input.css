@@ -1,11 +1,19 @@
 .popup__input {
   width: 100%;
-  height: 47px;
+  height: 25px;
   border: 0;
+  margin: 0;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   font-size: 14px;
   line-height: 17px;
   box-sizing: border-box;
-  padding: 5px 6px 13px;
+  margin-bottom: 3px;
+  padding: 0 0 5px;
+  outline: none;
+  caret-color: var(--main-blue);
 }
 
+
+.popup__input:focus {
+  border-bottom: 1px solid black;
+}

@@ -9,12 +9,16 @@ export default class Popup {
     this.close = this.close.bind(this);
     this.closeBtn = this.block.querySelector('.popup__close');
     this.closeBtn.addEventListener('click', this.close);
-
+    this.isMobile = this.isMobile.bind(this);
   }
 
   close (event) {
     event.target.closest('.popup').classList.remove('popup_type_mobile');
     event.target.closest('.popup').classList.remove('popup_is-opened');
+  }
+
+  isMobile() {
+    return this.block.classList.contains('popup_type_mobile');
   }
 
   open (isMobile, mobileCloseBtn) {

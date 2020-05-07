@@ -1,14 +1,13 @@
 .popup__button {
   width: 100%;
-  height: 50px;
-  border: 1px solid black;
+  height: 64px;
+  border: none;
   background-color: var(--main-blue);
+
   color: var(--main-white);
-  font-size: 36px;
-}
-
-
-.popup_type_edit button {
+  font-style: normal;
+  font-weight: 500;
   font-size: 18px;
-  line-height: 22px;
+  line-height: 24px;
 }
+
