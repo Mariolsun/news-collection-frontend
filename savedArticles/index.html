@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="./images/favicon.png" type="image/png">
+  <title>NewsCollection</title>
+  <link rel="stylesheet" href="../savedArticles/savedArticles.410e199b7a54114b6ba1.css?1f1d168f5dd3e184c915">
+</head>
+<body>
+    <div class="page">
+
+      <header class="header header_type_desktop">
+        <p class="header__title">NewsExplorer</p>
+        <nav class="header__navbar header__navbar_visible">
+          <a href='../index.html' class="header__navbar-item header__navbar-item_visible header__navbar-item_inactive-page">Главная</a>
+          <a href="../savedArticles/index.html" class="header__navbar-item header__navbar-item_active-page">Сохранённые статьи</a>
+          <button class="button button_type_auth button_theme_black header__navbar-item header__navbar-item_visible">Авторизоваться</button>
+          <button class="button button_type_logout button_theme_black header__navbar-item">
+              User
+              <img src=".././images/logout-icon-black.png" alt="Иконка выхода пользователя" class="header__logout-icon">
+          </button>
+        </nav>
+      </header>
+
+  <header class="header header_type_mobile">
+        <p class="header__title">NewsExplorer</p>
+        <button class="button button_type_mobile-menu button_theme_black header__navbar-item header__navbar-item_visible">
+          <img src=".././images/mobile-menu-black.png" alt="Mobile menu icon" class="header__mobile-menu-icon">
+        </button>
+        <img src=".././images/mobile-menu-close.png" alt="Mobile menu close button" class="header__mobile-menu-close">
+        <nav class="header__navbar header__navbar_type_mobile">
+          <a href="#" class="header__navbar-item header__navbar-item_visible header__navbar-item_inactive-page">Главная</a>
+          <a href="#" class="header__navbar-item header__navbar-item_active-page">Сохранённые статьи</a>
+          <button class="button button_type_logout button_theme_black header__navbar-item">
+            User
+            <img src=".././images/logout-icon-black.png" alt="Logout icon" class="header__logout-icon">
+          </button>
+        </nav>
+      </header>
+
+    <main class="content">
+
+      <section class="info">
+        <p class="info__description">Сохраненные статьи</p>
+        <h1 class="info__title">User, у вас Х сохранённых статей</h1>
+        <p class="info__articles-keywords">
+            По ключевым словам:
+            <span class="info__keywords">Природа, Тайга и 2 другим</span>
+        </p>
+      </section>
+      <section class="articles articles_visible">
+        <div class="articles__container">
+
+        </div>
+      </section>
+
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; NewsCollection, Powered by News API</p>
+      <div class="footer__links">
+        <div class="footer__links-container">
+          <a href="" class="footer__link">Главная</a>
+          <a href="" class="footer__link">Яндекс.Практикум</a>
+        </div>
+        <div class="footer__links-container footer__links-container_type_social">
+          <a href="#" class="footer__link footer__link_type_github">
+            <img src=".././images/github.png" alt="" class="footer__icon_type_github">
+          </a>
+          <a href="#" class="footer__link footer__link_type_facebook">
+            <img src=".././images/fb.png" alt="" class="footer__icon_type_facebook">
+          </a>
+        </div>
+      </div>
+    </footer>
+    </div>
+
+    <template id="article">
+      <div class="article__options-bar">
+        <div class="article__save-options">
+          <button class="button button_visible article__button article__button_type_options">Убрать из сохранённых</button>
+          <button class="button button_visible article__button article__button_type_toggle-save">
+            <img src=".././images/trash-icon.png" alt="" class="article__bookmark-icon">
+          </button>
+        </div>
+        <button class="button button_visible article__button article__button_type_keyword">Temple</button>
+      </div>
+      <img src=".././images/plant.png" alt="" class="article__image">
+      <div class="article__content">
+        <p class="article__date">2 августа, 1812</p>
+        <h3 class="article__title">Национальное достояние - templates</h3>
+        <p class="article__text">Lorem ipsum soli. Test Test Test. Test Test Test. Test Test Test. Test Test Test. Test Test Test. В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться система национальных парков - охраняемых территорий, где и сегодня каждый может приобщиться к природе.</p>
+        <p class="article__source">ТЕМПЛЕЙТС.РУ</p>
+      </div>
+    </template>
+
+
+
+    <script src="../savedArticles/savedArticles.edd638064363d242a909.js?1f1d168f5dd3e184c915"></script>
+
+</body>
+</html>
+
+
+
