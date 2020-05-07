@@ -4,23 +4,21 @@
   font-size: 16px;
   line-height: 22px;
   color: var(--main-black);
-  margin: 0 0 18px;
+  margin: 0;
 
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 4;
 }
 
 @media screen and (max-width: 767px) {
   .article__text {
-    margin: 0 0 8px;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .article__text {
-    margin: 0 0 12px;
   }
 }
 

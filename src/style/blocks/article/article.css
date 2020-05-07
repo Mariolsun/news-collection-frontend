@@ -17,30 +17,44 @@
 
 .article {
   position: relative;
-  max-width: 400px;
   border-radius: 15px;
   overflow: hidden;
   background-color: var(--main-white);
   display: none;
   align-self: center;
   justify-self: center;
+
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 767px) {
   .article {
-    min-width: 288px;
+    max-width: 288px;
+    max-height: 440px;
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1439px) {
+@media screen and (min-width: 768px) and (max-width: 1023px) {
   .article {
     min-width: 224px;
     max-width: 300px;
+    height: 55vmin;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+  .article {
+    max-width: 380px;
+    height: 60vmin;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .article {
+
+  max-width: 400px;
+  height: 576px;
   }
 }
 

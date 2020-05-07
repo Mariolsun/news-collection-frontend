@@ -1,18 +1,36 @@
 .article__image {
+  position: relative;
   object-fit: cover;
-  width: 100%;
+  width: calc(100% + 48px);
+  left: -24px;
   max-height: 272px;
 }
 
 @media screen and (max-width: 767px) {
   .article__image {
     max-height: 196px;
+
+    width: calc(100% + 32px);
+    left: -16px;
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1439px) {
+@media screen and (min-width: 768px) and (max-width: 1023px) {
   .article__image {
-    max-height: 150px;
+    min-height: 150px;
+    max-height: 250px;
+
+    width: calc(100% + 32px);
+    left: -16px;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+  .article__image {
+    max-height: 300px;
+
+    width: calc(100% + 32px);
+    left: -16px;
   }
 }
 

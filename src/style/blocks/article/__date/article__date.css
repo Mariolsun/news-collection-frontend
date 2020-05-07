@@ -5,4 +5,23 @@
   font-weight: normal;
   font-style: normal;
   margin: 0;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .article__date {
+    margin-top: 16px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .article__date {
+    margin-top: 16px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .article__date {
+  }
+
 }

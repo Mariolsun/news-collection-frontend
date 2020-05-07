@@ -1,3 +1,27 @@
 .article__source {
-  margin: 0;
+  margin: 16px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  color: var(--main-gray);
+}
+
+@media screen and (max-width: 767px) {
+  .article__source {
+    margin: 8px 16px 16px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .article__source {
+    margin: 12px 16px 16px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .article__source {
+  }
 }

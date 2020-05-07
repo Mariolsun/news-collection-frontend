@@ -5,6 +5,11 @@
   line-height: 30px;
   color: var(--main-black);
   margin: 12px 0 16px;
+
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
 @media screen and (max-width: 767px) {
@@ -12,6 +17,8 @@
     font-size: 22px;
     line-height: 26px;
     margin: 10px 0 10px;
+
+  -webkit-line-clamp: 2;
   }
 }
 
