@@ -1,19 +1,48 @@
 .articles__show-more-btn {
   color: var(--main-black);
   background-color: var(--main-white);
+  border-radius: 80px;
   font-weight: 500;
   font-style: normal;
   font-size: 18px;
   line-height: 24px;
+  text-align: center;
+  justify-content: center;
   align-self: center;
   border: none;
   width: 288px;
   height: 64px;
   margin: 64px auto 80px;
   display: none;
+  outline: none;
 }
 
 
 .articles__show-more-btn:hover {
   opacity: 0.85;
+}
+
+.articles__show-more-btn:active {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 767px) {
+  .articles__show-more-btn {
+    margin: 15px auto 32px;
+    width: 288px;
+    height: 56px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .articles__show-more-btn {
+    margin: 22px auto 40px;
+    width: 240px;
+    height: 56px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .articles__show-more-btn {
+  }
 }

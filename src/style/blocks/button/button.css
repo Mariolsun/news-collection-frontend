@@ -15,9 +15,13 @@
   align-items: center;
   cursor: pointer;
   text-align: center;
+  outline: none;
 }
 
-.button:focus {
-  border: 1px solid greenyellow;
-  outline: none;
+.button:hover {
+  background-color: var(--blue-hover);
+}
+
+.button:active {
+  background-color: var(--blue-btn-pressed);
 }
