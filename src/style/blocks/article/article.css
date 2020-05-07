@@ -9,6 +9,11 @@
 @import url(./__save-options/article__save-options.css);
 @import url(./__button/_type/article__button_type_options.css);
 @import url(./__button/_type/article__button_type_toggle-save.css);
+@import url(./__keyword/article__keyword.css);
+@import url(./__save-hint/article__save-hint.css);
+@import url(./__save-hint/_visible/article__save-hint_visible.css);
+@import url(./__bookmark-icon/article__bookmark-icon.css);
+
 
 .article {
   position: relative;
@@ -17,6 +22,8 @@
   overflow: hidden;
   background-color: var(--main-white);
   display: none;
+  align-self: center;
+  justify-self: center;
 }
 
 @media screen and (max-width: 767px) {
@@ -35,4 +42,9 @@
 @media screen and (min-width: 1440px) {
   .article {
   }
+}
+
+
+.article:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.05), 0 10px 10px rgba(0,0,0,0.02);
 }

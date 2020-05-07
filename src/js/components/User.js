@@ -1,21 +1,28 @@
 export default class User {
-  constructor(logoutBtns, savedArticles, name, loggedIn = true) {
-    this.loggedIn = loggedIn;
-    this.logoutBtns = logoutBtns;
+  constructor(userNameBlocks, savedArticles, name, loginFunc, logoutFunc, loggedIn = true) {
+    this.userNameBlocks = userNameBlocks;
     this.articles = savedArticles;
+    this.loginFunc = loginFunc;
+    this.logoutFunc = logoutFunc;
+    this.loggedIn = loggedIn;
     this.name = name;
-
     this.updateArticles = this.updateArticles.bind(this);
     this.updateUserName = this.updateUserName.bind(this);
     this.addArticle = this.addArticle.bind(this);
     this.removeArticle = this.removeArticle.bind(this);
-  }
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
+    this.isLoggedIn = this.isLoggedIn.bind(this);
+
+    if(this.loggedIn) this.login();
+    else this.logout();
+  };
 
   updateUserName(newName) {
-    this.logoutBtns = document.querySelectorAll('button_type_logout');
-    this.name = name;
-    this.logoutBtns.forEach(button => {
-      button.textContent = this.name;
+    console.log(`updating username ${newName}`)
+    this.name = newName;
+    this.userNameBlocks.forEach(block => {
+      block.textContent = this.name;
     });
   }
 
@@ -31,10 +38,22 @@ export default class User {
     this.articles.filter(article => article._id != articleId);
   }
 
-  logout() {
-    this.loggedIn = false;
-    this.updateUserName('User');
-    this.updateArticles([]);
+  login (name = this.name, savedArticles = []) {
+    console.log(`logged in as ${this.name}`);
+    this.loggedIn = true;
+    this.updateUserName(name);
+    this.updateArticles(savedArticles);
+    this.loginFunc();
   }
 
+  logout() {
+    this.loggedIn = false;
+    this.updateUserName('Грета');
+    this.updateArticles([]);
+    this.logoutFunc();
+  }
+
+  isLoggedIn() {
+    return this.loggedIn;
+  }
 }

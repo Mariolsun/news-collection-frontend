@@ -1,7 +1,6 @@
 @import url(../style/vendor/fonts.css);
 @import url(../style/blocks/button/button.css);
 @import url(../style/blocks/button/_type/button_type_mobile-menu.css);
-@import url(../style/blocks/button/_visible/button_visible.css);
 @import url(../style/blocks/button/_theme/button_theme_black.css);
 @import url(../style/blocks/button/_theme/button_theme_white.css);
 @import url(../style/blocks/header/header.css);
@@ -15,7 +14,6 @@
 @import url(../style/blocks/article/article.css);
 @import url(../style/blocks/article/_visible/article_visible.css);
 @import url(../style/blocks/articles/_visible/articles_visible.css);
-@import url(../style/blocks/article/_saved/article_saved.css);
 @import url(../style/blocks/popup/popup.css);
 
 

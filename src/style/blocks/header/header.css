@@ -3,6 +3,9 @@
 @import url(./__mobile-menu-close/header__mobile-menu-close.css);
 @import url(./__navbar-item/header__navbar-item.css);
 @import url(./__navbar-item/_visible/header__navbar-item_visible.css);
+@import url(./__logout-icon/header__logout-icon.css);
+@import url(./__username/header__username.css);
+@import url(./__navbar-item/_last-in-raw/header__navbar-item_last-in-raw.css);
 
 .header {
   height: 80px;

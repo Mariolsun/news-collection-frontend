@@ -1,36 +1,46 @@
+import bookmark from '../../images/bookmark-marked.png';
+import bookmarkMarked from '../../images/bookmark-marked.png';
+
 export default class Article {
-  constructor(container, template, data, isSaved = false) {
-    this.isSaved = isSaved;
+  constructor(container, template, data, userCheck) {
     this.articlesContainer = container;
     this.template = template;
+    this.isLoggedIn = userCheck;
     this.data = data;
     this._id = this.data._id;
-
+ //   this.isLoggedInCheck = isLoggedInCheck;
     this.block = document.createElement('div');
     this.block.classList.add('article');
     this.block.append(this.template.content.cloneNode('true'));
     this.articlesContainer.append(this.block);
 
-    this.toggleSaveBtn = this.block.querySelector('.article__button_type_toggle-save');
+    this.saveOptionsBlock = this.block.querySelector('.article__save-options');
+    this.saveHint = this.block.querySelector('.article__save-hint');
     this.image = this.block.querySelector('.article__image');
     this.date = this.block.querySelector('.article__date');
     this.text = this.block.querySelector('.article__text');
     this.title = this.block.querySelector('.article__title');
     this.source = this.block.querySelector('.article__source');
-    this.keyword = this.block.querySelector('.article__button_type_keyword');
-
+    this.keyword = this.block.querySelector('.article__keyword');
+    this.bookmarkIcon = this.block.querySelector('.article__bookmark-icon');
     this.render = this.render.bind(this);
     this.visible = this.visible.bind(this);
     this.toggleSave = this.toggleSave.bind(this);
     this.remove = this.remove.bind(this);
-
-
     this.render();
+    this.block.addEventListener('click', this.toggleSave);
   }
 
   visible(isVisible) {
-    if(isVisible) this.block.classList.add('article_visible');
+    if(isVisible) {
+      this.render();
+      this.block.classList.add('article_visible');
+    }
     else this.block.classList.remove('article_visible');
+  }
+
+  isVisible() {
+    return this.block.classList.contains('article_visible');
   }
 
   remove() {
@@ -38,8 +48,19 @@ export default class Article {
   }
 
   toggleSave() {
+    if(this.isLoggedIn()) {
     this.isSaved = !this.isSaved;
-    this.block.classList.toggle('article_saved');
+    if(this.isSaved) {
+      this.bookmarkIcon.classList.add('article__bookmarked-icon');
+      this.bookmarkIcon.classList.remove('article__bookmark-icon');
+      this.bookmarkIcon.src = bookmarkMarked;
+    }
+    else {
+      this.bookmarkIcon.classList.add('article__bookmark-icon')
+      this.bookmarkIcon.classList.remove('article__bookmarked-icon');
+      this.bookmarkIcon.src = bookmark;
+    }
+   }
   }
 
   render() {

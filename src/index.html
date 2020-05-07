@@ -14,27 +14,27 @@
       <header class="header header_type_desktop">
         <p class="header__title">NewsExplorer</p>
         <nav class="header__navbar header__navbar_visible">
-          <a href='#' class="header__navbar-item header__navbar-item_visible header__navbar-item_active-page">Главная</a>
-          <a href="../savedArticles/index.html" class="header__navbar-item header__navbar-item_visible header__navbar-item_inactive-page">Сохранённые статьи</a>
-          <button class="button button_type_auth button_theme_white header__navbar-item header__navbar-item_visible">Авторизоваться</button>
-          <button class="button button_type_logout button_theme_white header__navbar-item">
-              User
-              <img src="<%=require('./images/logout-icon-white.png').default%>" alt="Иконка выхода пользователя" class="header__logout-icon">
+          <a href='#' class="header__navbar-item header__navbar-item_visible header__navbar-item_main-page">Главная</a>
+          <a href="../savedArticles/index.html" class="header__navbar-item header__navbar-item_saved-articles-page">Сохранённые статьи</a>
+          <button class="button button_type_logout button_theme_white header__navbar-item header__navbar-item_last-in-raw">
+            <p class="header__username">User</p>
+            <img src="<%=require('./images/logout-icon-white.png').default%>" alt="Иконка выхода пользователя" class="header__logout-icon">
           </button>
+          <button class="button button_type_auth button_theme_white header__navbar-item header__navbar-item_last-in-raw">Авторизоваться</button>
         </nav>
       </header>
 
   <header class="header header_type_mobile">
         <p class="header__title">NewsExplorer</p>
-        <button class="button button_type_mobile-menu button_theme_white header__navbar-item header__navbar-item_visible">
+        <button class="button button_type_auth button_type_mobile-menu button_theme_white header__navbar-item header__navbar-item_visible">
           <img src="<%=require('./images/mobile-menu-white.png').default%>" alt="Mobile menu icon" class="header__mobile-menu-icon">
         </button>
         <img src="<%=require('./images/mobile-menu-close.png').default%>" alt="Mobile menu close button" class="header__mobile-menu-close">
         <nav class="header__navbar header__navbar_type_mobile">
-          <a href="#" class="header__navbar-item header__navbar-item_visible header__navbar-item_active-page">Главная</a>
-          <a href="#" class="header__navbar-item header__navbar-item_visible header__navbar-item_inactive-page">Сохранённые статьи</a>
+          <a href="#" class="header__navbar-item header__navbar-item_visible header__navbar-item_main-page">Главная</a>
+          <a href="#" class="header__navbar-item header__navbar-item_saved-articles-page">Сохранённые статьи</a>
           <button class="button button_type_logout button_theme_white header__navbar-item">
-            User
+            <p class="header__username">User</p>
             <img src="<%=require('./images/logout-icon-white.png').default%>" alt="Logout icon" class="header__logout-icon">
           </button>
         </nav>
@@ -49,7 +49,7 @@
           <p class="lead__description">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
           <form class="lead__find-form">
             <input type="text" name="article-theme" class="lead__input" placeholder="Политика">
-            <button class="button button_visible lead__button">Искать</button>
+            <button class="button lead__button">Искать</button>
           </form>
         </div>
       </section>
@@ -58,7 +58,7 @@
         <div class="articles__container">
 
         </div>
-        <button class="button button_visible articles__show-more-btn">Показать еще</button>
+        <button class="button articles__show-more-btn">Показать еще</button>
       </section>
       <section class="about">
         <img src="<%=require('./images/avatar.png').default%>" alt="Фото автора проекта" class="about__photo">
@@ -91,12 +91,12 @@
     <template id="article">
       <div class="article__options-bar">
         <div class="article__save-options">
-          <button class="button button_visible article__button article__button_type_options">Войдите, чтобы сохранять статьи</button>
-          <button class="button button_visible article__button article__button_type_toggle-save">
+          <button class="button article__save-hint">Войдите, чтобы сохранять статьи</button>
+          <button class="button article__button article__button_type_toggle-save">
             <img src="<%=require('./images/bookmark.png').default%>" alt="" class="article__bookmark-icon">
           </button>
         </div>
-        <button class="button button_visible article__button article__button_type_keyword">Temple</button>
+        <div class="article__keyword">Temple</div>
       </div>
       <img src="<%=require('./images/plant.png').default%>" alt="" class="article__image">
       <div class="article__content">
@@ -118,7 +118,7 @@
             <h4 class="popup__input-title">Пароль</h4>
             <input type="password" name="password" class="popup__input popup__input_type_password" placeholder="Введите пароль">
             <div class="popup__validate-alert popup__validate-alert_type_password">Это обязательное поле</div>
-            <button type class="button button_visible popup__button popup__button_disabled">Войти</button>
+            <button type class="button popup__button popup__button_disabled">Войти</button>
         </form>
         <p class="popup__other-auth-offer">
             или
@@ -142,7 +142,7 @@
             <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Введите Имя">
             <div class="popup__validate-alert popup__validate-alert_type_name">Это обязательное поле</div>
             <div class="popup__validate-alert popup__validate-alert_type_email-not-free">Проверка email</div>
-            <button type class="button button_visible popup__button popup__button_disabled">Зарегистрироваться</button>
+            <button type class="button popup__button popup__button_disabled">Зарегистрироваться</button>
         </form>
         <p class="popup__other-auth-offer">
             или

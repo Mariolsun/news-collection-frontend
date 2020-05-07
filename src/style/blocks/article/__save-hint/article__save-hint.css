@@ -1,0 +1,17 @@
+.article__save-hint {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  background-color: var(--main-white);
+  border: none;
+  border-radius: 10px;
+  color: black;
+  height: 100%;
+  width: auto;
+  margin-right: 5px;
+}

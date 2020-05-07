@@ -1,5 +1,6 @@
 @import url(./__container/articles__container.css);
 @import url(./__show-more-btn/articles__show-more-btn.css);
+@import url(./__show-more-btn/_visible/articles__show-more-btn_visible.css);
 
 .articles {
   background-color: var(--gray-bg-articles);

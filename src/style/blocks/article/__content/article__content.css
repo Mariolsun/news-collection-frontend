@@ -1,7 +1,7 @@
 .article__content {
   margin: 20px 24px 24px;
   display: flex;
-  height: 100%;
+  max-height: 304px;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -9,12 +9,14 @@
 @media screen and (max-width: 767px) {
   .article__content {
     margin: 16px 16px;
+    max-height: 244px;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .article__content {
     margin: 16px 16px;
+    max-height: 270px;
   }
 }
 
