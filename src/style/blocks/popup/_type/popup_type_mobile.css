@@ -1,0 +1,22 @@
+.popup_type_mobile {
+}
+
+@media screen and (max-width: 767px) {
+  .popup_type_mobile {
+    position: absolute;
+    top: 56px;
+  }
+
+  .popup_type_mobile .popup__close {
+    visibility: hidden;
+  }
+
+  .popup_type_mobile .popup__content {
+    width: 100%;
+    max-width: 520px;
+    position: absolute;
+    top: 0px;
+    height: 560px;
+  }
+ }
+

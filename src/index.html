@@ -25,11 +25,15 @@
       </header>
 
   <header class="header header_type_mobile">
-        <p class="header__title">NewsExplorer</p>
-        <button class="button button_type_auth button_type_mobile-menu button_theme_white header__navbar-item header__navbar-item_visible">
-          <img src="<%=require('./images/mobile-menu-white.png').default%>" alt="Mobile menu icon" class="header__mobile-menu-icon">
-        </button>
-        <img src="<%=require('./images/mobile-menu-close.png').default%>" alt="Mobile menu close button" class="header__mobile-menu-close">
+        <div class="header__mobile-main-bar">
+          <p class="header__title">NewsExplorer</p>
+          <button class="button button_type_mobile-menu header__navbar-item header__navbar-item_visible header__navbar-item_last-in-raw">
+            <img src="<%=require('./images/mobile-menu-white.png').default%>" alt="Mobile menu icon" class="header__mobile-menu-icon">
+          </button>
+          <button class="button button_type_close-mobile header__navbar-item header__navbar-item_last-in-raw">
+            <img src="<%=require('./images/mobile-menu-close.png').default%>" alt="Mobile menu close icon" class="header__mobile-menu-close-icon">
+          </button>
+        </div>
         <nav class="header__navbar header__navbar_type_mobile">
           <a href="#" class="header__navbar-item header__navbar-item_visible header__navbar-item_main-page">Главная</a>
           <a href="#" class="header__navbar-item header__navbar-item_saved-articles-page">Сохранённые статьи</a>

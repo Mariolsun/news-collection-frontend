@@ -6,6 +6,8 @@
 @import url(./__logout-icon/header__logout-icon.css);
 @import url(./__username/header__username.css);
 @import url(./__navbar-item/_last-in-raw/header__navbar-item_last-in-raw.css);
+@import url(./__mobile-main-bar/header__mobile-main-bar.css);
+@import url(./__navbar/_type/header__navbar_type_mobile.css);
 
 .header {
   height: 80px;

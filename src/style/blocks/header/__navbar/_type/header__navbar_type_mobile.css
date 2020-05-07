@@ -1,0 +1,6 @@
+.header__navbar_type_mobile {
+  background-color: var(--main-black);
+  flex-direction: column;
+  width: 100%;
+  align-items: baseline;
+}

@@ -60,9 +60,6 @@ function showLoggedInMenu() {
 
 
 
-const mobileMenuButton = document.querySelector('.button_type_mobile-menu');
-const mobileMenuClose = document.querySelector('.header__mobile-menu-close');
-const mobileNavBar = document.querySelector('.header__navbar_type_mobile');
 const sectionToAppend = document.querySelector('.page');
 const searchButton = document.querySelector('.lead__button');
 const articlesSection = document.querySelector('.articles');
@@ -74,6 +71,41 @@ const articleTemplate = document.getElementById('article');
 const signupPopupTemplate = document.getElementById('popup_type_signup');
 const successfulSignupTemplate = document.getElementById('popup_type_success-signup');
 
+
+
+
+//управление мобильным меню
+
+const mobileHeader = document.querySelector('.header_type_mobile');
+const mobileMainBar = mobileHeader.querySelector('.header__mobile-main-bar');
+const mobileNavBar = mobileHeader.querySelector('.header__navbar_type_mobile');
+const openMobileMenuBtn = mobileHeader.querySelector('.button_type_mobile-menu');
+const closeMobileMenuBtn = mobileHeader.querySelector('.button_type_close-mobile');
+
+
+function toggleMobileMenu (event) {
+  mobileHeader.classList.toggle('header_is-opened-mobile');
+  mobileNavBar.classList.toggle('header__navbar_visible');
+  closeMobileMenuBtn.classList.toggle('header__navbar-item_visible');
+  openMobileMenuBtn.classList.toggle('header__navbar-item_visible');
+}
+
+openMobileMenuBtn.addEventListener('click', event => {
+  if(user.isLoggedIn()) toggleMobileMenu;
+  else {
+    let isMobile = true;
+    popupLogin.open(isMobile);
+    closeMobileMenuBtn.classList.toggle('header__navbar-item_visible');
+    openMobileMenuBtn.classList.toggle('header__navbar-item_visible');
+    closeMobileMenuBtn.addEventListener('click', event => {
+      popupLogin.close(event);
+    })
+  }
+
+});
+
+
+closeMobileMenuBtn.addEventListener('click', toggleMobileMenu);
 
 const validationMessages = {
   required: 'Это обязательное поле',
@@ -130,9 +162,6 @@ const submitSignupBtn = popupSignup.block.querySelector('.popup__button');
 const submitLoginBtn = popupLogin.block.querySelector('.popup__button');
 
 
-function saveHintClick () {
-  popupLogin.open();
-}
 
 loginOfferSignup.addEventListener('click', event => {
   popupLogin.close(event);
@@ -227,3 +256,19 @@ articlesContainer.addEventListener('mouseout', function(event) {
 
 
 
+
+
+/*
+
+    ***TO DO***
+
+    Во всех разрешениях попап чуть выше центра должен быть, сделать
+    доработать логику попапов и мобильного меню
+    подключить шрифты
+    настроить вторую страницу
+    проставить везде ссылки
+    пройтись по макету и сверить соответствие
+    еще раз проверить функциональность
+    пройтись по критериям оценки
+
+*/

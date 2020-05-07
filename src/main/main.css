@@ -15,7 +15,8 @@
 @import url(../style/blocks/article/_visible/article_visible.css);
 @import url(../style/blocks/articles/_visible/articles_visible.css);
 @import url(../style/blocks/popup/popup.css);
-
+@import url(../style/blocks/popup/_type/popup_type_mobile.css);
+@import url(../style/blocks/header/_is-opened-mobile/header_is-opened-mobile.css);
 
 
 

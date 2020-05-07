@@ -13,10 +13,15 @@ export default class Popup {
   }
 
   close (event) {
+    event.target.closest('.popup').classList.remove('popup_type_mobile');
     event.target.closest('.popup').classList.remove('popup_is-opened');
   }
 
-  open (event) {
+  open (isMobile, mobileCloseBtn) {
+    if(isMobile === true) {
+      console.log('openin mobile popup');
+      this.block.classList.add('popup_type_mobile');
+    }
     console.log(`open event on popup ${typeof this.block}`)
     this.block.classList.add('popup_is-opened');
   }
