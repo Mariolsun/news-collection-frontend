@@ -1,4 +1,4 @@
-@import url(../style/vendor/fonts.css);
+@import url(../vendor/fonts.css);
 @import url(../style/blocks/preloader-section/preloader-section.css);
 @import url(../style/blocks/preloader-section/_visible/preloader-section_visible.css);
 @import url(../style/blocks/preloader/circle-preloader.css);
@@ -44,6 +44,9 @@ body {
     --gray-btn-locked: #e6e8eb;
     --main-white: white;
 
+  font-family: 'Roboto';
+  font-weight: normal;
+  font-style: normal;
 
   margin: 0 auto;
   overflow: hidden;
