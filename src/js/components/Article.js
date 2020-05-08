@@ -8,7 +8,6 @@ export default class Article {
     this.isLoggedIn = userCheck;
     this.data = data;
     this._id = this.data._id;
- //   this.isLoggedInCheck = isLoggedInCheck;
     this.block = document.createElement('div');
     this.block.classList.add('article');
     this.block.append(this.template.content.cloneNode('true'));
