@@ -124,7 +124,7 @@ articlesContainer.addEventListener('click', event => {
 logoutBtns.forEach(btn => {
   btn.addEventListener('click', event => {
     if(!!event.target.closest('.header__navbar_type_mobile')) toggleMobileMenu();
-    document.location.href = 'http://localhost:8080';
+    document.location.href = '../index.html';
   })
 })
 
