@@ -1,0 +1,33 @@
+@import url(./__title/info__title.css);
+@import url(./__description/info__description.css);
+@import url(./__articles-keywords/info__articles-keywords.css);
+
+.info {
+  position: relative;
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  overflow: hidden;
+  color: var(--main-black);
+  width: 100%;
+  font-style: normal;
+  font-weight: normal;
+}
+
+@media screen and (max-width: 767px) {
+  .info {
+    padding-top: 56px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .info {
+    padding-top: 66px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .info {
+  }
+}

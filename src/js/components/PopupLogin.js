@@ -27,18 +27,18 @@ export default class PopupLogin extends Popup {
 
     let result = {
       email: this.emailValid(this.emailInput.value),
- //   password: this.passwordValid(this.passwordInput.value),
+      password: this.passwordValid(this.passwordInput.value),
     }
 
 
-    this.buttonRender(this.submitBtn, !result.email && !result.password);
+    this.buttonRender(this.submitBtn, !result.email && result.password !== 'Это обязательное поле');
     switch (event.target) {
       case this.emailInput:
         this.alertRender(this.emailAlert, result.email);
         break;
- //   case this.passwordInput:
- //     this.alertRender(this.passwordAlert, result.password);
- //     break;
+      case this.passwordInput:
+        this.alertRender(this.passwordAlert, result.password == 'Это обязательное поле' ? 'Это обязательное поле' : '');
+        break;
     }
 
   }

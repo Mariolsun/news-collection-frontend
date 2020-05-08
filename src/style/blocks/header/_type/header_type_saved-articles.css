@@ -1,0 +1,6 @@
+.header_type_saved-articles {
+  color: var(--main-black);
+  background-color: var(--main-white);
+
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+}

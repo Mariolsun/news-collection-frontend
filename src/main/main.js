@@ -14,11 +14,18 @@ const navBar = document.querySelector('.header__navbar');
 const authButton =navBar.querySelector('.button_type_auth');
 
 const userNameBlocks = document.querySelectorAll('.header__username');
-const mainPage = document.querySelectorAll('.header__navbar-item_main-page');
-const savedArticlesPageLinks = document.querySelectorAll('.header__navbar-item_saved-articles-page');
+const inactivePageLinks = document.querySelectorAll('.header__navbar-item_inactive-page');
 const logoutBtns = document.querySelectorAll('.button_type_logout');
 const authBtns = document.querySelectorAll('.button_type_auth');
 
+
+const mobileHeader = document.querySelector('.header_type_mobile');
+const mobileNavBar = mobileHeader.querySelector('.header__navbar_type_mobile');
+const openMobileMenuBtn = mobileHeader.querySelector('.button_type_mobile-menu');
+const closeMobileMenuBtn = mobileHeader.querySelector('.button_type_close-mobile');
+
+
+// NavBar handle
 logoutBtns.forEach(btn => {
   btn.addEventListener('click', event => {
     if(!!event.target.closest('.header__navbar_type_mobile')) toggleMobileMenu();
@@ -26,16 +33,17 @@ logoutBtns.forEach(btn => {
   })
 })
 
+// NavBar handle
 window.addEventListener('resize', event => {
   if(document.documentElement.clientWidth > 767 && mobileNavBar.classList.contains('header__navbar_visible')) {
     toggleMobileMenu();
   }
 })
 
-
+// NavBar handle
 function showLoggedOutMenu() {
   console.log('showin logged out menu');
-  savedArticlesPageLinks.forEach(link => {
+  inactivePageLinks.forEach(link => {
     link.classList.remove('header__navbar-item_visible');
   });
 
@@ -47,10 +55,10 @@ function showLoggedOutMenu() {
     btn.classList.add('header__navbar-item_visible');
   })
 }
-
+// NavBar handle
 function showLoggedInMenu() {
   console.log('showing logged in menu');
-  savedArticlesPageLinks.forEach(link => {
+  inactivePageLinks.forEach(link => {
     link.classList.add('header__navbar-item_visible');
   });
 
@@ -67,8 +75,10 @@ function showLoggedInMenu() {
 
 
 
+
 const sectionToAppend = document.querySelector('.page');
 const searchButton = document.querySelector('.lead__button');
+const preloaderSection = document.querySelector('.preloader-section');
 const articlesSection = document.querySelector('.articles');
 const articlesContainer = document.querySelector('.articles__container');
 const showMoreBtn = document.querySelector('.articles__show-more-btn');
@@ -81,15 +91,10 @@ const successfulSignupTemplate = document.getElementById('popup_type_success-sig
 
 
 
-//управление мобильным меню
-
-const mobileHeader = document.querySelector('.header_type_mobile');
-const mobileMainBar = mobileHeader.querySelector('.header__mobile-main-bar');
-const mobileNavBar = mobileHeader.querySelector('.header__navbar_type_mobile');
-const openMobileMenuBtn = mobileHeader.querySelector('.button_type_mobile-menu');
-const closeMobileMenuBtn = mobileHeader.querySelector('.button_type_close-mobile');
+// NavBar handle
 
 
+// NavBar handle
 function toggleMobileMenu (event) {
   mobileHeader.classList.toggle('header_is-opened-mobile');
   mobileNavBar.classList.toggle('header__navbar_visible');
@@ -203,12 +208,8 @@ submitLoginBtn.addEventListener('click', event => {
 
 authButton.addEventListener('click', popupLogin.open);
 
-
-
-
-searchButton.addEventListener('click', function(event) {
-  console.log('click on find button');
-  event.preventDefault();
+function showFoundArticles() {
+  console.log('time out fired');
   foundArticles.forEach((article, i) => {
     if(i > 2) article.visible(false);
     else article.visible(true);
@@ -216,7 +217,21 @@ searchButton.addEventListener('click', function(event) {
 
   if(foundArticles.length > 3) showMoreBtn.classList.add('articles__show-more-btn_visible');
   else showMoreBtn.classList.remove('articles__show-more-btn_visible');
+
+  preloaderSection.classList.remove('preloader-section_visible');
   articlesSection.classList.add('articles_visible');
+  console.log(`all done ${preloaderSection.classList}`);
+}
+
+
+searchButton.addEventListener('click', function(event) {
+  console.log('click on search button');
+  event.preventDefault();
+  articlesSection.classList.remove('articles_visible');
+  preloaderSection.classList.add('preloader-section_visible');
+  console.log('setting timeout');
+  setTimeout(showFoundArticles, 2000);
+
 })
 
 
@@ -235,11 +250,9 @@ articlesContainer.addEventListener('mouseover', function(event) {
 
   if(event.target.classList.contains('article__button_type_toggle-save') && !!event.target.querySelector('.article__bookmark-icon')) {
     event.target.querySelector('.article__bookmark-icon').src = bookmarkhover;
-    console.log('fuck you');
   }
 
   if(event.target.classList.contains('article__bookmark-icon')) {
-    console.log('fuck you too');
     event.target.style.src = bookmarkhover;
   }
 })
@@ -252,11 +265,9 @@ articlesContainer.addEventListener('mouseout', function(event) {
 
   if(event.target.classList.contains('article__button_type_toggle-save') && !event.relatedTarget.classList.contains('article__bookmark-icon') && !!event.target.querySelector('.article__bookmark-icon')) {
     event.target.querySelector('.article__bookmark-icon').src = bookmark;
-    console.log('fuck you');
   }
 
   if(event.target.classList.contains('article__bookmark-icon') && !event.relatedTarget.classList.contains('article__button_type_toggle-save')) {
-    console.log('fuck you too');
     event.target.style.src = bookmark;
   }
 })

@@ -35,7 +35,7 @@ countKeywords(savedArticles);
 infoTitle.textContent = `Грета, у вас ${savedArticles.length} сохранённых новостей`;
 
 if(uniqueKeywords.length > 3) {
-  infoKeywords.textContent = `${uniqueKeywords[0]}, ${uniqueKeywords[1]} и ${uniqueKeywords.length - 2} другим`
+  infoKeywords.innerHTML = `<b>${uniqueKeywords[0]}</b>, <b>${uniqueKeywords[1]}</b> и <b>${uniqueKeywords.length - 2} другим</b>`
 } else {
   let text = `${uniqueKeywords[0]}`;
   uniqueKeywords.forEach((keyword, i) => {

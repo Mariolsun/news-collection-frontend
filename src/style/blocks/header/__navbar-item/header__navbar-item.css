@@ -2,7 +2,7 @@
 .header__navbar-item {
   display: flex;
   text-decoration: none;
-  color: var(--main-white);
+  color: inherit;
   background-color: transparent;
   margin: auto 32px auto 0;
   justify-content: center;

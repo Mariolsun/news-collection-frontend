@@ -11,30 +11,34 @@
 <body>
     <div class="page">
 
-      <header class="header header_type_desktop">
+      <header class="header header_type_saved-articles header_type_desktop">
         <p class="header__title">NewsExplorer</p>
         <nav class="header__navbar header__navbar_visible">
           <a href='../index.html' class="header__navbar-item header__navbar-item_visible header__navbar-item_inactive-page">Главная</a>
           <a href="../savedArticles/index.html" class="header__navbar-item header__navbar-item_active-page">Сохранённые статьи</a>
-          <button class="button button_type_auth button_theme_black header__navbar-item header__navbar-item_visible">Авторизоваться</button>
-          <button class="button button_type_logout button_theme_black header__navbar-item">
-              User
-              <img src="../<%=require('../images/logout-icon-black.png').default%>" alt="Иконка выхода пользователя" class="header__logout-icon">
+          <button class="button button_type_logout button_theme_black header__navbar-item header__navbar-item_visible header__navbar-item_last-in-raw">
+            <p class="header__username">Грета</p>
+            <img src="../<%=require('../images/logout-icon-black.png').default%>" alt="Иконка выхода пользователя" class="header__logout-icon">
           </button>
+          <button class="button button_type_auth button_theme_black header__navbar-item header__navbar-item_last-in-raw">Авторизоваться</button>
         </nav>
       </header>
 
-  <header class="header header_type_mobile">
-        <p class="header__title">NewsExplorer</p>
-        <button class="button button_type_mobile-menu button_theme_black header__navbar-item header__navbar-item_visible">
-          <img src="../<%=require('../images/mobile-menu-black.png').default%>" alt="Mobile menu icon" class="header__mobile-menu-icon">
-        </button>
-        <img src="../<%=require('../images/mobile-menu-close.png').default%>" alt="Mobile menu close button" class="header__mobile-menu-close">
+  <header class="header header_type_saved-articles header_type_mobile">
+        <div class="header__mobile-main-bar">
+          <p class="header__title">NewsExplorer</p>
+          <button class="button button_type_mobile-menu header__navbar-item header__navbar-item_visible header__navbar-item_last-in-raw">
+            <img src="../<%=require('../images/mobile-menu-black.png').default%>" alt="Mobile menu icon" class="header__mobile-menu-icon">
+          </button>
+          <button class="button button_type_close-mobile header__navbar-item header__navbar-item_last-in-raw">
+            <img src="../<%=require('../images/mobile-menu-close.png').default%>" alt="Mobile menu close icon" class="header__mobile-menu-close-icon">
+          </button>
+        </div>
         <nav class="header__navbar header__navbar_type_mobile">
-          <a href="#" class="header__navbar-item header__navbar-item_visible header__navbar-item_inactive-page">Главная</a>
-          <a href="#" class="header__navbar-item header__navbar-item_active-page">Сохранённые статьи</a>
-          <button class="button button_type_logout button_theme_black header__navbar-item">
-            User
+          <a href="../index.html" class="header__navbar-item header__navbar-item_visible header__navbar-item_mobile-page-link">Главная</a>
+          <a href="../savedArticles/index.html" class="header__navbar-item header__navbar-item_mobile-page-link">Сохранённые статьи</a>
+          <button class="button button_type_logout button_theme_black header__mobile-button">
+            <p class="header__username">Грета</p>
             <img src="../<%=require('../images/logout-icon-black.png').default%>" alt="Logout icon" class="header__logout-icon">
           </button>
         </nav>
@@ -79,20 +83,20 @@
     <template id="article">
       <div class="article__options-bar">
         <div class="article__save-options">
-          <button class="button button_visible article__button article__button_type_options">Убрать из сохранённых</button>
-          <button class="button button_visible article__button article__button_type_toggle-save">
-            <img src="../<%=require('../images/trash-icon.png').default%>" alt="" class="article__bookmark-icon">
+          <button class="button article__save-hint">Войдите, чтобы сохранять статьи</button>
+          <button class="button article__button article__button_type_toggle-save">
+            <img src="../<%=require('../images/bookmark.png').default%>" alt="" class="article__bookmark-icon">
           </button>
         </div>
-        <button class="button button_visible article__button article__button_type_keyword">Temple</button>
+        <div class="article__keyword">Temple</div>
       </div>
-      <img src="../<%=require('../images/plant.png').default%>" alt="" class="article__image">
       <div class="article__content">
+        <img src="../<%=require('../images/plant.png').default%>" alt="" class="article__image">
         <p class="article__date">2 августа, 1812</p>
         <h3 class="article__title">Национальное достояние - templates</h3>
         <p class="article__text">Lorem ipsum soli. Test Test Test. Test Test Test. Test Test Test. Test Test Test. Test Test Test. В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться система национальных парков - охраняемых территорий, где и сегодня каждый может приобщиться к природе.</p>
-        <p class="article__source">ТЕМПЛЕЙТС.РУ</p>
       </div>
+      <p class="article__source">ТЕМПЛЕЙТС.РУ</p>
     </template>
 
 

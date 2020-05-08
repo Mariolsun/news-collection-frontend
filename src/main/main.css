@@ -1,4 +1,7 @@
 @import url(../style/vendor/fonts.css);
+@import url(../style/blocks/preloader-section/preloader-section.css);
+@import url(../style/blocks/preloader-section/_visible/preloader-section_visible.css);
+@import url(../style/blocks/preloader/circle-preloader.css);
 @import url(../style/blocks/button/button.css);
 @import url(../style/blocks/button/_theme/button_theme_black.css);
 @import url(../style/blocks/button/_theme/button_theme_white.css);

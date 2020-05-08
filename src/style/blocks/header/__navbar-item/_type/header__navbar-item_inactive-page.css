@@ -1,0 +1,19 @@
+.header__navbar-item_inactive-page {
+  border-bottom: none;
+  color: var(--main-gray);
+}
+
+.header__navbar-item_inactive-page:hover {
+  color: var(--main-gray);
+}
+.header__navbar-item_inactive-page:active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 3px solid white;
+  border-color: inherit;
+  height: 100%;
+
+  color: var(--main-gray);
+  opacity: 1;
+}

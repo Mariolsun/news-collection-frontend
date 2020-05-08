@@ -1,0 +1,33 @@
+@import url(./__loading-msg/preloader-section__loading-msg.css);
+
+.preloader-section {
+  background-color: var(--gray-bg-articles);
+  padding: 0 104px;
+  width: 100%;
+  max-width: 1440px;
+  display: none;
+  min-height: 282px;
+
+  color: var(--main-gray);
+  font-size: 18px;
+  line-height: 24px;
+}
+
+@media screen and (max-width: 767px) {
+  .preloader-section {
+    padding: 0 16px;
+    min-height: 200px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .preloader-section {
+    padding: 0 40px;
+    min-height: 200px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .preloader-section {
+  }
+}

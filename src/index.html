@@ -14,8 +14,8 @@
       <header class="header header_type_desktop">
         <p class="header__title">NewsExplorer</p>
         <nav class="header__navbar header__navbar_visible">
-          <a href='#' class="header__navbar-item header__navbar-item_visible header__navbar-item_main-page">Главная</a>
-          <a href="../savedArticles/index.html" class="header__navbar-item header__navbar-item_saved-articles-page">Сохранённые статьи</a>
+          <a href='#' class="header__navbar-item header__navbar-item_visible header__navbar-item_active-page">Главная</a>
+          <a href="../savedArticles/index.html" class="header__navbar-item header__navbar-item_inactive-page">Сохранённые статьи</a>
           <button class="button button_type_logout button_theme_white header__navbar-item header__navbar-item_last-in-raw">
             <p class="header__username">User</p>
             <img src="<%=require('./images/logout-icon-white.png').default%>" alt="Иконка выхода пользователя" class="header__logout-icon">
@@ -56,6 +56,10 @@
             <button class="button lead__button">Искать</button>
           </form>
         </div>
+      </section>
+      <section class="preloader-section">
+        <i class="circle-preloader"></i>
+        <p class="preloader-section__loading-msg">Идет поиск новостей...</p>
       </section>
       <section class="articles">
         <h2 class="articles__title">Результаты поиска</h2>
