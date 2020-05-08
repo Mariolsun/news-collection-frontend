@@ -3,3 +3,7 @@
   height: 286px;
   padding: 0 16px;
 }
+
+.header_is-opened-mobile .header__title {
+  color: var(--main-white);
+}
