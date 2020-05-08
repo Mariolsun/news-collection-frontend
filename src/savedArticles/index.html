@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="author" content="Зворыгин Сергей">
+  <meta name="description" content="Сайт для поиска и сохранения новостей по ключевым словам">
   <link rel="icon" href="<%=require('../images/favicon.png').default%>" type="image/png">
   <title>NewsCollection</title>
   <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.savedArticles.css %>">
@@ -70,10 +72,10 @@
         </div>
         <div class="footer__links-container footer__links-container_type_social">
           <a href="https://github.com/Mariolsun/news-collection-frontend" class="footer__link footer__link_type_github">
-            <img src="../<%=require('../images/github.png').default%>" alt="" class="footer__icon_type_github">
+            <img src="../<%=require('../images/github.png').default%>" alt="иконка сайта гитхаб" class="footer__icon_type_github">
           </a>
           <a href="https://www.facebook.com/sergey.zvorygin.56" class="footer__link footer__link_type_facebook">
-            <img src="../<%=require('../images/fb.png').default%>" alt="" class="footer__icon_type_facebook">
+            <img src="../<%=require('../images/fb.png').default%>" alt="иконка сайта фейсбук" class="footer__icon_type_facebook">
           </a>
         </div>
       </div>
@@ -85,13 +87,13 @@
         <div class="article__save-options">
           <button class="button article__save-hint">Убрать из сохранённых</button>
           <button class="button article__button article__button_type_toggle-save">
-            <img src="../<%=require('../images/trash-icon.png').default%>" alt="" class="article__bookmark-icon">
+            <img src="../<%=require('../images/trash-icon.png').default%>" alt="иконка удаления новости" class="article__bookmark-icon">
           </button>
         </div>
         <div class="article__keyword">Temple</div>
       </div>
       <div class="article__content">
-        <img src="../<%=require('../images/plant.png').default%>" alt="" class="article__image">
+        <img src="../<%=require('../images/plant.png').default%>" alt="картинка новости, растение" class="article__image">
         <p class="article__date">2 августа, 1812</p>
         <h3 class="article__title">Национальное достояние - templates</h3>
         <p class="article__text">Lorem ipsum soli. Test Test Test. Test Test Test. Test Test Test. Test Test Test. Test Test Test. В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться система национальных парков - охраняемых территорий, где и сегодня каждый может приобщиться к природе.</p>

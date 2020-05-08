@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="author" content="Зворыгин Сергей">
+  <meta name="description" content="Сайт для поиска и сохранения новостей по ключевым словам">
   <link rel="icon" href="<%=require('./images/favicon.png').default%>" type="image/png">
   <title>NewsCollection</title>
   <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
@@ -14,7 +16,7 @@
       <header class="header header_type_desktop">
         <p class="header__title">NewsExplorer</p>
         <nav class="header__navbar header__navbar_visible">
-          <a href='#' class="header__navbar-item header__navbar-item_visible header__navbar-item_active-page">Главная</a>
+          <a href='./index.html' class="header__navbar-item header__navbar-item_visible header__navbar-item_active-page">Главная</a>
           <a href="../savedArticles/index.html" class="header__navbar-item header__navbar-item_inactive-page">Сохранённые статьи</a>
           <button class="button button_type_logout button_theme_white header__navbar-item header__navbar-item_last-in-raw">
             <p class="header__username">User</p>
@@ -35,7 +37,7 @@
           </button>
         </div>
         <nav class="header__navbar header__navbar_type_mobile">
-          <a href="#" class="header__navbar-item header__navbar-item_visible header__navbar-item_mobile-page-link">Главная</a>
+          <a href="./index.html" class="header__navbar-item header__navbar-item_visible header__navbar-item_mobile-page-link">Главная</a>
           <a href="../savedArticles/index.html" class="header__navbar-item header__navbar-item_mobile-page-link">Сохранённые статьи</a>
           <button class="button button_type_logout button_theme_white header__mobile-button">
             <p class="header__username">User</p>
@@ -86,15 +88,15 @@
       <p class="footer__copyright">&copy; NewsCollection, Powered by News API</p>
       <div class="footer__links">
         <div class="footer__links-container">
-          <a href="#" class="footer__link">Главная</a>
+          <a href="./index.html" class="footer__link">Главная</a>
           <a href="https://praktikum.yandex.ru" class="footer__link">Яндекс.Практикум</a>
         </div>
         <div class="footer__links-container footer__links-container_type_social">
           <a href="https://github.com/Mariolsun/news-collection-frontend" class="footer__link footer__link_type_github">
-            <img src="<%=require('./images/github.png').default%>" alt="" class="footer__icon footer__icon_type_github">
+            <img src="<%=require('./images/github.png').default%>" alt="иконка сайта гитхаб" class="footer__icon footer__icon_type_github">
           </a>
           <a href="https://www.facebook.com/sergey.zvorygin.56" class="footer__link footer__link_type_facebook">
-            <img src="<%=require('./images/fb.png').default%>" alt="" class="footer__icon footer__icon_type_facebook">
+            <img src="<%=require('./images/fb.png').default%>" alt="иконка сайта фейсбук" class="footer__icon footer__icon_type_facebook">
           </a>
         </div>
       </div>
@@ -106,13 +108,13 @@
         <div class="article__save-options">
           <button class="button article__save-hint">Войдите, чтобы сохранять статьи</button>
           <button class="button article__button article__button_type_toggle-save">
-            <img src="<%=require('./images/bookmark.png').default%>" alt="" class="article__bookmark-icon">
+            <img src="<%=require('./images/bookmark.png').default%>" alt="иконка сохранения новости" class="article__bookmark-icon">
           </button>
         </div>
         <div class="article__keyword">Temple</div>
       </div>
       <div class="article__content">
-        <img src="<%=require('./images/plant.png').default%>" alt="" class="article__image">
+        <img src="<%=require('./images/plant.png').default%>" alt="картинка новости, растение" class="article__image">
         <p class="article__date">2 августа, 1812</p>
         <h3 class="article__title">Национальное достояние - templates</h3>
         <p class="article__text">Lorem ipsum soli. Test Test Test. Test Test Test. Test Test Test. Test Test Test. Test Test Test. В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться система национальных парков - охраняемых территорий, где и сегодня каждый может приобщиться к природе.</p>
@@ -122,7 +124,7 @@
 
     <template id='popup_type_login'>
       <div class="popup__content">
-        <img src="<%=require('./images/close.svg').default%>" alt="" class="popup__close">
+        <img src="<%=require('./images/close.svg').default%>" alt="иконка закрытия попапа" class="popup__close">
         <h3 class="popup__title">Вход</h3>
         <form class="popup__form" name="login">
             <div class="popup__inputs">
@@ -144,7 +146,7 @@
 
     <template id='popup_type_signup'>
       <div class="popup__content">
-        <img src="<%=require('./images/close.svg').default%>" alt="" class="popup__close">
+        <img src="<%=require('./images/close.svg').default%>" alt="иконка закрытия попапа" class="popup__close">
         <h3 class="popup__title">Регистрация</h3>
         <form class="popup__form" name="signup">
             <h4 class="popup__input-title">Email</h4>
@@ -168,7 +170,7 @@
 
     <template id='popup_type_success-signup'>
       <div class="popup__content">
-        <img src="<%=require('./images/close.svg').default%>" alt="" class="popup__close">
+        <img src="<%=require('./images/close.svg').default%>" alt="иконка закрытия попапа" class="popup__close">
         <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
         <button class="popup__other-auth-btn">Выполнить вход</button>
       </div>
