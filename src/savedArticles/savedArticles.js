@@ -1,3 +1,4 @@
+import '../vendor/fonts.css';
 import './savedArticles.css';
 import User from '../js/components/User';
 import Article from '../js/components/Article';

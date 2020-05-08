@@ -1,3 +1,4 @@
+import '../vendor/fonts.css';
 import './main.css';
 import PopupLogin from '../js/components/PopupLogin';
 import PopupSignup from '../js/components/PopupSignup';
