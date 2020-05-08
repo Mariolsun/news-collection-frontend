@@ -12,6 +12,7 @@
 @import url(./__navbar-item/_type/header__navbar-item_saved-articles-page.css);
 @import url(./__navbar-item/_type/header__navbar-item_mobile-page-link.css);
 @import url(./__mobile-button/header__mobile-button.css);
+@import url(./__title/header__title.css);
 
 .header {
   height: 80px;

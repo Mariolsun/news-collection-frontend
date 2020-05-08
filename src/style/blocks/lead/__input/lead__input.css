@@ -11,6 +11,7 @@
   font-size: 16px;
   line-height: 22px;
   outline: none;
+  caret-color: var(--main-blue);
 }
 
 @media screen and (max-width: 767px) {

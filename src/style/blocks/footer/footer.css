@@ -3,6 +3,7 @@
 @import url(./__links-container/_type/footer__links-container_type_social.css);
 @import url(./__link/footer__link.css);
 @import url(./__copyright/footer__copyright.css);
+@import url(./__icon/footer__icon.css);
 
 .footer {
   color: var(--main-black);

@@ -1,5 +1,5 @@
 .articles__container {
-  margin: 32px 0 22px;
+  margin: 0 0 22px;
   display: grid;
   grid-gap: 16px;
   grid-template-columns: 1fr 1fr 1fr;

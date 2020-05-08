@@ -27,7 +27,7 @@ export default class PopupLogin extends Popup {
 
     let result = {
       email: this.emailValid(this.emailInput.value),
-      password: this.passwordValid(this.passwordInput.value),
+ //   password: this.passwordValid(this.passwordInput.value),
     }
 
 
@@ -36,9 +36,9 @@ export default class PopupLogin extends Popup {
       case this.emailInput:
         this.alertRender(this.emailAlert, result.email);
         break;
-      case this.passwordInput:
-        this.alertRender(this.passwordAlert, result.password);
-        break;
+ //   case this.passwordInput:
+ //     this.alertRender(this.passwordAlert, result.password);
+ //     break;
     }
 
   }

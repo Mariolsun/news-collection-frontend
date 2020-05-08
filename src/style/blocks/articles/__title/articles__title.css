@@ -1,0 +1,30 @@
+.articles__title {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 46px;
+  color: var(--main-black);
+
+  margin: 80px 0 64px;
+}
+
+@media screen and (max-width: 767px) {
+  .articles__title {
+    font-size: 30px;
+    line-height: 34px;
+    margin: 32px 0 24px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .articles__title {
+    font-size: 30px;
+    line-height: 34px;
+    margin: 40px 0 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .articles__title {
+  }
+}
