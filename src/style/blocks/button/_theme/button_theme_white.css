@@ -1,7 +1,6 @@
 .button_theme_white {
   border: 1px solid var(--main-white);
   color: var(--main-white);
-  border-radius: 80px;
 }
 
 .button_theme_white:hover {

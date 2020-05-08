@@ -21,8 +21,15 @@ const authBtns = document.querySelectorAll('.button_type_auth');
 
 logoutBtns.forEach(btn => {
   btn.addEventListener('click', event => {
+    if(!!event.target.closest('.header__navbar_type_mobile')) toggleMobileMenu();
     user.logout();
   })
+})
+
+window.addEventListener('resize', event => {
+  if(document.documentElement.clientWidth > 767 && mobileNavBar.classList.contains('header__navbar_visible')) {
+    toggleMobileMenu();
+  }
 })
 
 
@@ -91,21 +98,22 @@ function toggleMobileMenu (event) {
 }
 
 openMobileMenuBtn.addEventListener('click', event => {
-  if(user.isLoggedIn()) toggleMobileMenu;
-  else {
+  if(user.isLoggedIn()) {
+    console.log('user loggen in, toggling mobile menu')
+    toggleMobileMenu()
+    closeMobileMenuBtn.addEventListener('click', toggleMobileMenu);
+  } else {
+    console.log('user not logged in, openin popup login')
+    closeMobileMenuBtn.removeEventListener('click', toggleMobileMenu);
     let isMobile = true;
     popupLogin.open(isMobile);
-    closeMobileMenuBtn.classList.toggle('header__navbar-item_visible');
-    openMobileMenuBtn.classList.toggle('header__navbar-item_visible');
-    closeMobileMenuBtn.addEventListener('click', event => {
-      popupLogin.close(event);
-    })
+    closeMobileMenuBtn.classList.add('header__navbar-item_visible');
+    openMobileMenuBtn.classList.remove('header__navbar-item_visible');
   }
 
 });
 
 
-closeMobileMenuBtn.addEventListener('click', toggleMobileMenu);
 
 const validationMessages = {
   required: 'Это обязательное поле',
@@ -124,14 +132,14 @@ const users = [
 
 const validation = new Validation(validationMessages, users);
 
-const popupLogin = new PopupLogin(loginPopupTemplate, sectionToAppend, validation);
+const popupLogin = new PopupLogin(loginPopupTemplate, sectionToAppend, openMobileMenuBtn, closeMobileMenuBtn, validation);
 
 const user = new User(userNameBlocks, savedArticles, 'Грета', showLoggedInMenu, showLoggedOutMenu, false);
 const foundArticles = articles.map(article => new Article(articlesContainer, articleTemplate, article, user.isLoggedIn));
 
-const popupSignup = new PopupSignup(signupPopupTemplate, sectionToAppend, validation);
+const popupSignup = new PopupSignup(signupPopupTemplate, sectionToAppend, openMobileMenuBtn, closeMobileMenuBtn, validation);
 
-const popupSuccessSignup = new PopupSuccessSignup(successfulSignupTemplate, sectionToAppend);
+const popupSuccessSignup = new PopupSuccessSignup(successfulSignupTemplate, sectionToAppend, openMobileMenuBtn, closeMobileMenuBtn);
 
 
 const signupBlock = document.querySelector('.popup_type_signup');
@@ -164,26 +172,21 @@ const submitLoginBtn = popupLogin.block.querySelector('.popup__button');
 
 
 loginOfferSignup.addEventListener('click', event => {
-  if(popupLogin.isMobile()) popupSignup.open(true);
-  else popupSignup.open();
-
   popupLogin.close(event);
+  popupSignup.open();
 });
 
 signupOfferLogin.addEventListener('click', event => {
-  if(popupSignup.isMobile()) popupLogin.open(true);
-  else popupLogin.open();
-
   popupSignup.close(event);
+  popupLogin.open();
 })
 
 
 submitSignupBtn.addEventListener('click', event => {
   event.preventDefault();
-  user.updateUserName(popupSignup.nameInput.value)
-  if(popupSignup.isMobile()) popupSuccessSignup.open(true);
-  else popupSuccessSignup.open();
+  user.updateUserName(popupSignup.nameInput.value);
   popupSignup.close(event);
+  popupSuccessSignup.open();
 })
 
 loginOfferBtn.addEventListener('click', event => {
@@ -267,8 +270,9 @@ articlesContainer.addEventListener('mouseout', function(event) {
 
     ***TO DO***
 
-                 Во всех разрешениях попап чуть выше центра должен быть, сделать
-                 доработать логику попапов и мобильного меню
+    ***DONE***   Во всех разрешениях попап чуть выше центра должен быть, сделать
+                 настроить высоту мобильного попапа успешной регситрации
+                 доработать мобильное меню
                  исправить стили выделения, вообще допилить стили интерактивности
                  подключить шрифты
                  настроить вторую страницу

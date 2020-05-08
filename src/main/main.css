@@ -1,8 +1,10 @@
 @import url(../style/vendor/fonts.css);
 @import url(../style/blocks/button/button.css);
-@import url(../style/blocks/button/_type/button_type_mobile-menu.css);
 @import url(../style/blocks/button/_theme/button_theme_black.css);
 @import url(../style/blocks/button/_theme/button_theme_white.css);
+@import url(../style/blocks/button/_type/button_type_auth.css);
+@import url(../style/blocks/button/_type/button_type_mobile-menu.css);
+@import url(../style/blocks/button/_type/button_type_close-mobile.css);
 @import url(../style/blocks/header/header.css);
 @import url(../style/blocks/header/_type/header_type_mobile.css);
 @import url(../style/blocks/header/_type/header_type_desktop.css);

@@ -1,0 +1,27 @@
+.header__navbar-item_mobile-page-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  height: auto;
+
+  margin: 0;
+  font-size: 18px;
+  line-height: 56px;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.header__navbar-item_mobile-page-link:active {
+  opacity: 0.7;
+}
+
+
+.header__navbar-item_mobile-page-link:first-of-type {
+  margin-top: 16px;
+}
+
+
+.header__navbar-item_mobile-page-link:last-of-type {
+  margin-bottom: 22px;
+}

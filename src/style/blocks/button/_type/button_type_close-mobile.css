@@ -1,0 +1,10 @@
+.button_type_close-mobile {
+  border: none;
+  outline: none;
+  padding: 0;
+}
+
+.button_type_close-mobile:active {
+  background-color: transparent;
+  opacity: 0.75;
+}

@@ -1,0 +1,14 @@
+.button_type_auth {
+
+}
+
+
+.button_type_auth:hover {
+  background-color: transparent;
+  opacity: 0.9;
+}
+
+.button_type_auth:active {
+  background-color: transparent;
+  opacity: 0.7;
+}

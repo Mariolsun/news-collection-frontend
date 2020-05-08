@@ -1,6 +1,7 @@
 export default class Popup {
-  constructor(template, destination) {
-
+  constructor(template, destination, openMobileBtn, closeMobileBtn) {
+    this.openMobileBtn =openMobileBtn;
+    this.closeMobileBtn = closeMobileBtn;
     this.block = document.createElement('div');
     this.block.classList.add('popup');
     this.block.append(template.content.cloneNode('true'));
@@ -10,22 +11,35 @@ export default class Popup {
     this.closeBtn = this.block.querySelector('.popup__close');
     this.closeBtn.addEventListener('click', this.close);
     this.isMobile = this.isMobile.bind(this);
+    this._closeOnEmptyAreaClick = this._closeOnEmptyAreaClick.bind(this);
   }
 
   close (event) {
-    event.target.closest('.popup').classList.remove('popup_type_mobile');
-    event.target.closest('.popup').classList.remove('popup_is-opened');
+    this.block.removeEventListener('click', this._closeOnEmptyAreaClick);
+    this.closeMobileBtn.removeEventListener('click', this.close);
+    this.closeMobileBtn.classList.remove('header__navbar-item_visible');
+    this.openMobileBtn.classList.add('header__navbar-item_visible');
+    this.block.classList.remove('popup_type_mobile');
+    this.block.classList.remove('popup_is-opened');
   }
 
   isMobile() {
     return this.block.classList.contains('popup_type_mobile');
   }
 
-  open (isMobile, mobileCloseBtn) {
-    if(isMobile === true) {
-      console.log('openin mobile popup');
-      this.block.classList.add('popup_type_mobile');
+  _closeOnEmptyAreaClick(event) {
+    if(!event.target.closest('.popup__content')) {
+      this.close(event);
     }
+  }
+
+  open (isMobile) {
+    this.block.addEventListener('click', this._closeOnEmptyAreaClick);
+    this.openMobileBtn.classList.remove('header__navbar-item_visible');
+    this.closeMobileBtn.classList.add('header__navbar-item_visible');
+    this.closeMobileBtn.addEventListener('click', this.close);
+    console.log('openin mobile popup');
+    this.block.classList.add('popup_type_mobile');
     console.log(`open event on popup ${typeof this.block}`)
     this.block.classList.add('popup_is-opened');
   }
