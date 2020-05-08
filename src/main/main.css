@@ -24,6 +24,8 @@
 @import url(../style/blocks/popup/_type/popup_type_success-signup.css);
 @import url(../style/blocks/popup/_type/popup_type_mobile.css);
 @import url(../style/blocks/header/_is-opened-mobile/header_is-opened-mobile.css);
+@import url(../style/blocks/articles-not-found/articles-not-found.css);
+@import url(../style/blocks/articles-not-found/_visible/articles-not-found_visible.css);
 
 
 

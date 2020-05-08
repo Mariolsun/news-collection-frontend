@@ -87,7 +87,7 @@ const loginPopupTemplate = document.getElementById('popup_type_login');
 const articleTemplate = document.getElementById('article');
 const signupPopupTemplate = document.getElementById('popup_type_signup');
 const successfulSignupTemplate = document.getElementById('popup_type_success-signup');
-
+const articlesNotFoundSection = document.querySelector('.articles-not-found');
 
 
 
@@ -140,8 +140,8 @@ const validation = new Validation(validationMessages, users);
 const popupLogin = new PopupLogin(loginPopupTemplate, sectionToAppend, openMobileMenuBtn, closeMobileMenuBtn, validation);
 
 const user = new User(userNameBlocks, savedArticles, 'Грета', showLoggedInMenu, showLoggedOutMenu, false);
-const foundArticles = articles.map(article => new Article(articlesContainer, articleTemplate, article, user.isLoggedIn));
-
+//const foundArticles = articles.map(article => new Article(articlesContainer, articleTemplate, article, user.isLoggedIn));
+const foundArticles = [];
 const popupSignup = new PopupSignup(signupPopupTemplate, sectionToAppend, openMobileMenuBtn, closeMobileMenuBtn, validation);
 
 const popupSuccessSignup = new PopupSuccessSignup(successfulSignupTemplate, sectionToAppend, openMobileMenuBtn, closeMobileMenuBtn);
@@ -210,16 +210,20 @@ authButton.addEventListener('click', popupLogin.open);
 
 function showFoundArticles() {
   console.log('time out fired');
-  foundArticles.forEach((article, i) => {
-    if(i > 2) article.visible(false);
-    else article.visible(true);
-  });
+  if(foundArticles.length == 0) {
+    articlesNotFoundSection.classList.add('articles-not-found_visible');
+  } else {
+      foundArticles.forEach((article, i) => {
+        if(i > 2) article.visible(false);
+        else article.visible(true);
+        articlesSection.classList.add('articles_visible');
+      });
+    }
 
   if(foundArticles.length > 3) showMoreBtn.classList.add('articles__show-more-btn_visible');
   else showMoreBtn.classList.remove('articles__show-more-btn_visible');
 
   preloaderSection.classList.remove('preloader-section_visible');
-  articlesSection.classList.add('articles_visible');
   console.log(`all done ${preloaderSection.classList}`);
 }
 
@@ -227,6 +231,7 @@ function showFoundArticles() {
 searchButton.addEventListener('click', function(event) {
   console.log('click on search button');
   event.preventDefault();
+  articlesNotFoundSection.classList.remove('articles-not-found_visible');
   articlesSection.classList.remove('articles_visible');
   preloaderSection.classList.add('preloader-section_visible');
   console.log('setting timeout');

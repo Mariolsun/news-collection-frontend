@@ -1,0 +1,42 @@
+@import url(./__title/articles-not-found__title.css);
+@import url(./__text/articles-not-found__text.css);
+@import url(./__image/articles-not-found__image.css);
+
+.articles-not-found {
+  background-color: var(--gray-bg-articles);
+  width: calc(100% + 208px);
+  height: 374px;
+  font-style: normal;
+  font-weight: normal;
+  color: var(--main-black);
+  font-size: 18px;
+  line-height: 24px;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 86px 0 80px;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 767px) {
+  .articles-not-found {
+    width: calc(100% + 32px);
+    height: 260px;
+    padding: 36px 0 36px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .articles-not-found {
+    width: calc(100% + 80px);
+    height: 260px;
+    padding: 36px 0 36px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .articles-not-found {
+    width: calc(100% + 208px);
+  }
+}
