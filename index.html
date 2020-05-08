@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="icon" href="./images/favicon.png" type="image/png">
   <title>NewsCollection</title>
-  <link rel="stylesheet" href="main/main.d0efe19f3c70bc55b015.css?1f1d168f5dd3e184c915">
+  <link rel="stylesheet" href="main/main.91b4d2610b7feea3d266.css?bd614cedb3fa407db292">
 </head>
 <body>
     <div class="page">
@@ -14,8 +14,8 @@
       <header class="header header_type_desktop">
         <p class="header__title">NewsExplorer</p>
         <nav class="header__navbar header__navbar_visible">
-          <a href='#' class="header__navbar-item header__navbar-item_visible header__navbar-item_main-page">Главная</a>
-          <a href="../savedArticles/index.html" class="header__navbar-item header__navbar-item_saved-articles-page">Сохранённые статьи</a>
+          <a href='#' class="header__navbar-item header__navbar-item_visible header__navbar-item_active-page">Главная</a>
+          <a href="../savedArticles/index.html" class="header__navbar-item header__navbar-item_inactive-page">Сохранённые статьи</a>
           <button class="button button_type_logout button_theme_white header__navbar-item header__navbar-item_last-in-raw">
             <p class="header__username">User</p>
             <img src="./images/logout-icon-white.png" alt="Иконка выхода пользователя" class="header__logout-icon">
@@ -25,15 +25,19 @@
       </header>
 
   <header class="header header_type_mobile">
-        <p class="header__title">NewsExplorer</p>
-        <button class="button button_type_auth button_type_mobile-menu button_theme_white header__navbar-item header__navbar-item_visible">
-          <img src="./images/mobile-menu-white.png" alt="Mobile menu icon" class="header__mobile-menu-icon">
-        </button>
-        <img src="./images/mobile-menu-close.png" alt="Mobile menu close button" class="header__mobile-menu-close">
+        <div class="header__mobile-main-bar">
+          <p class="header__title">NewsExplorer</p>
+          <button class="button button_type_mobile-menu header__navbar-item header__navbar-item_visible header__navbar-item_last-in-raw">
+            <img src="./images/mobile-menu-white.png" alt="Mobile menu icon" class="header__mobile-menu-icon">
+          </button>
+          <button class="button button_type_close-mobile header__navbar-item header__navbar-item_last-in-raw">
+            <img src="./images/mobile-menu-close.png" alt="Mobile menu close icon" class="header__mobile-menu-close-icon">
+          </button>
+        </div>
         <nav class="header__navbar header__navbar_type_mobile">
-          <a href="#" class="header__navbar-item header__navbar-item_visible header__navbar-item_main-page">Главная</a>
-          <a href="#" class="header__navbar-item header__navbar-item_saved-articles-page">Сохранённые статьи</a>
-          <button class="button button_type_logout button_theme_white header__navbar-item">
+          <a href="#" class="header__navbar-item header__navbar-item_visible header__navbar-item_mobile-page-link">Главная</a>
+          <a href="../savedArticles/index.html" class="header__navbar-item header__navbar-item_mobile-page-link">Сохранённые статьи</a>
+          <button class="button button_type_logout button_theme_white header__mobile-button">
             <p class="header__username">User</p>
             <img src="./images/logout-icon-white.png" alt="Logout icon" class="header__logout-icon">
           </button>
@@ -53,12 +57,21 @@
           </form>
         </div>
       </section>
+      <section class="preloader-section">
+        <i class="circle-preloader"></i>
+        <p class="preloader-section__loading-msg">Идет поиск новостей...</p>
+      </section>
+      <section class="articles-not-found">
+        <img src="./images/not-found.png" alt="поиск ничего не нашел" class="articles-not-found__image">
+        <h2 class="articles-not-found__title">Ничего не найдено</h2>
+        <p class="articles-not-found__text">К сожалению по вашему запросу ничего не найдено.</p>
+      </section>
       <section class="articles">
         <h2 class="articles__title">Результаты поиска</h2>
         <div class="articles__container">
 
         </div>
-        <button class="button articles__show-more-btn">Показать еще</button>
+        <button class="articles__show-more-btn">Показать еще</button>
       </section>
       <section class="about">
         <img src="./images/avatar.png" alt="Фото автора проекта" class="about__photo">
@@ -73,15 +86,15 @@
       <p class="footer__copyright">&copy; NewsCollection, Powered by News API</p>
       <div class="footer__links">
         <div class="footer__links-container">
-          <a href="" class="footer__link">Главная</a>
-          <a href="" class="footer__link">Яндекс.Практикум</a>
+          <a href="#" class="footer__link">Главная</a>
+          <a href="https://praktikum.yandex.ru" class="footer__link">Яндекс.Практикум</a>
         </div>
         <div class="footer__links-container footer__links-container_type_social">
-          <a href="#" class="footer__link footer__link_type_github">
-            <img src="./images/github.png" alt="" class="footer__icon_type_github">
+          <a href="https://github.com/Mariolsun/news-collection-frontend" class="footer__link footer__link_type_github">
+            <img src="./images/github.png" alt="" class="footer__icon footer__icon_type_github">
           </a>
-          <a href="#" class="footer__link footer__link_type_facebook">
-            <img src="./images/fb.png" alt="" class="footer__icon_type_facebook">
+          <a href="https://www.facebook.com/sergey.zvorygin.56" class="footer__link footer__link_type_facebook">
+            <img src="./images/fb.png" alt="" class="footer__icon footer__icon_type_facebook">
           </a>
         </div>
       </div>
@@ -112,12 +125,14 @@
         <img src="./images/close.svg" alt="" class="popup__close">
         <h3 class="popup__title">Вход</h3>
         <form class="popup__form" name="login">
-            <h4 class="popup__input-title">Email</h4>
-            <input type="text" name="email" class="popup__input popup__input_type_email" placeholder="Введите почту">
-            <div class="popup__validate-alert popup__validate-alert_type_email">Это обязательное поле</div>
-            <h4 class="popup__input-title">Пароль</h4>
-            <input type="password" name="password" class="popup__input popup__input_type_password" placeholder="Введите пароль">
-            <div class="popup__validate-alert popup__validate-alert_type_password">Это обязательное поле</div>
+            <div class="popup__inputs">
+              <h4 class="popup__input-title">Email</h4>
+              <input type="text" name="email" class="popup__input popup__input_type_email" placeholder="Введите почту">
+              <div class="popup__validate-alert popup__validate-alert_type_email">Это обязательное поле</div>
+              <h4 class="popup__input-title">Пароль</h4>
+              <input type="password" name="password" class="popup__input popup__input_type_password" placeholder="Введите пароль">
+              <div class="popup__validate-alert popup__validate-alert_type_password">Это обязательное поле</div>
+            </div>
             <button type class="button popup__button popup__button_disabled">Войти</button>
         </form>
         <p class="popup__other-auth-offer">
@@ -154,12 +169,12 @@
     <template id='popup_type_success-signup'>
       <div class="popup__content">
         <img src="./images/close.svg" alt="" class="popup__close">
-        <h3 class="popup__title">Пользователь успешно зарегистрирован</h3>
+        <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
         <button class="popup__other-auth-btn">Выполнить вход</button>
       </div>
     </template>
 
-    <script src="main/main.f06b8101d7e9eead0ba8.js?1f1d168f5dd3e184c915"></script>
+    <script src="main/main.f06b8101d7e9eead0ba8.js?bd614cedb3fa407db292"></script>
 
 </body>
 </html>
