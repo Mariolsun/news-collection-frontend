@@ -15,3 +15,11 @@
   width: auto;
   margin-right: 5px;
 }
+
+.article__save-hint:hover {
+  background-color: var(--main-white);
+}
+
+.article__save-hint:active {
+  background-color: var(--main-white);
+}

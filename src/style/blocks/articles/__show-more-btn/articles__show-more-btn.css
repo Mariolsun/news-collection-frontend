@@ -1,6 +1,7 @@
 .articles__show-more-btn {
   color: var(--main-black);
   background-color: var(--main-white);
+  font-family: 'Roboto', 'Inter', sans-serif;
   border-radius: 80px;
   font-weight: 500;
   font-style: normal;

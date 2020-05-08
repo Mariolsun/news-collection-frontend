@@ -6,6 +6,7 @@
   color: var(--main-black);
   margin: 12px 0 16px;
 
+  font-family: 'Roboto Slab', 'Inter', sans-serif;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;

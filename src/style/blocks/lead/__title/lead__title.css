@@ -1,10 +1,12 @@
 .lead__title {
+  font-family: 'Roboto Slab', 'Inter', sans-serif;
   font-size: 60px;
+  font-style: normal;
   font-weight: normal;
   line-height: 64px;
   margin: 0 0 32px;
 
-  max-width: 288px;
+  max-width: 350px;
 }
 
 

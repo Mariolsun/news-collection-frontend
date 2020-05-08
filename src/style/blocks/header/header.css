@@ -25,6 +25,7 @@
   top: 0;
   width: 100%;
   color: var(--main-white);
+  font-family: 'Roboto', 'Inter', sans-serif;
   font-size: 18px;
   font-weight: normal;
   line-height: 24px;

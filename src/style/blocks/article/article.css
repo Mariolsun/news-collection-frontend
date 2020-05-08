@@ -24,6 +24,7 @@
   align-self: center;
   justify-self: center;
 
+  font-family: 'Roboto', 'Inter', sans-serif;
   flex-direction: column;
   justify-content: space-between;
 }

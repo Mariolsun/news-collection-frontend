@@ -3,6 +3,7 @@
   font-size: 40px;
   line-height: 46px;
   font-weight: normal;
+  font-family: 'Roboto Slab', 'Inter', sans-serif;
 }
 
 @media screen and (max-width: 767px) {

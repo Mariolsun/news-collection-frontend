@@ -3,3 +3,13 @@
   width: 40px;
 }
 
+
+
+.article__button_type_toggle-save:hover {
+  background-color: var(--main-white);
+}
+
+
+.article__button_type_toggle-save:active {
+  background-color: var(--main-white);
+}

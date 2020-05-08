@@ -16,6 +16,8 @@
   overflow: hidden;
   color: var(--main-white);
   width: calc(100% + 208px);
+
+  font-family: 'Roboto', 'Inter', sans-serif;
 }
 
 @media screen and (max-width: 767px) {

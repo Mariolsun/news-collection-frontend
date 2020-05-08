@@ -9,6 +9,7 @@
   width: 100%;
   max-width: 1440px;
   display: none;
+  font-family: 'Roboto', 'Inter', sans-serif;
 }
 
 @media screen and (max-width: 767px) {
