@@ -45,7 +45,7 @@ savedArticles.forEach(article => {
   console.log(`making article ${articlesContainer.classList}`);
   let newArticle = new Article(articlesContainer, articleTemplate, article, userCheck);
   newArticle.block.removeEventListener('click', newArticle.toggleSave);
-  newArticle.keyword.classList.add('article__keyword_visbile');
+  newArticle.keyword.classList.add('article__keyword_visible');
   newArticle.visible(true);
   articles.push(newArticle);
 })
