@@ -13,8 +13,6 @@ import bookmarkhover from '../images/bookmarkhover.png';
 
 const navBar = document.querySelector('.header__navbar');
 const authButton =navBar.querySelector('.button_type_auth');
-
-const userNameBlocks = document.querySelectorAll('.header__username');
 const inactivePageLinks = document.querySelectorAll('.header__navbar-item_inactive-page');
 const logoutBtns = document.querySelectorAll('.button_type_logout');
 const authBtns = document.querySelectorAll('.button_type_auth');
@@ -140,7 +138,7 @@ const validation = new Validation(validationMessages, users);
 
 const popupLogin = new PopupLogin(loginPopupTemplate, sectionToAppend, openMobileMenuBtn, closeMobileMenuBtn, validation);
 
-const user = new User(userNameBlocks, savedArticles, 'Грета', showLoggedInMenu, showLoggedOutMenu, false);
+const user = new User(logoutBtns, savedArticles, 'Грета', showLoggedInMenu, showLoggedOutMenu, false);
 const foundArticles = articles.map(article => new Article(articlesContainer, articleTemplate, article, user.isLoggedIn));
 //const foundArticles = [];
 const popupSignup = new PopupSignup(signupPopupTemplate, sectionToAppend, openMobileMenuBtn, closeMobileMenuBtn, validation);

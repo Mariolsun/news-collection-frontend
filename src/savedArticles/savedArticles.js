@@ -38,7 +38,6 @@ const openMobileMenuBtn = mobileHeader.querySelector('.button_type_mobile-menu')
 const closeMobileMenuBtn = mobileHeader.querySelector('.button_type_close-mobile');
 const inactivePageLinks = document.querySelectorAll('.header__navbar-item_inactive-page');
 
-const userNameBlocks = document.querySelectorAll('.header__username');
 const authBtns = document.querySelectorAll('.button_type_auth');
 
 savedArticles.forEach(article => {

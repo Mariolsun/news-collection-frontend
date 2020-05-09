@@ -19,7 +19,7 @@
           <a href='./index.html' class="header__navbar-item header__navbar-item_visible header__navbar-item_active-page">Главная</a>
           <a href="./savedArticles/index.html" class="header__navbar-item header__navbar-item_inactive-page">Сохранённые статьи</a>
           <button class="button button_type_logout button_theme_white header__navbar-item header__navbar-item_last-in-raw">
-            <p class="header__username">User</p>
+            User
             <img src="<%=require('./images/logout-icon-white.png').default%>" alt="Иконка выхода пользователя" class="header__logout-icon">
           </button>
           <button class="button button_type_auth button_theme_white header__navbar-item header__navbar-item_last-in-raw">Авторизоваться</button>
@@ -40,7 +40,7 @@
           <a href="./index.html" class="header__navbar-item header__navbar-item_visible header__navbar-item_mobile-page-link">Главная</a>
           <a href="./savedArticles/index.html" class="header__navbar-item header__navbar-item_mobile-page-link">Сохранённые статьи</a>
           <button class="button button_type_logout button_theme_white header__mobile-button">
-            <p class="header__username">User</p>
+            User
             <img src="<%=require('./images/logout-icon-white.png').default%>" alt="Logout icon" class="header__logout-icon">
           </button>
         </nav>
@@ -61,7 +61,7 @@
       </section>
       <section class="preloader-section">
         <i class="circle-preloader"></i>
-        <p class="preloader-section__loading-msg">Идет поиск новостей...</p>
+        <h4 class="preloader-section__loading-msg">Идет поиск новостей...</h4>
       </section>
       <section class="articles-not-found">
         <img src="<%=require('./images/not-found.png').default%>" alt="поиск ничего не нашел" class="articles-not-found__image">

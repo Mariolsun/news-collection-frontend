@@ -22,7 +22,7 @@ export default class User {
     console.log(`updating username ${newName}`)
     this.name = newName;
     this.userNameBlocks.forEach(block => {
-      block.textContent = this.name;
+      block.childNodes[0].nodeValue = this.name;
     });
   }
 
