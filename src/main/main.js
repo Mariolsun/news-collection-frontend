@@ -1,6 +1,6 @@
 import '../vendor/fonts.css';
 import './main.css';
-import PopupLogin from '../js/components/PopupLogin';
+import PopupSignin from '../js/components/PopupSignin';
 import PopupSignup from '../js/components/PopupSignup';
 import PopupSuccessSignup from '../js/components/PopupSuccessSignup';
 import Validation from '../js/utils/validation';
@@ -25,7 +25,9 @@ const authButton = navBar.querySelector('.button_type_auth');
 const inactivePageLinks = document.querySelectorAll('.header__navbar-item_inactive-page');
 const logoutBtns = document.querySelectorAll('.button_type_logout');
 const authBtns = document.querySelectorAll('.button_type_auth');
+const mainApi = new MainApi(mainApiParams);
 const newsApi = new NewsApi(newsApiParams, makeDateStr);
+
 
 const mobileHeader = document.querySelector('.header_type_mobile');
 const mobileNavBar = mobileHeader.querySelector('.header__navbar_type_mobile');
@@ -113,7 +115,7 @@ function showLoggedInMenu() {
 
 const validation = new Validation(validationMessages, users);
 
-const popupLogin = new PopupLogin(
+const popupSignin = new PopupSignin(
   loginPopupTemplate,
   sectionToAppend,
   openMobileMenuBtn,
@@ -128,6 +130,7 @@ logoutBtns.forEach((btn) => {
     if (event.target.closest('.header__navbar_type_mobile')) toggleMobileMenu();
     user.logout();
   });
+  localStorage.removeItem('token');
 });
 
 
@@ -140,7 +143,7 @@ openMobileMenuBtn.addEventListener('click', () => {
     console.log('user not logged in, openin popup login');
     closeMobileMenuBtn.removeEventListener('click', toggleMobileMenu);
     const isMobile = true;
-    popupLogin.open(isMobile);
+    popupSignin.open(isMobile);
     closeMobileMenuBtn.classList.add('header__navbar-item_visible');
     openMobileMenuBtn.classList.remove('header__navbar-item_visible');
   }
@@ -163,9 +166,10 @@ const popupSuccessSignup = new PopupSuccessSignup(
   closeMobileMenuBtn,
 );
 
+
 const loginOfferBtn = popupSuccessSignup.block.querySelector('.popup__other-auth-btn');
 const submitSignupBtn = popupSignup.block.querySelector('.popup__button');
-const submitLoginBtn = popupLogin.block.querySelector('.popup__button');
+const submitLoginBtn = popupSignin.block.querySelector('.popup__button');
 
 const signupBlock = document.querySelector('.popup_type_signup');
 const loginBlock = document.querySelector('.popup_type_login');
@@ -190,36 +194,47 @@ showMoreBtn.addEventListener('click', (event) => {
 });
 
 loginOfferSignup.addEventListener('click', (event) => {
-  popupLogin.close(event);
+  popupSignin.close(event);
   popupSignup.open();
 });
 
 signupOfferLogin.addEventListener('click', (event) => {
   popupSignup.close(event);
-  popupLogin.open();
+  popupSignin.open();
 });
 
 
 submitSignupBtn.addEventListener('click', (event) => {
   event.preventDefault();
-  user.updateUserName(popupSignup.nameInput.value);
-  popupSignup.close(event);
-  popupSuccessSignup.open();
+  mainApi.signup(popupSignup.emailInput.value,
+    popupSignup.passwordInput.value,
+    popupSignup.nameInput.value)
+    .then((res) => {
+      console.log(`answer is recieved: ${res}`);
+      console.log('user is registred');
+      popupSignup.close(event);
+      popupSuccessSignup.open();
+    })
+    .catch((e) => console.log(`ошибка ${e.status}: ${e}`));
 });
 
 loginOfferBtn.addEventListener('click', (event) => {
   popupSuccessSignup.close(event);
-  popupLogin.open();
+  popupSignin.open();
 });
 
 submitLoginBtn.addEventListener('click', (event) => {
   event.preventDefault();
-  user.login(user.name, savedArticles);
-  popupLogin.close(event);
+  mainApi.signin(popupSignin.emailInput.value, popupSignin.passwordInput.value)
+    .then((res) => {
+      user.login(res.data.name, foundArticles);
+      popupSignin.close(event);
+    })
+    .catch((e) => { console.log(`error signing in: ${e}`); });
 });
 
 
-authButton.addEventListener('click', popupLogin.open);
+authButton.addEventListener('click', popupSignin.open);
 
 function showFoundArticles(isServerError) {
   if (foundArticles.length === 0 && !isServerError) {
@@ -254,10 +269,12 @@ console.log(`gettin ${searchInput.value}`);
     newsApi.getNews(searchInput.value)
       .then((res) => {
         res.articles.forEach((article) => {
+          const newArticle = article;
+          newArticle.publishedAt = dateToString(new Date(article.publishedAt), 'pretty');
           foundArticles.push(new Article(
             articlesContainer,
             articleTemplate,
-            article,
+            newArticle,
             user.isLoggedIn,
           ));
         });
@@ -275,7 +292,7 @@ console.log(`gettin ${searchInput.value}`);
 
 
 articlesContainer.addEventListener('click', (event) => {
-  if (event.target.classList.contains('article__save-hint')) popupLogin.open();
+  if (event.target.classList.contains('article__save-hint')) popupSignin.open();
 });
 
 

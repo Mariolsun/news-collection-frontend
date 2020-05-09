@@ -1,6 +1,6 @@
-import Popup from './Popup.js';
+import Popup from './Popup';
 
-export default class PopupLogin extends Popup {
+export default class PopupSignin extends Popup {
   constructor(template, destination, openMobileBtn, closeMobileBtn, validation) {
     super(template, destination, openMobileBtn, closeMobileBtn);
     this.block.classList.add('popup_type_login');

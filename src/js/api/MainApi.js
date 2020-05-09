@@ -3,13 +3,13 @@ import Api from './Api';
 export default class MainApi extends Api {
   signin(email, password) {
     this._resetOptions('POST', JSON.stringify({ email, password }));
-    return fetch(`${this.baseUrl}/signin`)
+    return fetch(`${this.baseUrl}/signin`, this.options)
       .then((res) => this._getResponseData(res));
   }
 
   signup(email, password, name) {
     this._resetOptions('POST', JSON.stringify({ email, password, name }));
-    return fetch(`${this.baseUrl}/signup`)
+    return fetch(`${this.baseUrl}/signup`, this.options)
       .then((res) => this._getResponseData(res));
   }
 
@@ -35,12 +35,5 @@ export default class MainApi extends Api {
     this._resetOptions('DELETE');
     return fetch(`${this.baseUrl}/${articleID}`, this.options)
       .then((res) => this._getResponseData(res));
-  }
-
-  _resetOptions(method = 'GET', body) {
-    this.options.headers.authorization = this._getToken();
-    this.options.method = method;
-    if (!body) delete this.options.body;
-    else this.options.body = body;
   }
 }

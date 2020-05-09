@@ -7,14 +7,21 @@ export default class Api {
     this.apiParams = apiParams;
   }
 
-  static _getResponseData(res) {
+  _getResponseData(res) {
     if (res.ok) {
       return res.json();
     }
     return Promise.reject(res.status);
   }
 
-  static _getToken() {
+   _getToken() {
     return localStorage.getItem('token');
+  }
+
+  _resetOptions(method = 'GET', body) {
+    this.options.headers.authorization = this._getToken();
+    this.options.method = method;
+    if (!body) delete this.options.body;
+    else this.options.body = body;
   }
 }

@@ -63,12 +63,13 @@ export default class Article extends BaseComponent {
   }
 
   render() {
+    console.log(`rendering article. date ${this.data.publishedAt} source: ${this.data.source.name}`);
     this.image.src = this.data.urlToImage;
     this.url = this.data.url;
-    this.date.textContent = Date.parse(this.data.publishedAt);
+    this.date.textContent = this.data.publishedAt;
     this.title.textContent = this.data.title;
     this.text.textContent = this.data.description;
-    this.source.textContent = this.data.name;
+    this.source.textContent = this.data.source.name;
     this.keyword.textContent = 'default';
   }
 }
