@@ -14,6 +14,7 @@ import mainApiParams from '../js/constants/mainApiParams';
 import newsApiParams from '../js/constants/newsApiParams';
 import dateToString from '../js/utils/dateToString';
 import getDaysFromToday from '../js/utils/getDaysFromToday';
+import Api from '../js/api/Api';
 
 function makeDateStr(days, format = 'YYYY-MM-DD') {
   return dateToString(getDaysFromToday(days), format);
@@ -110,7 +111,7 @@ function showLoggedInMenu() {
   });
 }
 
-
+showLoggedOutMenu();
 // NavBar handle
 
 const validation = new Validation(validationMessages, users);
@@ -123,14 +124,21 @@ const popupSignin = new PopupSignin(
   validation,
 );
 
-const user = new User(logoutBtns, [], 'Грета', showLoggedInMenu, showLoggedOutMenu, false);
+const user = new User(logoutBtns, [], 'User', showLoggedInMenu, showLoggedOutMenu, true);
+
+mainApi.getUserData()
+  .then((res) => {
+    console.log(`got initial userData: ${res.data.name}`);
+    showLoggedInMenu();
+    user.login(res.data.name, [], res.data.jwt);
+  })
+  .catch((err) => { console.log(`Initial Auth error: ${err.message}`); });
 
 logoutBtns.forEach((btn) => {
   btn.addEventListener('click', (event) => {
     if (event.target.closest('.header__navbar_type_mobile')) toggleMobileMenu();
     user.logout();
   });
-  localStorage.removeItem('token');
 });
 
 
@@ -227,7 +235,8 @@ submitLoginBtn.addEventListener('click', (event) => {
   event.preventDefault();
   mainApi.signin(popupSignin.emailInput.value, popupSignin.passwordInput.value)
     .then((res) => {
-      user.login(res.data.name, foundArticles);
+      console.log(`user signed in, name: ${res.data.name}, token: ${typeof res.data.jwt}`);
+      user.login(res.data.name, res.data.jwt);
       popupSignin.close(event);
     })
     .catch((e) => { console.log(`error signing in: ${e}`); });
@@ -333,7 +342,11 @@ articlesContainer.addEventListener('mouseout', (event) => {
 /*
     TO_DO:
             Разгрести main.js
-            Написать MainApi
             Сделать валидацию поисковой строки (пустой запрос)
             Написать класс управления хедером
+            Сделать корректное отображение валидаций попапов (сообщения, статусы)
+            Исправить ошибку логаута при перезагрузке (пропадает jwt)
+            Написать код для второй страницы
+            перепроверить функционал и вообще работу по критериям
+
 */

@@ -15,10 +15,11 @@ export default class Api {
   }
 
    _getToken() {
-    return localStorage.getItem('token');
+    return localStorage.getItem('jwt');
   }
 
   _resetOptions(method = 'GET', body) {
+    console.log(`resetting options, token: ${this._getToken()}`);
     this.options.headers.authorization = this._getToken();
     this.options.method = method;
     if (!body) delete this.options.body;

@@ -24,12 +24,14 @@ export default class Article extends BaseComponent {
     this.source = this.block.querySelector('.article__source');
     this.keyword = this.block.querySelector('.article__keyword');
     this.bookmarkIcon = this.block.querySelector('.article__bookmark-icon');
+    this.toggleSaveBtn = this.block.querySelector('.article__button_type_toggle-save');
     this.render = this.render.bind(this);
     this.visible = this.visible.bind(this);
     this.toggleSave = this.toggleSave.bind(this);
     this.remove = this.remove.bind(this);
     this.render();
-    this.block.addEventListener('click', this.toggleSave);
+    this.clickHandler = this.clickHandler.bind(this);
+    this.block.addEventListener('click', this.clickHandler);
   }
 
   visible(isVisible) {
@@ -62,10 +64,15 @@ export default class Article extends BaseComponent {
     }
   }
 
+  clickHandler(event) {
+    console.log(`click on article ${event.target.classList}`);
+    if (event.target.closest('.article__button_type_toggle-save')) this.toggleSave();
+    else document.location.href = this.data.url;
+  }
+
   render() {
     console.log(`rendering article. date ${this.data.publishedAt} source: ${this.data.source.name}`);
     this.image.src = this.data.urlToImage;
-    this.url = this.data.url;
     this.date.textContent = this.data.publishedAt;
     this.title.textContent = this.data.title;
     this.text.textContent = this.data.description;

@@ -14,9 +14,7 @@ export default class User {
     this.logout = this.logout.bind(this);
     this.isLoggedIn = this.isLoggedIn.bind(this);
 
-    if(this.loggedIn) this.login();
-    else this.logout();
-  };
+  }
 
   updateUserName(newName) {
     console.log(`updating username ${newName}`)
@@ -35,22 +33,24 @@ export default class User {
   }
 
   removeArticle(articleId) {
-    this.articles.filter(article => article._id != articleId);
+    this.articles.filter((article) => article._id !== articleId);
   }
 
-  login (name = this.name, savedArticles = []) {
-    console.log(`logged in as ${this.name}`);
+  login(name = this.name, token) {
+    console.log(`logged in as ${this.name}, token: ${token}`);
     this.loggedIn = true;
     this.updateUserName(name);
-    this.updateArticles(savedArticles);
     this.loginFunc();
+    if (!!token) localStorage.setItem('jwt', token);
   }
 
   logout() {
+    console.log(`user logout`);
     this.loggedIn = false;
-    this.updateUserName('Грета');
+    this.updateUserName('User');
     this.updateArticles([]);
     this.logoutFunc();
+    localStorage.removeItem('jwt');
   }
 
   isLoggedIn() {

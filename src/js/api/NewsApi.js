@@ -1,21 +1,11 @@
 import Api from './Api';
 
-export default class NewsApi {
+export default class NewsApi extends Api {
   constructor(apiParams, makeDateStr) {
-    this.options = {
-      headers: apiParams.headers,
-    };
+    super(apiParams);
     this.makeDateStr = makeDateStr;
-    this.baseUrl = apiParams.BASE_URL;
-    this.apiParams = apiParams;
   }
 
-  _getResponseData(res) {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(res.status);
-  }
 
   _getRequestURL(keyword) {
     return this.baseUrl
