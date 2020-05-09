@@ -1,4 +1,4 @@
-import bookmark from '../../images/bookmark-marked.png';
+import bookmark from '../../images/bookmark.png';
 import bookmarkMarked from '../../images/bookmark-marked.png';
 
 export default class Article {
@@ -31,11 +31,10 @@ export default class Article {
   }
 
   visible(isVisible) {
-    if(isVisible) {
+    if (isVisible) {
       this.render();
       this.block.classList.add('article_visible');
-    }
-    else this.block.classList.remove('article_visible');
+    } else this.block.classList.remove('article_visible');
   }
 
   isVisible() {
@@ -47,19 +46,18 @@ export default class Article {
   }
 
   toggleSave() {
-    if(this.isLoggedIn()) {
-    this.isSaved = !this.isSaved;
-    if(this.isSaved) {
-      this.bookmarkIcon.classList.add('article__bookmarked-icon');
-      this.bookmarkIcon.classList.remove('article__bookmark-icon');
-      this.bookmarkIcon.src = bookmarkMarked;
+    if (this.isLoggedIn()) {
+      this.isSaved = !this.isSaved;
+      if (this.isSaved) {
+        this.bookmarkIcon.classList.add('article__bookmarked-icon');
+        this.bookmarkIcon.classList.remove('article__bookmark-icon');
+        this.bookmarkIcon.src = bookmarkMarked;
+      } else {
+        this.bookmarkIcon.classList.add('article__bookmark-icon');
+        this.bookmarkIcon.classList.remove('article__bookmarked-icon');
+        this.bookmarkIcon.src = bookmarkMarked;
+      }
     }
-    else {
-      this.bookmarkIcon.classList.add('article__bookmark-icon')
-      this.bookmarkIcon.classList.remove('article__bookmarked-icon');
-      this.bookmarkIcon.src = bookmark;
-    }
-   }
   }
 
   render() {
@@ -70,5 +68,4 @@ export default class Article {
     this.source.textContent = this.data.source;
     this.keyword.textContent = this.data.keyword;
   }
-
 }
