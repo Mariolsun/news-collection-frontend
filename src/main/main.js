@@ -146,12 +146,6 @@ openMobileMenuBtn.addEventListener('click', () => {
   }
 });
 
-/* const foundArticles = articles.map((article) => new Article(
-  articlesContainer,
-  articleTemplate,
-  article,
-  user.isLoggedIn,
-)); */
 
 const foundArticles = [];
 const popupSignup = new PopupSignup(
