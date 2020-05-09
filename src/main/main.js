@@ -8,7 +8,9 @@ import User from '../js/components/User';
 import Article from '../js/components/Article';
 import bookmark from '../images/bookmark.png';
 import bookmarkhover from '../images/bookmarkhover.png';
+import MainApi from '../js/api/MainApi';
 import NewsApi from '../js/api/NewsApi';
+import mainApiParams from '../js/constants/mainApiParams';
 import newsApiParams from '../js/constants/newsApiParams';
 import dateToString from '../js/utils/dateToString';
 import getDaysFromToday from '../js/utils/getDaysFromToday';
@@ -23,7 +25,7 @@ const authButton = navBar.querySelector('.button_type_auth');
 const inactivePageLinks = document.querySelectorAll('.header__navbar-item_inactive-page');
 const logoutBtns = document.querySelectorAll('.button_type_logout');
 const authBtns = document.querySelectorAll('.button_type_auth');
-const newsApi = new NewsApi({ 'Content-Type': 'application/json' }, newsApiParams, makeDateStr);
+const newsApi = new NewsApi(newsApiParams, makeDateStr);
 
 const mobileHeader = document.querySelector('.header_type_mobile');
 const mobileNavBar = mobileHeader.querySelector('.header__navbar_type_mobile');
@@ -243,34 +245,38 @@ function showFoundArticles(isServerError) {
   console.log(`all done ${preloaderSection.classList}`);
 }
 
+searchInput.setCustomValidity('Введите тему новости');
 
 searchButton.addEventListener('click', (event) => {
   console.log('click on search button');
   event.preventDefault();
-
-  articlesNotFoundSection.classList.remove('articles-not-found_visible');
-  articlesSection.classList.remove('articles_visible');
-  preloaderSection.classList.add('preloader-section_visible');
-
-  newsApi.getNews(searchInput.value)
-    .then((res) => {
-      res.articles.forEach((article) => {
-        foundArticles.push(new Article(
-          articlesContainer,
-          articleTemplate,
-          article,
-          user.isLoggedIn,
-        ));
+  if (searchInput.value) {
+    foundArticles.length = 0;
+    articlesContainer.innerHTML = '';
+    articlesNotFoundSection.classList.remove('articles-not-found_visible');
+    articlesSection.classList.remove('articles_visible');
+    preloaderSection.classList.add('preloader-section_visible');
+console.log(`gettin ${searchInput.value}`);
+    newsApi.getNews(searchInput.value)
+      .then((res) => {
+        res.articles.forEach((article) => {
+          foundArticles.push(new Article(
+            articlesContainer,
+            articleTemplate,
+            article,
+            user.isLoggedIn,
+          ));
+        });
+      })
+      .then(() => {
+        showFoundArticles();
+      })
+      .catch((e) => {
+        console.log(`Error: ${e}`);
+        articlesTitle.textContent = 'Во время запроса произошла ошибка. Возможно проблема с соединением или сервер недоступен. Подождите немного и попробуйте еще раз';
+        showFoundArticles(true);
       });
-    })
-    .then(() => {
-      showFoundArticles();
-    })
-    .catch((e) => {
-      console.log(`Error: ${e}`);
-      articlesTitle.textContent = 'Во время запроса произошла ошибка. Возможно проблема с соединением или сервер недоступен. Подождите немного и попробуйте еще раз';
-      showFoundArticles(true);
-    });
+  }
 });
 
 

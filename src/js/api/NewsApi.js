@@ -1,8 +1,8 @@
 import Api from './Api';
 
 export default class NewsApi extends Api {
-  constructor(headers, apiParams, makeDateStr) {
-    super(headers, apiParams);
+  constructor(apiParams, makeDateStr) {
+    super(apiParams);
     this.makeDateStr = makeDateStr;
   }
 
@@ -18,6 +18,7 @@ export default class NewsApi extends Api {
          + this.apiParams.DATE_TO + this.makeDateStr()
          + this.apiParams.KEYS_DIVIDER
          + this.apiParams.PAGE_SIZE;
+
   }
 
   getNews(keyword) {

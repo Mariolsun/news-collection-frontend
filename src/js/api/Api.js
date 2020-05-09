@@ -1,6 +1,6 @@
 export default class Api {
-  constructor(headers, apiParams) {
-    this.headers = headers;
+  constructor(apiParams) {
+    this.headers = apiParams.headers;
     this.baseUrl = apiParams.BASE_URL;
     this.apiParams = apiParams;
   }
