@@ -24,6 +24,38 @@ const openMobileMenuBtn = mobileHeader.querySelector('.button_type_mobile-menu')
 const closeMobileMenuBtn = mobileHeader.querySelector('.button_type_close-mobile');
 
 
+const sectionToAppend = document.querySelector('.page');
+const searchButton = document.querySelector('.lead__button');
+const preloaderSection = document.querySelector('.preloader-section');
+const articlesSection = document.querySelector('.articles');
+const articlesContainer = document.querySelector('.articles__container');
+const showMoreBtn = document.querySelector('.articles__show-more-btn');
+const ARTICLES_TO_SHOW = 3;
+const loginPopupTemplate = document.getElementById('popup_type_login');
+const articleTemplate = document.getElementById('article');
+const signupPopupTemplate = document.getElementById('popup_type_signup');
+const successfulSignupTemplate = document.getElementById('popup_type_success-signup');
+const articlesNotFoundSection = document.querySelector('.articles-not-found');
+
+
+
+
+
+const validationMessages = {
+  required: 'Это обязательное поле',
+  incorrectNameLength: 'Должно быть от 2 до 30 символов',
+  incorrectPasswordLength: 'Должно быть от 8 символов',
+  invalidEmail: 'Неправильный формат email',
+  incorrectCredentials: 'Неправильные email или пароль',
+  userAlreadyExist: 'Такой пользователь уже есть',
+};
+
+const users = [
+  'example@test.com',
+  'mariolsun@test.com'
+]
+
+
 // NavBar handle
 logoutBtns.forEach(btn => {
   btn.addEventListener('click', event => {
@@ -75,18 +107,6 @@ function showLoggedInMenu() {
 
 
 
-const sectionToAppend = document.querySelector('.page');
-const searchButton = document.querySelector('.lead__button');
-const preloaderSection = document.querySelector('.preloader-section');
-const articlesSection = document.querySelector('.articles');
-const articlesContainer = document.querySelector('.articles__container');
-const showMoreBtn = document.querySelector('.articles__show-more-btn');
-const ARTICLES_TO_SHOW = 3;
-const loginPopupTemplate = document.getElementById('popup_type_login');
-const articleTemplate = document.getElementById('article');
-const signupPopupTemplate = document.getElementById('popup_type_signup');
-const successfulSignupTemplate = document.getElementById('popup_type_success-signup');
-const articlesNotFoundSection = document.querySelector('.articles-not-found');
 
 
 
@@ -119,19 +139,6 @@ openMobileMenuBtn.addEventListener('click', event => {
 
 
 
-const validationMessages = {
-  required: 'Это обязательное поле',
-  incorrectNameLength: 'Должно быть от 2 до 30 символов',
-  incorrectPasswordLength: 'Должно быть от 8 символов',
-  invalidEmail: 'Неправильный формат email',
-  incorrectCredentials: 'Неправильные email или пароль',
-  userAlreadyExist: 'Такой пользователь уже есть',
-};
-
-const users = [
-  'example@test.com',
-  'mariolsun@test.com'
-]
 
 
 const validation = new Validation(validationMessages, users);
@@ -145,6 +152,9 @@ const popupSignup = new PopupSignup(signupPopupTemplate, sectionToAppend, openMo
 
 const popupSuccessSignup = new PopupSuccessSignup(successfulSignupTemplate, sectionToAppend, openMobileMenuBtn, closeMobileMenuBtn);
 
+const loginOfferBtn = popupSuccessSignup.block.querySelector('.popup__other-auth-btn');
+const submitSignupBtn = popupSignup.block.querySelector('.popup__button');
+const submitLoginBtn = popupLogin.block.querySelector('.popup__button');
 
 const signupBlock = document.querySelector('.popup_type_signup');
 const loginBlock = document.querySelector('.popup_type_login');
@@ -168,10 +178,6 @@ showMoreBtn.addEventListener('click', function(event) {
   }
 
 });
-
-const loginOfferBtn = popupSuccessSignup.block.querySelector('.popup__other-auth-btn');
-const submitSignupBtn = popupSignup.block.querySelector('.popup__button');
-const submitLoginBtn = popupLogin.block.querySelector('.popup__button');
 
 
 
