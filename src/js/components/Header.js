@@ -1,9 +1,11 @@
-export default class NavbarHandler {
+import BaseComponent from './BaseComponent';
+
+export default class Header extends BaseComponent {
   constructor(mobileHeader, mobileNavBar) {
+    super();
     this.logoutBtns = document.querySelectorAll('.button_type_logout');
-    this.authBtns  = document.querySelectorAll('.button_type_auth');
+    this.authBtns = document.querySelectorAll('.button_type_auth');
     this.userNameBlocks = document.querySelectorAll('.header__username');
-    this.mobileHeader = mobileHeader
     this.mobileNavBar = mobileHeader.querySelector('.header__navbar_type_mobile');
     this.openMobileMenuBtn = mobileHeader.querySelector('.button_type_mobile-menu');
     this.closeMobileMenuBtn = mobileHeader.querySelector('.button_type_close-mobile');

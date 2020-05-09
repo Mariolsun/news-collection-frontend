@@ -6,8 +6,6 @@ import PopupSuccessSignup from '../js/components/PopupSuccessSignup';
 import Validation from '../js/utils/validation';
 import User from '../js/components/User';
 import Article from '../js/components/Article';
-import articles from '../js/data/articles';
-import savedArticles from '../js/data/savedArticles';
 import bookmark from '../images/bookmark.png';
 import bookmarkhover from '../images/bookmarkhover.png';
 import NewsApi from '../js/api/NewsApi';
@@ -19,7 +17,7 @@ function makeDateStr(days, format = 'YYYY-MM-DD') {
   return dateToString(getDaysFromToday(days), format);
 }
 
-
+const users = [];
 const navBar = window.document.querySelector('.header__navbar');
 const authButton = navBar.querySelector('.button_type_auth');
 const inactivePageLinks = document.querySelectorAll('.header__navbar-item_inactive-page');
@@ -57,12 +55,6 @@ const validationMessages = {
   incorrectCredentials: 'Неправильные email или пароль',
   userAlreadyExist: 'Такой пользователь уже есть',
 };
-
-const users = [
-  'example@test.com',
-  'mariolsun@test.com',
-];
-
 
 function toggleMobileMenu() {
   mobileHeader.classList.toggle('header_is-opened-mobile');
@@ -127,7 +119,7 @@ const popupLogin = new PopupLogin(
   validation,
 );
 
-const user = new User(logoutBtns, savedArticles, 'Грета', showLoggedInMenu, showLoggedOutMenu, false);
+const user = new User(logoutBtns, [], 'Грета', showLoggedInMenu, showLoggedOutMenu, false);
 
 logoutBtns.forEach((btn) => {
   btn.addEventListener('click', (event) => {

@@ -2,8 +2,7 @@ import '../vendor/fonts.css';
 import './savedArticles.css';
 import User from '../js/components/User';
 import Article from '../js/components/Article';
-import savedArticles from '../js/data/savedArticles';
-import trashhovericon from '../images/trashhovericon.png'
+import trashhovericon from '../images/trashhovericon.png';
 
 const articlesContainer = document.querySelector('.articles__container');
 const logoutBtns = document.querySelectorAll('.button_type_logout');
@@ -16,8 +15,7 @@ const mobileMenuClose = document.querySelector('.header__mobile-menu-close');
 const infoTitle = document.querySelector('.info__title');
 const infoKeywords = document.querySelector('.info__keywords');
 
-const articles = []
-
+const savedArticles = [];
 
 
 const sectionToAppend = document.querySelector('.page');
@@ -40,14 +38,14 @@ const inactivePageLinks = document.querySelectorAll('.header__navbar-item_inacti
 
 const authBtns = document.querySelectorAll('.button_type_auth');
 
-savedArticles.forEach(article => {
+/* savedArticles.forEach(article => {
   console.log(`making article ${articlesContainer.classList}`);
   let newArticle = new Article(articlesContainer, articleTemplate, article, userCheck);
   newArticle.block.removeEventListener('click', newArticle.toggleSave);
   newArticle.keyword.classList.add('article__keyword_visible');
   newArticle.visible(true);
   articles.push(newArticle);
-})
+}) */
 
 function userCheck() {
   return true;
@@ -63,11 +61,11 @@ function countKeywords(articles) {
   return uniqueKeywords;
 }
 
-countKeywords(articles);
+countKeywords(savedArticles);
 
-infoTitle.textContent = `Грета, у вас ${articles.length} сохранённых новостей`;
+infoTitle.textContent = `Грета, у вас ${savedArticles.length} сохранённых новостей`;
 function showInfo() {
-let uniqueKeywords = countKeywords(articles);
+let uniqueKeywords = countKeywords(savedArticles);
 if(uniqueKeywords.length > 3) {
   infoKeywords.innerHTML = `<b>${uniqueKeywords[0]}</b>, <b>${uniqueKeywords[1]}</b> и <b>${uniqueKeywords.length - 2} другим</b>`
 } else {

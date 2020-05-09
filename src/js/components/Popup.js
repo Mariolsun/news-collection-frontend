@@ -1,5 +1,8 @@
-export default class Popup {
+import BaseComponent from './BaseComponent';
+
+export default class Popup extends BaseComponent {
   constructor(template, destination, openMobileBtn, closeMobileBtn) {
+    super();
     this.openMobileBtn = openMobileBtn;
     this.closeMobileBtn = closeMobileBtn;
     this.block = document.createElement('div');
@@ -14,7 +17,7 @@ export default class Popup {
     this._closeOnEmptyAreaClick = this._closeOnEmptyAreaClick.bind(this);
   }
 
-  close(event) {
+  close() {
     this.block.removeEventListener('click', this._closeOnEmptyAreaClick);
     this.closeMobileBtn.removeEventListener('click', this.close);
     this.closeMobileBtn.classList.remove('header__navbar-item_visible');
@@ -28,19 +31,19 @@ export default class Popup {
   }
 
   _closeOnEmptyAreaClick(event) {
-    if(!event.target.closest('.popup__content')) {
+    if (!event.target.closest('.popup__content')) {
       this.close(event);
     }
   }
 
-  open (isMobile) {
+  open() {
     this.block.addEventListener('click', this._closeOnEmptyAreaClick);
     this.openMobileBtn.classList.remove('header__navbar-item_visible');
     this.closeMobileBtn.classList.add('header__navbar-item_visible');
     this.closeMobileBtn.addEventListener('click', this.close);
     console.log('openin mobile popup');
     this.block.classList.add('popup_type_mobile');
-    console.log(`open event on popup ${typeof this.block}`)
+    console.log(`open event on popup ${typeof this.block}`);
     this.block.classList.add('popup_is-opened');
   }
 

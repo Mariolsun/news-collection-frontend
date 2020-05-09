@@ -1,8 +1,10 @@
 import bookmark from '../../images/bookmark.png';
 import bookmarkMarked from '../../images/bookmark-marked.png';
+import BaseComponent from './BaseComponent';
 
-export default class Article {
+export default class Article extends BaseComponent {
   constructor(container, template, data, userCheck) {
+    super();
     this.articlesContainer = container;
     this.template = template;
     this.isLoggedIn = userCheck;
