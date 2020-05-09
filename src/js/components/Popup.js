@@ -1,6 +1,6 @@
 export default class Popup {
   constructor(template, destination, openMobileBtn, closeMobileBtn) {
-    this.openMobileBtn =openMobileBtn;
+    this.openMobileBtn = openMobileBtn;
     this.closeMobileBtn = closeMobileBtn;
     this.block = document.createElement('div');
     this.block.classList.add('popup');
@@ -14,7 +14,7 @@ export default class Popup {
     this._closeOnEmptyAreaClick = this._closeOnEmptyAreaClick.bind(this);
   }
 
-  close (event) {
+  close(event) {
     this.block.removeEventListener('click', this._closeOnEmptyAreaClick);
     this.closeMobileBtn.removeEventListener('click', this.close);
     this.closeMobileBtn.classList.remove('header__navbar-item_visible');

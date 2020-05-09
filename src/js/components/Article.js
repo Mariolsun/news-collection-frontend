@@ -7,7 +7,7 @@ export default class Article {
     this.template = template;
     this.isLoggedIn = userCheck;
     this.data = data;
-    this._id = this.data._id;
+    //  this._id = this.data._id;
     this.block = document.createElement('div');
     this.block.classList.add('article');
     this.block.append(this.template.content.cloneNode('true'));
@@ -55,17 +55,18 @@ export default class Article {
       } else {
         this.bookmarkIcon.classList.add('article__bookmark-icon');
         this.bookmarkIcon.classList.remove('article__bookmarked-icon');
-        this.bookmarkIcon.src = bookmarkMarked;
+        this.bookmarkIcon.src = bookmark;
       }
     }
   }
 
   render() {
-    this.image.src = this.data.image;
-    this.date.textContent = this.data.date;
+    this.image.src = this.data.urlToImage;
+    this.url = this.data.url;
+    this.date.textContent = Date.parse(this.data.publishedAt);
     this.title.textContent = this.data.title;
-    this.text.textContent = this.data.text;
-    this.source.textContent = this.data.source;
-    this.keyword.textContent = this.data.keyword;
+    this.text.textContent = this.data.description;
+    this.source.textContent = this.data.name;
+    this.keyword.textContent = 'default';
   }
 }

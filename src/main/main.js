@@ -10,13 +10,22 @@ import articles from '../js/data/articles';
 import savedArticles from '../js/data/savedArticles';
 import bookmark from '../images/bookmark.png';
 import bookmarkhover from '../images/bookmarkhover.png';
+import NewsApi from '../js/api/NewsApi';
+import newsApiParams from '../js/constants/newsApiParams';
+import dateToString from '../js/utils/dateToString';
+import getDaysFromToday from '../js/utils/getDaysFromToday';
+
+function makeDateStr(days, format = 'YYYY-MM-DD') {
+  return dateToString(getDaysFromToday(days), format);
+}
+
 
 const navBar = window.document.querySelector('.header__navbar');
 const authButton = navBar.querySelector('.button_type_auth');
 const inactivePageLinks = document.querySelectorAll('.header__navbar-item_inactive-page');
 const logoutBtns = document.querySelectorAll('.button_type_logout');
 const authBtns = document.querySelectorAll('.button_type_auth');
-
+const newsApi = new NewsApi({ 'Content-Type': 'application/json' }, newsApiParams, makeDateStr);
 
 const mobileHeader = document.querySelector('.header_type_mobile');
 const mobileNavBar = mobileHeader.querySelector('.header__navbar_type_mobile');
@@ -26,8 +35,10 @@ const closeMobileMenuBtn = mobileHeader.querySelector('.button_type_close-mobile
 
 const sectionToAppend = document.querySelector('.page');
 const searchButton = document.querySelector('.lead__button');
+const searchInput = document.querySelector('.lead__input');
 const preloaderSection = document.querySelector('.preloader-section');
 const articlesSection = document.querySelector('.articles');
+const articlesTitle = document.querySelector('.articles__title');
 const articlesContainer = document.querySelector('.articles__container');
 const showMoreBtn = document.querySelector('.articles__show-more-btn');
 const ARTICLES_TO_SHOW = 3;
@@ -141,14 +152,14 @@ openMobileMenuBtn.addEventListener('click', () => {
   }
 });
 
-const foundArticles = articles.map((article) => new Article(
+/* const foundArticles = articles.map((article) => new Article(
   articlesContainer,
   articleTemplate,
   article,
   user.isLoggedIn,
-));
+)); */
 
-// const foundArticles = [];
+const foundArticles = [];
 const popupSignup = new PopupSignup(
   signupPopupTemplate,
   sectionToAppend,
@@ -222,16 +233,15 @@ submitLoginBtn.addEventListener('click', (event) => {
 
 authButton.addEventListener('click', popupLogin.open);
 
-function showFoundArticles() {
-  console.log('time out fired');
-  if (foundArticles.length === 0) {
+function showFoundArticles(isServerError) {
+  if (foundArticles.length === 0 && !isServerError) {
     articlesNotFoundSection.classList.add('articles-not-found_visible');
   } else {
     foundArticles.forEach((article, i) => {
       if (i > 2) article.visible(false);
       else article.visible(true);
-      articlesSection.classList.add('articles_visible');
     });
+    articlesSection.classList.add('articles_visible');
   }
 
   if (foundArticles.length > 3) showMoreBtn.classList.add('articles__show-more-btn_visible');
@@ -245,11 +255,30 @@ function showFoundArticles() {
 searchButton.addEventListener('click', (event) => {
   console.log('click on search button');
   event.preventDefault();
+
   articlesNotFoundSection.classList.remove('articles-not-found_visible');
   articlesSection.classList.remove('articles_visible');
   preloaderSection.classList.add('preloader-section_visible');
-  console.log('setting timeout');
-  setTimeout(showFoundArticles, 2000);
+
+  newsApi.getNews(searchInput.value)
+    .then((res) => {
+      res.articles.forEach((article) => {
+        foundArticles.push(new Article(
+          articlesContainer,
+          articleTemplate,
+          article,
+          user.isLoggedIn,
+        ));
+      });
+    })
+    .then(() => {
+      showFoundArticles();
+    })
+    .catch((e) => {
+      console.log(`Error: ${e}`);
+      articlesTitle.textContent = 'Во время запроса произошла ошибка. Возможно проблема с соединением или сервер недоступен. Подождите немного и попробуйте еще раз';
+      showFoundArticles(true);
+    });
 });
 
 
@@ -291,3 +320,11 @@ articlesContainer.addEventListener('mouseout', (event) => {
     blockOfNoHover.src = bookmark;
   }
 });
+
+/*
+    TO_DO:
+            Разгрести main.js
+            Написать MainApi
+            Сделать валидацию поисковой строки (пустой запрос)
+            Написать класс управления хедером
+*/
