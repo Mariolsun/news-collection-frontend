@@ -18,7 +18,7 @@ export default class Popup extends BaseComponent {
   }
 
   close() {
-    this.block.removeEventListener('click', this._closeOnEmptyAreaClick);
+    this.block.removeEventListener('mousedown', this._closeOnEmptyAreaClick);
     this.closeMobileBtn.removeEventListener('click', this.close);
     this.closeMobileBtn.classList.remove('header__navbar-item_visible');
     this.openMobileBtn.classList.add('header__navbar-item_visible');
@@ -37,7 +37,7 @@ export default class Popup extends BaseComponent {
   }
 
   open() {
-    this.block.addEventListener('click', this._closeOnEmptyAreaClick);
+    this.block.addEventListener('mousedown', this._closeOnEmptyAreaClick);
     this.openMobileBtn.classList.remove('header__navbar-item_visible');
     this.closeMobileBtn.classList.add('header__navbar-item_visible');
     this.closeMobileBtn.addEventListener('click', this.close);
@@ -49,11 +49,9 @@ export default class Popup extends BaseComponent {
 
   buttonRender(element, result) {
     if (result) {
-      console.log('valid is ok, enabling submit btn');
       element.removeAttribute('disabled');
       element.classList.remove('popup__button_disabled');
     } else {
-      console.log('valid is not ok, disabling submit btn');
       element.setAttribute('disabled', true);
       element.classList.add('popup__button_disabled');
     }

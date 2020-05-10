@@ -128,7 +128,7 @@ const user = new User(logoutBtns, [], 'User', showLoggedInMenu, showLoggedOutMen
 
 mainApi.getUserData()
   .then((res) => {
-    console.log(`got initial userData: ${res.data.name}`);
+    console.log(`main.js got initial userData: ${res.data.name} ${typeof res.data.jwt}`);
     showLoggedInMenu();
     user.login(res.data.name, [], res.data.jwt);
   })
@@ -235,7 +235,7 @@ submitLoginBtn.addEventListener('click', (event) => {
   event.preventDefault();
   mainApi.signin(popupSignin.emailInput.value, popupSignin.passwordInput.value)
     .then((res) => {
-      console.log(`user signed in, name: ${res.data.name}, token: ${typeof res.data.jwt}`);
+      console.log(`main.js mainApi got signin resp. user signed in, name: ${res.data.name}, token: ${typeof res.data.jwt}`);
       user.login(res.data.name, res.data.jwt);
       popupSignin.close(event);
     })
@@ -345,7 +345,6 @@ articlesContainer.addEventListener('mouseout', (event) => {
             Сделать валидацию поисковой строки (пустой запрос)
             Написать класс управления хедером
             Сделать корректное отображение валидаций попапов (сообщения, статусы)
-            Исправить ошибку логаута при перезагрузке (пропадает jwt)
             Написать код для второй страницы
             перепроверить функционал и вообще работу по критериям
 

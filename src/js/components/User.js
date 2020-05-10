@@ -17,7 +17,7 @@ export default class User {
   }
 
   updateUserName(newName) {
-    console.log(`updating username ${newName}`)
+    console.log(`updating username ${newName}`);
     this.name = newName;
     this.userNameBlocks.forEach(block => {
       block.childNodes[0].nodeValue = this.name;
@@ -37,19 +37,23 @@ export default class User {
   }
 
   login(name = this.name, token) {
-    console.log(`logged in as ${this.name}, token: ${token}`);
+    console.log(`user.login() as ${this.name}, token: ${token} ${typeof token === 'string'} ${token.includes('Bearer')}`);
     this.loggedIn = true;
     this.updateUserName(name);
     this.loginFunc();
-    if (!!token) localStorage.setItem('jwt', token);
+    if (typeof token === 'string' && token.includes('Bearer')) {
+      console.log(`user.login setting token ${typeof token}`);
+      localStorage.setItem('jwt', token);
+    } else console.log('token не прошел проверку и не записан в localstorage');
   }
 
   logout() {
-    console.log(`user logout`);
+    console.log(`user.logout`);
     this.loggedIn = false;
     this.updateUserName('User');
     this.updateArticles([]);
     this.logoutFunc();
+    console.log('user.logout removing token');
     localStorage.removeItem('jwt');
   }
 

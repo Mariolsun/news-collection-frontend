@@ -1,6 +1,7 @@
 import bookmark from '../../images/bookmark.png';
 import bookmarkMarked from '../../images/bookmark-marked.png';
 import BaseComponent from './BaseComponent';
+import imagePlaceholder from '../../images/image-placeholder.jpg';
 
 export default class Article extends BaseComponent {
   constructor(container, template, data, userCheck) {
@@ -72,7 +73,9 @@ export default class Article extends BaseComponent {
 
   render() {
     console.log(`rendering article. date ${this.data.publishedAt} source: ${this.data.source.name}`);
-    this.image.src = this.data.urlToImage;
+    //  this.image.src = this.data.urlToImage;
+    if (!this.data.urlToImage) console.log (`no original image! ${this.data.title}`);
+    this.image.src = this.data.urlToImage || imagePlaceholder;
     this.date.textContent = this.data.publishedAt;
     this.title.textContent = this.data.title;
     this.text.textContent = this.data.description;
