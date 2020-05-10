@@ -7,43 +7,33 @@ export default class Validation {
   isEmailOK(email) {
     const reg = /.+@.+\..+/i;
     if (email.length === 0) {
-      return this.messages.required;
+      return this.messages.FIELD_REQUIRED;
     }
-    if (!reg.test(email)) { // вот здесь else лишнее
-      return this.messages.invalidEmail;
+    if (!reg.test(email)) {
+      return this.messages.FIELD_INCORRECT_EMAIL;
     }
+    return '';
   }
 
   isNameOK(text) {
     if (text.length === 0) {
-      return this.messages.required;
-
+      return this.messages.FIELD_REQUIRED;
     }
     if (text.length > 30 || text.length === 1) { // вот здесь else лишнее
-      return this.messages.incorrectNameLength;
-
+      return this.messages.FIELD_INCORRECT_NAME_LENGTH;
     }
+    return '';
   }
 
   isPasswordOK(text) {
     if (text.length === 0) {
-      return this.messages.required;
+      return this.messages.FIELD_REQUIRED;
 
     }
     if (text.length < 8 ) { // вот здесь else лишнее
-      return this.messages.incorrectPasswordLength;
+      return this.messages.FIELD_INCORRECT_PASS_LENGTH;
 
     }
 
-  }
-
-  isEmailFree(text) {
-    for(let i = 0; i < this.users.length; i++) {
-
-
-      console.log(`email compare: ${this.users[i]} and ${text}, message: ${this.messages.userAlreadyExist}`);
-      if(!text.localeCompare(this.users[i])) return this.messages.userAlreadyExist;
-      else console.log('emails are not the same');
-    };
   }
 }

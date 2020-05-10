@@ -7,10 +7,13 @@ export default class Popup extends BaseComponent {
     this.closeMobileBtn = closeMobileBtn;
     this.block = document.createElement('div');
     this.block.classList.add('popup');
+    this.form = this.block.querySelector('.popup__form');
     this.block.append(template.content.cloneNode('true'));
     destination.append(this.block);
+    this.submitBtn = this.block.querySelector('.popup__button');
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
+    this.inputs = this.block.querySelectorAll('.popup__input');
     this.closeBtn = this.block.querySelector('.popup__close');
     this.closeBtn.addEventListener('click', this.close);
     this.isMobile = this.isMobile.bind(this);
@@ -36,6 +39,20 @@ export default class Popup extends BaseComponent {
     }
   }
 
+  disable() {
+    this.inputs.forEach((input) => {
+      input.readOnly = true;
+    });
+    this.buttonRender(false);
+  }
+
+  enable() {
+    this.inputs.forEach((input) => {
+      input.readOnly = false;
+    });
+    this.buttonRender(true);
+  }
+
   open() {
     this.block.addEventListener('mousedown', this._closeOnEmptyAreaClick);
     this.openMobileBtn.classList.remove('header__navbar-item_visible');
@@ -47,18 +64,19 @@ export default class Popup extends BaseComponent {
     this.block.classList.add('popup_is-opened');
   }
 
-  buttonRender(element, result) {
+  buttonRender(result) {
     if (result) {
-      element.removeAttribute('disabled');
-      element.classList.remove('popup__button_disabled');
+      this.submitBtn.removeAttribute('disabled');
+      this.submitBtn.classList.remove('popup__button_disabled');
     } else {
-      element.setAttribute('disabled', true);
-      element.classList.add('popup__button_disabled');
+      this.submitBtn.setAttribute('disabled', true);
+      this.submitBtn.classList.add('popup__button_disabled');
     }
   }
 
   alertRender(element, message) {
     if (message) {
+      console.log(`rendering ${message} on ${this.block.classList}`);
       element.textContent = message;
       element.style.visibility = 'visible';
     } else element.style.visibility = 'hidden';

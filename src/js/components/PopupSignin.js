@@ -14,6 +14,7 @@ export default class PopupSignin extends Popup {
     this.submitBtn = this.block.querySelector('.popup__button');
     this.emailAlert = this.block.querySelector('.popup__validate-alert_type_email');
     this.passwordAlert = this.block.querySelector('.popup__validate-alert_type_password');
+    this.serverAlert = this.block.querySelector('.popup__validate-alert_type_server');
     this.form = this.block.querySelector('.popup__form');
 
     this.open = this.open.bind(this);
@@ -24,23 +25,23 @@ export default class PopupSignin extends Popup {
   }
 
   render(event) {
-
-    let result = {
+    const result = {
       email: this.emailValid(this.emailInput.value),
       password: this.passwordValid(this.passwordInput.value),
-    }
+    };
 
 
-    this.buttonRender(this.submitBtn, !result.email && result.password !== 'Это обязательное поле');
+    this.buttonRender(!result.email && result.password !== 'Это обязательное поле');
     switch (event.target) {
       case this.emailInput:
+      default:
         this.alertRender(this.emailAlert, result.email);
         break;
       case this.passwordInput:
-        this.alertRender(this.passwordAlert, result.password == 'Это обязательное поле' ? 'Это обязательное поле' : '');
+        this.alertRender(this.passwordAlert, result.password === 'Это обязательное поле' ? 'Это обязательное поле' : '');
         break;
     }
-
+    this.alertRender(this.serverAlert);
   }
 
   close(event) {
@@ -53,11 +54,12 @@ export default class PopupSignin extends Popup {
   open(event) {
     this.emailAlert.style.visibility = 'hidden';
     this.passwordAlert.style.visibility = 'hidden';
+    this.serverAlert.style.visibility = 'hidden';
     super.open(event);
   }
 
   renderLoading(loading) {
-    if(loading) {
+    if (loading) {
       this.submitBtn.textContent = 'Загрузка...';
     } else {
       this.submitBtn.textContent = 'Войти';

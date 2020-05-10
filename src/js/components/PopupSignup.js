@@ -9,7 +9,6 @@ export default class PopupSignup extends Popup {
     this.emailValid = validation.isEmailOK.bind(this.validation);
     this.nameValid = validation.isNameOK.bind(this.validation);
     this.passwordValid = validation.isPasswordOK.bind(this.validation);
-    this.emailFreeCheck = validation.isEmailFree.bind(this.validation);
 
     this.emailInput = this.block.querySelector('.popup__input_type_email');
     this.passwordInput = this.block.querySelector('.popup__input_type_password');
@@ -18,7 +17,7 @@ export default class PopupSignup extends Popup {
     this.emailAlert = this.block.querySelector('.popup__validate-alert_type_email');
     this.nameAlert = this.block.querySelector('.popup__validate-alert_type_name');
     this.passwordAlert = this.block.querySelector('.popup__validate-alert_type_password');
-    this.emailFreeAlert = this.block.querySelector('.popup__validate-alert_type_email-not-free');
+    this.serverAlert = this.block.querySelector('.popup__validate-alert_type_server');
     this.form = this.block.querySelector('.popup__form');
 
     this.open = this.open.bind(this);
@@ -30,30 +29,29 @@ export default class PopupSignup extends Popup {
 
   render(event) {
 
-    let result = {
+    const result = {
       name: this.nameValid(this.nameInput.value),
       email: this.emailValid(this.emailInput.value),
-      emailFree: this.emailFreeCheck(this.emailInput.value),
       password: this.passwordValid(this.passwordInput.value),
-    }
+    };
 
 
-    this.buttonRender(this.submitBtn, !result.name && !result.email && !result.password && !result.emailFree);
+    this.buttonRender(!result.name && !result.email && !result.password);
 
     switch (event.target) {
       case this.nameInput:
+      default:
         this.alertRender(this.nameAlert, result.name);
         break;
       case this.emailInput:
-        console.log(`input email. email check: ${result.email}, email available check: ${result.emailFree}`);
+        console.log(`input email. email check: ${result.email}`);
         this.alertRender(this.emailAlert, result.email);
-        this.alertRender(this.emailFreeAlert, result.emailFree);
         break;
       case this.passwordInput:
         this.alertRender(this.passwordAlert, result.password);
         break;
     }
-
+    this.alertRender(this.serverAlert);
   }
 
   close(event) {
@@ -67,7 +65,7 @@ export default class PopupSignup extends Popup {
     this.nameAlert.style.visibility = 'hidden';
     this.emailAlert.style.visibility = 'hidden';
     this.passwordAlert.style.visibility = 'hidden';
-    this.emailFreeAlert.style.visibility = 'hidden';
+    this.serverAlert.style.visibility = 'hidden';
     super.open(event);
   }
 

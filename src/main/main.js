@@ -6,6 +6,7 @@ import PopupSuccessSignup from '../js/components/PopupSuccessSignup';
 import Validation from '../js/utils/validation';
 import User from '../js/components/User';
 import Article from '../js/components/Article';
+import Header from '../js/components/Header';
 import bookmark from '../images/bookmark.png';
 import bookmarkhover from '../images/bookmarkhover.png';
 import MainApi from '../js/api/MainApi';
@@ -14,28 +15,17 @@ import mainApiParams from '../js/constants/mainApiParams';
 import newsApiParams from '../js/constants/newsApiParams';
 import dateToString from '../js/utils/dateToString';
 import getDaysFromToday from '../js/utils/getDaysFromToday';
-import Api from '../js/api/Api';
+import MESSAGES from '../js/constants/messages';
 
 function makeDateStr(days, format = 'YYYY-MM-DD') {
   return dateToString(getDaysFromToday(days), format);
 }
 
-const users = [];
-const navBar = window.document.querySelector('.header__navbar');
+
+const navBar = document.querySelector('.header__navbar'); //прописать мб условие чтобы это был именно десктопный навбар
 const authButton = navBar.querySelector('.button_type_auth');
-const inactivePageLinks = document.querySelectorAll('.header__navbar-item_inactive-page');
-const logoutBtns = document.querySelectorAll('.button_type_logout');
-const authBtns = document.querySelectorAll('.button_type_auth');
 const mainApi = new MainApi(mainApiParams);
 const newsApi = new NewsApi(newsApiParams, makeDateStr);
-
-
-const mobileHeader = document.querySelector('.header_type_mobile');
-const mobileNavBar = mobileHeader.querySelector('.header__navbar_type_mobile');
-const openMobileMenuBtn = mobileHeader.querySelector('.button_type_mobile-menu');
-const closeMobileMenuBtn = mobileHeader.querySelector('.button_type_close-mobile');
-
-
 const sectionToAppend = document.querySelector('.page');
 const searchButton = document.querySelector('.lead__button');
 const searchInput = document.querySelector('.lead__input');
@@ -51,70 +41,10 @@ const signupPopupTemplate = document.getElementById('popup_type_signup');
 const successfulSignupTemplate = document.getElementById('popup_type_success-signup');
 const articlesNotFoundSection = document.querySelector('.articles-not-found');
 
-
-const validationMessages = {
-  required: 'Это обязательное поле',
-  incorrectNameLength: 'Должно быть от 2 до 30 символов',
-  incorrectPasswordLength: 'Должно быть от 8 символов',
-  invalidEmail: 'Неправильный формат email',
-  incorrectCredentials: 'Неправильные email или пароль',
-  userAlreadyExist: 'Такой пользователь уже есть',
-};
-
-function toggleMobileMenu() {
-  mobileHeader.classList.toggle('header_is-opened-mobile');
-  mobileNavBar.classList.toggle('header__navbar_visible');
-  closeMobileMenuBtn.classList.toggle('header__navbar-item_visible');
-  openMobileMenuBtn.classList.toggle('header__navbar-item_visible');
-}
-
-// NavBar handle
-
-
-// NavBar handle
-window.addEventListener('resize', () => {
-  if (document.documentElement.clientWidth > 767 && mobileNavBar.classList.contains('header__navbar_visible')) {
-    toggleMobileMenu();
-  }
-});
-
-// NavBar handle
-function showLoggedOutMenu() {
-  console.log('showin logged out menu');
-  inactivePageLinks.forEach((link) => {
-    link.classList.remove('header__navbar-item_visible');
-  });
-
-  logoutBtns.forEach((btn) => {
-    btn.classList.remove('header__navbar-item_visible');
-  });
-
-  authBtns.forEach((btn) => {
-    btn.classList.add('header__navbar-item_visible');
-  });
-}
-// NavBar handle
-function showLoggedInMenu() {
-  console.log('showing logged in menu');
-  inactivePageLinks.forEach((link) => {
-    link.classList.add('header__navbar-item_visible');
-  });
-
-  logoutBtns.forEach((btn) => {
-    btn.classList.add('header__navbar-item_visible');
-  });
-
-  authBtns.forEach((btn) => {
-    btn.classList.remove('header__navbar-item_visible');
-
-    console.log(`hiding auth btn ${btn.classList}`);
-  });
-}
-
-showLoggedOutMenu();
-// NavBar handle
-
-const validation = new Validation(validationMessages, users);
+const openMobileMenuBtn = document.querySelector('.button_type_mobile-menu'); //разобраться как вынести ивенты в хедер
+const closeMobileMenuBtn = document.querySelector('.button_type_close-mobile');
+const logoutBtns = document.querySelectorAll('.button_type_logout');
+const validation = new Validation(MESSAGES);
 
 const popupSignin = new PopupSignin(
   loginPopupTemplate,
@@ -124,19 +54,42 @@ const popupSignin = new PopupSignin(
   validation,
 );
 
-const user = new User(logoutBtns, [], 'User', showLoggedInMenu, showLoggedOutMenu, true);
+const header = new Header();
 
+const user = new User(header.showNewName, [], 'User', header.showLoggedInMenu, header.showLoggedOutMenu);
+header.hideDesktopNavBar();
 mainApi.getUserData()
   .then((res) => {
-    console.log(`main.js got initial userData: ${res.data.name} ${typeof res.data.jwt}`);
-    showLoggedInMenu();
-    user.login(res.data.name, [], res.data.jwt);
+    console.log(`main.js got initial userData: ${res.data.name} ${res.data.jwt}`);
+    header.showDesktopNavBar();
+    header.showLoggedInMenu();
+    user.login(res.data.name, res.data.jwt);
   })
-  .catch((err) => { console.log(`Initial Auth error: ${err.message}`); });
+  .catch((err) => {
+    header.showDesktopNavBar();
+    header.showLoggedOutMenu();
+    console.log(`Initial Auth error: ${err.message}`);
+  });
+
+mainApi.getArticles()
+  .then((res) => {
+    console.log(`main.js got savedArticlesData ${res}`);
+    res.data.forEach((article) => {
+      user.addArticle(new Article(
+        articlesContainer,
+        articleTemplate,
+        article,
+        user.isLoggedIn,
+        user.addArticle,
+        user.removeArticle,
+      ));
+    });
+  })
+  .catch((err) => console.log(`error in main.js getArticles (mainApi): ${err}`));
 
 logoutBtns.forEach((btn) => {
   btn.addEventListener('click', (event) => {
-    if (event.target.closest('.header__navbar_type_mobile')) toggleMobileMenu();
+    if (event.target.closest('.header__navbar_type_mobile')) header.toggleMobileMenu();
     user.logout();
   });
 });
@@ -145,13 +98,12 @@ logoutBtns.forEach((btn) => {
 openMobileMenuBtn.addEventListener('click', () => {
   if (user.isLoggedIn()) {
     console.log('user loggen in, toggling mobile menu');
-    toggleMobileMenu();
-    closeMobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    header.toggleMobileMenu();
+    closeMobileMenuBtn.addEventListener('click', header.toggleMobileMenu);
   } else {
     console.log('user not logged in, openin popup login');
-    closeMobileMenuBtn.removeEventListener('click', toggleMobileMenu);
-    const isMobile = true;
-    popupSignin.open(isMobile);
+    closeMobileMenuBtn.removeEventListener('click', header.toggleMobileMenu);
+    popupSignin.open(header.isMobile());
     closeMobileMenuBtn.classList.add('header__navbar-item_visible');
     openMobileMenuBtn.classList.remove('header__navbar-item_visible');
   }
@@ -173,7 +125,6 @@ const popupSuccessSignup = new PopupSuccessSignup(
   openMobileMenuBtn,
   closeMobileMenuBtn,
 );
-
 
 const loginOfferBtn = popupSuccessSignup.block.querySelector('.popup__other-auth-btn');
 const submitSignupBtn = popupSignup.block.querySelector('.popup__button');
@@ -214,6 +165,7 @@ signupOfferLogin.addEventListener('click', (event) => {
 
 submitSignupBtn.addEventListener('click', (event) => {
   event.preventDefault();
+  popupSignup.disable();
   mainApi.signup(popupSignup.emailInput.value,
     popupSignup.passwordInput.value,
     popupSignup.nameInput.value)
@@ -223,7 +175,23 @@ submitSignupBtn.addEventListener('click', (event) => {
       popupSignup.close(event);
       popupSuccessSignup.open();
     })
-    .catch((e) => console.log(`ошибка ${e.status}: ${e}`));
+    .catch((e) => {
+      console.log(`ошибка ${JSON.stringify(e)}: ${e.message}`);
+      switch (e) {
+        case 400:
+          popupSignup.alertRender(popupSignup.serverAlert, MESSAGES.SERVER_BAD_REQUEST);
+          break;
+        case 409:
+          popupSignup.alertRender(popupSignup.serverAlert, MESSAGES.SERVER_USER_ALREADY_EXISTS);
+          break;
+        default:
+          popupSignup.alertRender(popupSignup.serverAlert, MESSAGES.SERVER_ERROR);
+      }
+    })
+    .finally(() => {
+      popupSignup.enable();
+      popupSignup.renderLoading(false);
+    });
 });
 
 loginOfferBtn.addEventListener('click', (event) => {
@@ -233,13 +201,31 @@ loginOfferBtn.addEventListener('click', (event) => {
 
 submitLoginBtn.addEventListener('click', (event) => {
   event.preventDefault();
+  popupSignin.disable();
+  popupSignin.renderLoading(true);
   mainApi.signin(popupSignin.emailInput.value, popupSignin.passwordInput.value)
     .then((res) => {
       console.log(`main.js mainApi got signin resp. user signed in, name: ${res.data.name}, token: ${typeof res.data.jwt}`);
       user.login(res.data.name, res.data.jwt);
       popupSignin.close(event);
     })
-    .catch((e) => { console.log(`error signing in: ${e}`); });
+    .catch((e) => {
+      console.log(`ошибка ${JSON.stringify(e)}: ${e.message}`);
+      switch (e) {
+        case 400:
+          popupSignin.alertRender(popupSignin.serverAlert, MESSAGES.SERVER_BAD_REQUEST);
+          break;
+        case 401:
+          popupSignin.alertRender(popupSignin.serverAlert, MESSAGES.SERVER_INCORRECT_CREDENTIALS);
+          break;
+        default:
+          popupSignin.alertRender(popupSignin.serverAlert, MESSAGES.SERVER_ERROR);
+      }
+    })
+    .finally(() => {
+      popupSignin.enable();
+      popupSignin.renderLoading(false);
+    });
 });
 
 
@@ -263,11 +249,11 @@ function showFoundArticles(isServerError) {
   console.log(`all done ${preloaderSection.classList}`);
 }
 
-searchInput.setCustomValidity('Введите тему новости');
+searchInput.setCustomValidity('Нужно ввести ключевое слово');
+
 
 searchButton.addEventListener('click', (event) => {
   console.log('click on search button');
-  event.preventDefault();
   if (searchInput.value) {
     foundArticles.length = 0;
     articlesContainer.innerHTML = '';
@@ -280,11 +266,15 @@ console.log(`gettin ${searchInput.value}`);
         res.articles.forEach((article) => {
           const newArticle = article;
           newArticle.publishedAt = dateToString(new Date(article.publishedAt), 'pretty');
+          newArticle.source = article.source.name;
+          newArticle.keyword = searchInput.value;
           foundArticles.push(new Article(
             articlesContainer,
             articleTemplate,
             newArticle,
             user.isLoggedIn,
+            user.addArticle,
+            user.removeArticle,
           ));
         });
       })
@@ -306,17 +296,18 @@ articlesContainer.addEventListener('click', (event) => {
 
 
 articlesContainer.addEventListener('mouseover', (event) => {
-  if (!!event.target.closest('.article__save-options') && !user.loggedIn) {
+  if (!!event.target.closest('.article__save-options') && !user.isLoggedIn()) {
     const hintBlock = event.target.closest('.article__save-options').querySelector('.article__save-hint');
     hintBlock.classList.toggle('article__save-hint_visible');
   }
 
-  if (event.target.classList.contains('article__button_type_toggle-save') && !!event.target.querySelector('.article__bookmark-icon')) {
+  if (event.target.classList.contains('article__button_type_toggle-save') && !!event.target.querySelector('.article__bookmark-icon') && user.isLoggedIn()) {
+    console.log('bookmark hover event');
     const blockOfHover = event.target.querySelector('.article__bookmark-icon');
     blockOfHover.src = bookmarkhover;
   }
 
-  if (event.target.classList.contains('article__bookmark-icon')) {
+  if (event.target.classList.contains('article__bookmark-icon') && user.isLoggedIn()) {
     const blockOfHover = event.target;
     blockOfHover.src = bookmarkhover;
   }
@@ -344,8 +335,10 @@ articlesContainer.addEventListener('mouseout', (event) => {
             Разгрести main.js
             Сделать валидацию поисковой строки (пустой запрос)
             Написать класс управления хедером
+            переписать validation
             Сделать корректное отображение валидаций попапов (сообщения, статусы)
             Написать код для второй страницы
             перепроверить функционал и вообще работу по критериям
+            popup на esc
 
 */
