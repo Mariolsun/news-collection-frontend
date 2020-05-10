@@ -4,7 +4,11 @@ export default class MainApi extends Api {
   signin(email, password) {
     this._resetOptions('POST', JSON.stringify({ email, password }));
     return fetch(`${this.baseUrl}/signin`, this.options)
-      .then((res) => this._getResponseData(res));
+      .then((res) => {
+        let readRes = this._getResponseData(res);
+        console.log(`raw response: ${readRes.headers}`);
+        return readRes;
+      });
   }
 
   signup(email, password, name) {
@@ -15,6 +19,7 @@ export default class MainApi extends Api {
 
   getUserData() {
     this._resetOptions();
+    console.log(`fetching user data, jwt: ${this.options.headers.authorization}`);
     return fetch(`${this.baseUrl}/users/me`, this.options)
       .then((res) => this._getResponseData(res));
   }
@@ -25,7 +30,7 @@ export default class MainApi extends Api {
       .then((res) => this._getResponseData(res));
   }
 
-  createArticle(article) {
+  addArticle(article) {
     this._resetOptions('POST', JSON.stringify(article));
     return fetch(`${this.baseUrl}/articles`, this.options)
       .then((res) => this._getResponseData(res));

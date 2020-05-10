@@ -28,6 +28,7 @@ export default class User {
   addArticle(newArticle) {
     console.log('adding article to savedArticles');
     this.articles.push(newArticle);
+    this.articles.forEach((article) => { console.log(`article ${article.title.textContent}`); });
   }
 
   removeArticle(article) {
@@ -38,14 +39,15 @@ export default class User {
   findArticle(url) {
     console.log(`user.js checking ${url}`);
     let result = this.articles.find((article) => {
-      console.log(`comparing to ${article}`);
-      return article.url.includes(url);
+      console.log(`comparing to ${article.data.url}`);
+      return article.data.url.includes(url);
     });
+    console.log(`overall result: ${result}`);
     return result;
   }
 
   login(name = this.name, token) {
-    console.log(`user.login() as ${this.name}, token: ${token} ${typeof token === 'string'}`);
+    console.log(`user.login() as ${this.name}, cookie: ${document.cookie}`);
     this.loggedIn = true;
     this.updateUserName(name);
     this.loginFunc();
@@ -62,6 +64,7 @@ export default class User {
     this.updateArticles([]);
     this.logoutFunc();
     console.log('user.logout removing token');
+
     localStorage.removeItem('jwt');
   }
 

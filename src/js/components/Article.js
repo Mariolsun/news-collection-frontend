@@ -9,7 +9,17 @@ export default class Article extends BaseComponent {
     this.articlesContainer = container;
     this.template = template;
     this.isLoggedIn = userCheck;
-    this.data = data;
+    this.data = {
+      title: data.title,
+      description: data.description,
+      publishedAt: data.publishedAt,
+      source: data.source,
+      url: data.url,
+      urlToImage: data.urlToImage,
+      keyword: data.keyword,
+      _id: data._id || '',
+    };
+
     this.saveFunc = saveFunc;
     this.removeFunc = removeFunc;
     //  this._id = this.data._id;

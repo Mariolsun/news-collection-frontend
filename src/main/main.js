@@ -17,6 +17,10 @@ import dateToString from '../js/utils/dateToString';
 import getDaysFromToday from '../js/utils/getDaysFromToday';
 import MESSAGES from '../js/constants/messages';
 
+import bookmarkMarked from '../images/bookmark-marked.png';
+
+
+
 function makeDateStr(days, format = 'YYYY-MM-DD') {
   return dateToString(getDaysFromToday(days), format);
 }
@@ -57,12 +61,25 @@ const popupSignin = new PopupSignin(
 const header = new Header();
 
 const user = new User(header.showNewName, [], 'User', header.showLoggedInMenu, header.showLoggedOutMenu);
+header.showLoggedOutMenu();
 header.hideDesktopNavBar();
+
+function addArticle(articleObj) {
+  console.log(`saving article: ${JSON.stringify(articleObj.data)}`);
+  const { data } = articleObj;
+  if ('_id' in data) delete data._id;
+  mainApi.addArticle(data)
+    .then((res) => {
+      console.log(`got response adding article ${res}`);
+      user.addArticle(articleObj);
+    })
+    .catch((e) => console.log(`error saving article ${e}`));
+}
+
 mainApi.getUserData()
   .then((res) => {
-    console.log(`main.js got initial userData: ${res.data.name} ${res.data.jwt}`);
+    console.log(`main.js got initial userData: ${res.data.name}`);
     header.showDesktopNavBar();
-    header.showLoggedInMenu();
     user.login(res.data.name, res.data.jwt);
   })
   .catch((err) => {
@@ -80,7 +97,7 @@ mainApi.getArticles()
         articleTemplate,
         article,
         user.isLoggedIn,
-        user.addArticle,
+        addArticle,
         user.removeArticle,
       ));
     });
@@ -90,7 +107,9 @@ mainApi.getArticles()
 logoutBtns.forEach((btn) => {
   btn.addEventListener('click', (event) => {
     if (event.target.closest('.header__navbar_type_mobile')) header.toggleMobileMenu();
+    console.log('logout event');
     user.logout();
+    console.log(`user name: ${user.name}, jwt: ${localStorage.getItem('jwt')}, cookie: ${document.cookie}`);
   });
 });
 
@@ -170,7 +189,7 @@ submitSignupBtn.addEventListener('click', (event) => {
     popupSignup.passwordInput.value,
     popupSignup.nameInput.value)
     .then((res) => {
-      console.log(`answer is recieved: ${res}`);
+      console.log(`answer is recieved: ${res} res.cookie: ${res.cookie}`);
       console.log('user is registred');
       popupSignup.close(event);
       popupSuccessSignup.open();
@@ -205,7 +224,7 @@ submitLoginBtn.addEventListener('click', (event) => {
   popupSignin.renderLoading(true);
   mainApi.signin(popupSignin.emailInput.value, popupSignin.passwordInput.value)
     .then((res) => {
-      console.log(`main.js mainApi got signin resp. user signed in, name: ${res.data.name}, token: ${typeof res.data.jwt}`);
+      console.log(`main.js mainApi got signin resp. user signed in, name: ${res.data.name}, res ${JSON.stringify(res)}`);
       user.login(res.data.name, res.data.jwt);
       popupSignin.close(event);
     })
@@ -237,7 +256,10 @@ function showFoundArticles(isServerError) {
   } else {
     foundArticles.forEach((article, i) => {
       if (i > 2) article.visible(false);
-      else article.visible(true);
+      else {
+        console.log(`showing article ${article.data.title}`);
+        article.visible(true);
+      }
     });
     articlesSection.classList.add('articles_visible');
   }
@@ -264,18 +286,27 @@ console.log(`gettin ${searchInput.value}`);
     newsApi.getNews(searchInput.value)
       .then((res) => {
         res.articles.forEach((article) => {
-          const newArticle = article;
-          newArticle.publishedAt = dateToString(new Date(article.publishedAt), 'pretty');
-          newArticle.source = article.source.name;
-          newArticle.keyword = searchInput.value;
-          foundArticles.push(new Article(
-            articlesContainer,
-            articleTemplate,
-            newArticle,
-            user.isLoggedIn,
-            user.addArticle,
-            user.removeArticle,
-          ));
+          let newArticle = user.findArticle(article.url);
+          console.log(`result: ${newArticle}`);
+          if (newArticle) {
+            console.log(`article found!`);
+            foundArticles.push(newArticle);
+            articlesContainer.append(newArticle.block); // Очень плохо
+            newArticle.bookmarkIcon.src = bookmarkMarked;
+          } else {
+            newArticle = article;
+            newArticle.publishedAt = dateToString(new Date(article.publishedAt), 'pretty');
+            newArticle.source = article.source.name;
+            newArticle.keyword = searchInput.value;
+            foundArticles.push(new Article(
+              articlesContainer,
+              articleTemplate,
+              newArticle,
+              user.isLoggedIn,
+              addArticle,
+              user.removeArticle,
+            ));
+          }
         });
       })
       .then(() => {
@@ -330,13 +361,21 @@ articlesContainer.addEventListener('mouseout', (event) => {
   }
 });
 
+
+window.addEventListener('focus', (event) => {
+  console.log('window focus event');
+  location.reload();
+});
+
+window.addEventListener('unload', () => console.log('bye'));
+
+
 /*
     TO_DO:
             Разгрести main.js
             Сделать валидацию поисковой строки (пустой запрос)
             Написать класс управления хедером
             переписать validation
-            Сделать корректное отображение валидаций попапов (сообщения, статусы)
             Написать код для второй страницы
             перепроверить функционал и вообще работу по критериям
             popup на esc
