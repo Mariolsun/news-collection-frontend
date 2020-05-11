@@ -65,18 +65,20 @@ header.showLoggedOutMenu();
 header.hideDesktopNavBar();
 
 function addArticle(articleObj) { // cardList ?
-  const { data } = articleObj;
-  if ('_id' in data) delete data._id;
+  const { _id, ...data } = articleObj.data;
+  console.log(`addin ${JSON.stringify(data)}`);
   mainApi.addArticle(data)
     .then((res) => {
       console.log(`added article ${res.data._id}`);
-      articleObj.data_id = res.data._id;
+      articleObj.data._id = res.data._id;
+      console.log(`article ${articleObj.data.title} added id ${articleObj.data._id}`);
       user.addArticle(articleObj);
     })
     .catch((e) => console.log(`error saving article ${e}`));
 }
 
 function removeArticle(articleObj) {
+  console.log(`removinggg article ${JSON.stringify(articleObj.data)}`);
   mainApi.removeArticle(articleObj.data._id)
     .then((res) => {
       user.removeArticle(articleObj);
@@ -287,7 +289,7 @@ searchButton.addEventListener('click', (event) => {
             articlesContainer.append(newArticle.block); // Очень плохо
             newArticle.bookmarkIcon.src = bookmarkMarked;
             newArticle.isSaved = true;
-            console.log(`found saved article ${newArticle.isSaved}`);
+            console.log(`found saved article ${newArticle.data._id}`);
           } else {
             newArticle = article;
             newArticle.publishedAt = dateToString(new Date(article.publishedAt), 'pretty');

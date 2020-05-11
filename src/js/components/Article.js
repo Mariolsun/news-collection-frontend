@@ -43,7 +43,7 @@ export default class Article extends BaseComponent {
     this.render = this.render.bind(this);
     this.visible = this.visible.bind(this);
     this.save = this.save.bind(this);
-    this.remove = this.remove.bind(this);
+    this.removeFunc = this.removeFunc.bind(this);
     this.render(); //убрать как-то
     this.clickHandler = this.clickHandler.bind(this);
     this.block.addEventListener('click', this.clickHandler);

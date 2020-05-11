@@ -35,11 +35,12 @@ export default class User {
 
   addArticle(newArticle) {
     this.articles.push(newArticle);
+    console.log(`user adding article ${newArticle.data._id}`);
   }
 
   removeArticle(article) {
     this.articles.splice(this.articles.indexOf(article));
-    this.renderInfo();
+    if (this.infoTitle) this.renderInfo();
   }
 
   renderInfo() {
