@@ -3,36 +3,16 @@ import './savedArticles.css';
 import User from '../js/components/User';
 import Article from '../js/components/Article';
 import MainApi from '../js/api/MainApi';
-import NewsApi from '../js/api/NewsApi';
 import mainApiParams from '../js/constants/mainApiParams';
-import newsApiParams from '../js/constants/newsApiParams';
-import dateToString from '../js/utils/dateToString';
-import getDaysFromToday from '../js/utils/getDaysFromToday';
-import MESSAGES from '../js/constants/messages';
 import Header from '../js/components/Header';
+import trashhovericon from '../images/trashhovericon.png';
 
 const articlesContainer = document.querySelector('.articles__container');
 const logoutBtns = document.querySelectorAll('.button_type_logout');
 const articleTemplate = document.getElementById('article');
-const mobileMenuButton = document.querySelector('.button_type_mobile-menu');
-const mobileMenuClose = document.querySelector('.header__mobile-menu-close');
 
-const infoTitle = document.querySelector('.info__title');
-const infoKeywords = document.querySelector('.info__keywords');
-
-const savedArticles = [];
 
 const icons = { hover: '../images/trashhovericon.png' };
-const sectionToAppend = document.querySelector('.page');
-const searchButton = document.querySelector('.lead__button');
-const preloaderSection = document.querySelector('.preloader-section');
-const articlesSection = document.querySelector('.articles');
-const showMoreBtn = document.querySelector('.articles__show-more-btn');
-const ARTICLES_TO_SHOW = 3;
-const loginPopupTemplate = document.getElementById('popup_type_login');
-const signupPopupTemplate = document.getElementById('popup_type_signup');
-const successfulSignupTemplate = document.getElementById('popup_type_success-signup');
-const articlesNotFoundSection = document.querySelector('.articles-not-found');
 
 
 const mobileHeader = document.querySelector('.header_type_mobile');
@@ -42,11 +22,6 @@ const closeMobileMenuBtn = mobileHeader.querySelector('.button_type_close-mobile
 const inactivePageLinks = document.querySelectorAll('.header__navbar-item_inactive-page');
 
 const authBtns = document.querySelectorAll('.button_type_auth');
-
-function makeDateStr(days, format = 'YYYY-MM-DD') { //utils
-  return dateToString(getDaysFromToday(days), format);
-}
-
 
 const header = new Header();
 
@@ -73,7 +48,7 @@ function removeArticle(articleObj) {
   mainApi.removeArticle(articleObj.data._id)
     .then((res) => {
       user.removeArticle(articleObj);
-      user.renderInfo;
+      user.renderInfo();
     })
     .catch((e) => console.log(`ошибка удаления карточки ${e}`));
 }
