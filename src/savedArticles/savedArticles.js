@@ -84,7 +84,6 @@ mainApi.getArticles()
       user.addArticle(newArticle);
     });
     user.renderInfo();
-
   })
   .catch((err) => console.log(`error in savedArticles.js getArticles (mainApi): ${err}`));
 

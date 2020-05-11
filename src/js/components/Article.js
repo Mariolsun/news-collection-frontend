@@ -68,11 +68,9 @@ export default class Article extends BaseComponent {
   }
 
   _handlehover(event) {
-    console.log(`article toggleBtn hover saved ${this.isSaved}`);
     if (!this.isSaved) {
       switch (event.type) {
         case 'mouseover':
-          console.log('mouseover');
           this.bookmarkIcon.src = this.icons.hover;
           break;
         case 'mouseout':

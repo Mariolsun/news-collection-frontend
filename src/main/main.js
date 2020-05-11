@@ -66,19 +66,15 @@ header.hideDesktopNavBar();
 
 function addArticle(articleObj) { // cardList ?
   const { _id, ...data } = articleObj.data;
-  console.log(`addin ${JSON.stringify(data)}`);
   mainApi.addArticle(data)
     .then((res) => {
-      console.log(`added article ${res.data._id}`);
       articleObj.data._id = res.data._id;
-      console.log(`article ${articleObj.data.title} added id ${articleObj.data._id}`);
       user.addArticle(articleObj);
     })
     .catch((e) => console.log(`error saving article ${e}`));
 }
 
 function removeArticle(articleObj) {
-  console.log(`removinggg article ${JSON.stringify(articleObj.data)}`);
   mainApi.removeArticle(articleObj.data._id)
     .then((res) => {
       user.removeArticle(articleObj);
@@ -198,7 +194,6 @@ submitSignupBtn.addEventListener('click', (event) => {
       popupSuccessSignup.open();
     })
     .catch((e) => {
-      console.log(`ошибка ${JSON.stringify(e)}: ${e.message}`);
       switch (e) {
         case 400:
           popupSignup.alertRender(popupSignup.serverAlert, MESSAGES.SERVER_BAD_REQUEST);
@@ -231,7 +226,6 @@ submitLoginBtn.addEventListener('click', (event) => {
       popupSignin.close(event);
     })
     .catch((e) => {
-      console.log(`ошибка ${JSON.stringify(e)}: ${e.message}`);
       switch (e) {
         case 400:
           popupSignin.alertRender(popupSignin.serverAlert, MESSAGES.SERVER_BAD_REQUEST);
@@ -286,10 +280,9 @@ searchButton.addEventListener('click', (event) => {
           let newArticle = user.findArticle(article.url);
           if (newArticle) {
             foundArticles.push(newArticle);
-            articlesContainer.append(newArticle.block); // Очень плохо
+            articlesContainer.append(newArticle.block);
             newArticle.bookmarkIcon.src = bookmarkMarked;
             newArticle.isSaved = true;
-            console.log(`found saved article ${newArticle.data._id}`);
           } else {
             newArticle = article;
             newArticle.publishedAt = dateToString(new Date(article.publishedAt), 'pretty');
@@ -337,15 +330,3 @@ articlesContainer.addEventListener('mouseout', (event) => {
     hintBlock.classList.toggle('article__save-hint_visible');
   }
 });
-
-
-/*
-    TO_DO:
-            Разгрести main.js
-            Написать класс управления хедером
-            переписать validation
-            Написать код для второй страницы
-            перепроверить функционал и вообще работу по критериям
-            popup на esc
-
-*/

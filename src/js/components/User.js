@@ -22,6 +22,7 @@ export default class User {
     this.infoTitle = document.querySelector('.info__title');
     this.infoKeywords = document.querySelector('.info__keywords');
     this.infoSubTitle = document.querySelector('.info__articles-keywords');
+    this.renderInfo = this.renderInfo.bind(this);
   }
 
   updateUserName(newName) {
@@ -35,12 +36,10 @@ export default class User {
 
   addArticle(newArticle) {
     this.articles.push(newArticle);
-    console.log(`user adding article ${newArticle.data._id}`);
   }
 
   removeArticle(article) {
-    this.articles.splice(this.articles.indexOf(article));
-    if (this.infoTitle) this.renderInfo();
+    this.articles.splice(this.articles.indexOf(article), 1);
   }
 
   renderInfo() {
@@ -83,7 +82,6 @@ export default class User {
   login(name = this.name, token) {
     this.loggedIn = true;
     this.updateUserName(name);
-    console.log(`updated user name ${this.name}`);
     this.loginFunc();
     if (token && typeof token === 'string') {
       localStorage.setItem('jwt', token);
