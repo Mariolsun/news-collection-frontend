@@ -58,9 +58,7 @@ export default class Popup extends BaseComponent {
     this.openMobileBtn.classList.remove('header__navbar-item_visible');
     this.closeMobileBtn.classList.add('header__navbar-item_visible');
     this.closeMobileBtn.addEventListener('click', this.close);
-    console.log('openin mobile popup');
     this.block.classList.add('popup_type_mobile');
-    console.log(`open event on popup ${typeof this.block}`);
     this.block.classList.add('popup_is-opened');
   }
 
@@ -76,7 +74,6 @@ export default class Popup extends BaseComponent {
 
   alertRender(element, message) {
     if (message) {
-      console.log(`rendering ${message} on ${this.block.classList}`);
       element.textContent = message;
       element.style.visibility = 'visible';
     } else element.style.visibility = 'hidden';

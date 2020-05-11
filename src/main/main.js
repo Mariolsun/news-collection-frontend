@@ -19,9 +19,9 @@ import MESSAGES from '../js/constants/messages';
 
 import bookmarkMarked from '../images/bookmark-marked.png';
 
+const icons = { marked: bookmarkMarked, unmarked: bookmark, hover: bookmarkhover };
 
-
-function makeDateStr(days, format = 'YYYY-MM-DD') {
+function makeDateStr(days, format = 'YYYY-MM-DD') { //utils
   return dateToString(getDaysFromToday(days), format);
 }
 
@@ -64,21 +64,28 @@ const user = new User(header.showNewName, [], 'User', header.showLoggedInMenu, h
 header.showLoggedOutMenu();
 header.hideDesktopNavBar();
 
-function addArticle(articleObj) {
-  console.log(`saving article: ${JSON.stringify(articleObj.data)}`);
+function addArticle(articleObj) { // cardList ?
   const { data } = articleObj;
   if ('_id' in data) delete data._id;
   mainApi.addArticle(data)
     .then((res) => {
-      console.log(`got response adding article ${res}`);
+      console.log(`added article ${res.data._id}`);
+      articleObj.data_id = res.data._id;
       user.addArticle(articleObj);
     })
     .catch((e) => console.log(`error saving article ${e}`));
 }
 
+function removeArticle(articleObj) {
+  mainApi.removeArticle(articleObj.data._id)
+    .then((res) => {
+      user.removeArticle(articleObj);
+    })
+    .catch((e) => console.log(`ошибка удаления карточки ${e}`));
+}
+
 mainApi.getUserData()
   .then((res) => {
-    console.log(`main.js got initial userData: ${res.data.name}`);
     header.showDesktopNavBar();
     user.login(res.data.name, res.data.jwt);
   })
@@ -90,7 +97,6 @@ mainApi.getUserData()
 
 mainApi.getArticles()
   .then((res) => {
-    console.log(`main.js got savedArticlesData ${res}`);
     res.data.forEach((article) => {
       user.addArticle(new Article(
         articlesContainer,
@@ -98,7 +104,8 @@ mainApi.getArticles()
         article,
         user.isLoggedIn,
         addArticle,
-        user.removeArticle,
+        removeArticle,
+        icons,
       ));
     });
   })
@@ -107,20 +114,16 @@ mainApi.getArticles()
 logoutBtns.forEach((btn) => {
   btn.addEventListener('click', (event) => {
     if (event.target.closest('.header__navbar_type_mobile')) header.toggleMobileMenu();
-    console.log('logout event');
     user.logout();
-    console.log(`user name: ${user.name}, jwt: ${localStorage.getItem('jwt')}, cookie: ${document.cookie}`);
   });
 });
 
 
 openMobileMenuBtn.addEventListener('click', () => {
   if (user.isLoggedIn()) {
-    console.log('user loggen in, toggling mobile menu');
     header.toggleMobileMenu();
     closeMobileMenuBtn.addEventListener('click', header.toggleMobileMenu);
   } else {
-    console.log('user not logged in, openin popup login');
     closeMobileMenuBtn.removeEventListener('click', header.toggleMobileMenu);
     popupSignin.open(header.isMobile());
     closeMobileMenuBtn.classList.add('header__navbar-item_visible');
@@ -189,8 +192,6 @@ submitSignupBtn.addEventListener('click', (event) => {
     popupSignup.passwordInput.value,
     popupSignup.nameInput.value)
     .then((res) => {
-      console.log(`answer is recieved: ${res} res.cookie: ${res.cookie}`);
-      console.log('user is registred');
       popupSignup.close(event);
       popupSuccessSignup.open();
     })
@@ -224,7 +225,6 @@ submitLoginBtn.addEventListener('click', (event) => {
   popupSignin.renderLoading(true);
   mainApi.signin(popupSignin.emailInput.value, popupSignin.passwordInput.value)
     .then((res) => {
-      console.log(`main.js mainApi got signin resp. user signed in, name: ${res.data.name}, res ${JSON.stringify(res)}`);
       user.login(res.data.name, res.data.jwt);
       popupSignin.close(event);
     })
@@ -257,7 +257,6 @@ function showFoundArticles(isServerError) {
     foundArticles.forEach((article, i) => {
       if (i > 2) article.visible(false);
       else {
-        console.log(`showing article ${article.data.title}`);
         article.visible(true);
       }
     });
@@ -268,31 +267,27 @@ function showFoundArticles(isServerError) {
   else showMoreBtn.classList.remove('articles__show-more-btn_visible');
 
   preloaderSection.classList.remove('preloader-section_visible');
-  console.log(`all done ${preloaderSection.classList}`);
 }
-
-searchInput.setCustomValidity('Нужно ввести ключевое слово');
 
 
 searchButton.addEventListener('click', (event) => {
-  console.log('click on search button');
   if (searchInput.value) {
+    event.preventDefault();
     foundArticles.length = 0;
     articlesContainer.innerHTML = '';
     articlesNotFoundSection.classList.remove('articles-not-found_visible');
     articlesSection.classList.remove('articles_visible');
     preloaderSection.classList.add('preloader-section_visible');
-console.log(`gettin ${searchInput.value}`);
     newsApi.getNews(searchInput.value)
       .then((res) => {
         res.articles.forEach((article) => {
           let newArticle = user.findArticle(article.url);
-          console.log(`result: ${newArticle}`);
           if (newArticle) {
-            console.log(`article found!`);
             foundArticles.push(newArticle);
             articlesContainer.append(newArticle.block); // Очень плохо
             newArticle.bookmarkIcon.src = bookmarkMarked;
+            newArticle.isSaved = true;
+            console.log(`found saved article ${newArticle.isSaved}`);
           } else {
             newArticle = article;
             newArticle.publishedAt = dateToString(new Date(article.publishedAt), 'pretty');
@@ -304,7 +299,8 @@ console.log(`gettin ${searchInput.value}`);
               newArticle,
               user.isLoggedIn,
               addArticle,
-              user.removeArticle,
+              removeArticle,
+              icons,
             ));
           }
         });
@@ -317,7 +313,7 @@ console.log(`gettin ${searchInput.value}`);
         articlesTitle.textContent = 'Во время запроса произошла ошибка. Возможно проблема с соединением или сервер недоступен. Подождите немного и попробуйте еще раз';
         showFoundArticles(true);
       });
-  }
+  } else searchInput.setCustomValidity('Нужно ввести ключевое слово');
 });
 
 
@@ -331,17 +327,6 @@ articlesContainer.addEventListener('mouseover', (event) => {
     const hintBlock = event.target.closest('.article__save-options').querySelector('.article__save-hint');
     hintBlock.classList.toggle('article__save-hint_visible');
   }
-
-  if (event.target.classList.contains('article__button_type_toggle-save') && !!event.target.querySelector('.article__bookmark-icon') && user.isLoggedIn()) {
-    console.log('bookmark hover event');
-    const blockOfHover = event.target.querySelector('.article__bookmark-icon');
-    blockOfHover.src = bookmarkhover;
-  }
-
-  if (event.target.classList.contains('article__bookmark-icon') && user.isLoggedIn()) {
-    const blockOfHover = event.target;
-    blockOfHover.src = bookmarkhover;
-  }
 });
 
 articlesContainer.addEventListener('mouseout', (event) => {
@@ -349,31 +334,12 @@ articlesContainer.addEventListener('mouseout', (event) => {
     const hintBlock = event.target.closest('.article__save-options').querySelector('.article__save-hint');
     hintBlock.classList.toggle('article__save-hint_visible');
   }
-
-  if (event.target.classList.contains('article__button_type_toggle-save') && !event.relatedTarget.classList.contains('article__bookmark-icon') && !!event.target.querySelector('.article__bookmark-icon')) {
-    const blockOfNoHover = event.target.querySelector('.article__bookmark-icon');
-    blockOfNoHover.src = bookmark;
-  }
-
-  if (event.target.classList.contains('article__bookmark-icon') && !event.relatedTarget.classList.contains('article__button_type_toggle-save')) {
-    const blockOfNoHover = event.target;
-    blockOfNoHover.src = bookmark;
-  }
 });
-
-
-window.addEventListener('focus', (event) => {
-  console.log('window focus event');
-  location.reload();
-});
-
-window.addEventListener('unload', () => console.log('bye'));
 
 
 /*
     TO_DO:
             Разгрести main.js
-            Сделать валидацию поисковой строки (пустой запрос)
             Написать класс управления хедером
             переписать validation
             Написать код для второй страницы

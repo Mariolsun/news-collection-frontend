@@ -1,10 +1,8 @@
-import bookmark from '../../images/bookmark.png';
-import bookmarkMarked from '../../images/bookmark-marked.png';
 import BaseComponent from './BaseComponent';
 import imagePlaceholder from '../../images/image-placeholder.jpg';
 
 export default class Article extends BaseComponent {
-  constructor(container, template, data, userCheck, saveFunc, removeFunc) {
+  constructor(container, template, data, userCheck, saveFunc, removeFunc, icons) {
     super();
     this.articlesContainer = container;
     this.template = template;
@@ -19,7 +17,6 @@ export default class Article extends BaseComponent {
       keyword: data.keyword,
       _id: data._id || '',
     };
-
     this.saveFunc = saveFunc;
     this.removeFunc = removeFunc;
     //  this._id = this.data._id;
@@ -38,13 +35,21 @@ export default class Article extends BaseComponent {
     this.keyword = this.block.querySelector('.article__keyword');
     this.bookmarkIcon = this.block.querySelector('.article__bookmark-icon');
     this.toggleSaveBtn = this.block.querySelector('.article__button_type_toggle-save');
+    this.icons = {
+      unmarked: icons.unmarked || this.bookmarkIcon.src,
+      marked: icons.marked || this.bookmarkIcon.src,
+      hover: icons.hover || this.bookmarkIcon.src,
+    };
     this.render = this.render.bind(this);
     this.visible = this.visible.bind(this);
-    this.toggleSave = this.toggleSave.bind(this);
+    this.save = this.save.bind(this);
     this.remove = this.remove.bind(this);
     this.render(); //убрать как-то
     this.clickHandler = this.clickHandler.bind(this);
     this.block.addEventListener('click', this.clickHandler);
+    this._handlehover = this._handlehover.bind(this);
+    this.toggleSaveBtn.addEventListener('mouseover', this._handlehover);
+    this.toggleSaveBtn.addEventListener('mouseout', this._handlehover);
   }
 
   visible(isVisible) {
@@ -62,33 +67,59 @@ export default class Article extends BaseComponent {
     this.block.remove();
   }
 
-  toggleSave() {
-    if (this.isLoggedIn()) {
-      this.isSaved = !this.isSaved;
-      if (this.isSaved) {
-        console.log('saving article');
-        this.bookmarkIcon.classList.add('article__bookmarked-icon');
-        this.bookmarkIcon.classList.remove('article__bookmark-icon');
-        this.bookmarkIcon.src = bookmarkMarked;
-        this.saveFunc(this);
-      } else {
-        console.log('unsaving article');
-        this.bookmarkIcon.classList.add('article__bookmark-icon');
-        this.bookmarkIcon.classList.remove('article__bookmarked-icon');
-        this.bookmarkIcon.src = bookmark;
-        this.removeFunc(this);
+  _handlehover(event) {
+    console.log(`article toggleBtn hover saved ${this.isSaved}`);
+    if (!this.isSaved) {
+      switch (event.type) {
+        case 'mouseover':
+          console.log('mouseover');
+          this.bookmarkIcon.src = this.icons.hover;
+          break;
+        case 'mouseout':
+        default:
+          this.bookmarkIcon.src = this.icons.unmarked;
+          break;
       }
     }
   }
 
+  renderSaved(bool) {
+    if (bool) {
+      this.bookmarkIcon.classList.add('article__bookmarked-icon');
+      this.bookmarkIcon.classList.remove('article__bookmark-icon');
+      this.bookmarkIcon.src = this.icons.marked;
+    } else {
+      this.bookmarkIcon.classList.add('article__bookmark-icon');
+      this.bookmarkIcon.classList.remove('article__bookmarked-icon');
+      this.bookmarkIcon.src = this.icons.unmarked;
+    }
+  }
+
+  save() {
+    if (this.isLoggedIn()) {
+      this.isSaved = !this.isSaved;
+      if (this.isSaved) {
+        this.saveFunc(this);
+        this.renderSaved(true);
+      } else {
+        this.removeFunc(this);
+        this.renderSaved(false);
+      }
+    }
+  }
+
+  keywordVisible(isVisible) {
+    const visibilityClass = 'article__keyword_visible';
+    if (isVisible) this.keyword.classList.add(visibilityClass);
+    else this.keyword.classList.remove(visibilityClass);
+  }
+
   clickHandler(event) {
-    console.log(`click on article ${event.target.classList}`);
-    if (event.target.closest('.article__button_type_toggle-save')) this.toggleSave();
+    if (event.target.closest('.article__button_type_toggle-save')) this.save();
     else if (!event.target.closest('.article__save-options')) document.location.href = this.data.url;
   }
 
   render() {
-    console.log(`rendering article. date ${this.data.publishedAt} source: ${this.data.source.name}`);
     this.urlToImage.src = this.data.urlToImage || imagePlaceholder;
     this.publishedAt.textContent = this.data.publishedAt;
     this.title.textContent = this.data.title;

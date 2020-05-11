@@ -1,11 +1,16 @@
+import wordEndings from '../utils/wordEndings';
+import sortByPop from '../utils/sortByPop';
+
 export default class User {
   constructor(showNewNameFunc, savedArticles, name, loginFunc, logoutFunc) {
     this.showNewName = showNewNameFunc;
     this.articles = savedArticles;
     this.loginFunc = loginFunc;
     this.logoutFunc = logoutFunc;
+    this.sortByPop = sortByPop; // импортировать через конструктор
     this.loggedIn = false;
     this.name = name;
+    this.getWordEndings = wordEndings;
     this.updateArticles = this.updateArticles.bind(this);
     this.updateUserName = this.updateUserName.bind(this);
     this.addArticle = this.addArticle.bind(this);
@@ -14,6 +19,9 @@ export default class User {
     this.logout = this.logout.bind(this);
     this.isLoggedIn = this.isLoggedIn.bind(this);
     this.findArticle = this.findArticle.bind(this);
+    this.infoTitle = document.querySelector('.info__title');
+    this.infoKeywords = document.querySelector('.info__keywords');
+    this.infoSubTitle = document.querySelector('.info__articles-keywords');
   }
 
   updateUserName(newName) {
@@ -26,44 +34,66 @@ export default class User {
   }
 
   addArticle(newArticle) {
-    console.log('adding article to savedArticles');
     this.articles.push(newArticle);
-    this.articles.forEach((article) => { console.log(`article ${article.title.textContent}`); });
   }
 
   removeArticle(article) {
-    console.log('removing article from savedArticles');
     this.articles.splice(this.articles.indexOf(article));
+    this.renderInfo();
   }
 
+  renderInfo() {
+    if (this.articles.length) {
+      const word = this.getWordEndings(this.articles.length);
+      this.infoSubTitle.childNodes[0].textContent = 'По ключевым словам: ';
+      this.infoTitle.textContent = `${this.name}, у вас ${this.articles.length} ${word.saved} ${word.articles}`;
+      const uniqueKeywords = this.sortByPop(this.articles.map((article) => article.keyword.textContent));
+      switch (uniqueKeywords.length) {
+        case 0:
+          this.infoKeywords.textContent = '';
+          break;
+        case 1:
+        case 2:
+        case 3:
+          this.infoKeywords.textContent = `${uniqueKeywords[0]}`;
+          uniqueKeywords.forEach((keyword, i) => {
+            if (i !== 0) this.infoKeywords.textContent += `, ${keyword}`;
+          });
+          break;
+        default:
+          this.infoKeywords.innerHTML = `<b>${uniqueKeywords[0]}</b>, <b>${uniqueKeywords[1]}</b> и <b>${uniqueKeywords.length - 2} другим</b>`;
+          break;
+      }
+    } else {
+      this.infoTitle.textContent = `${this.name}, у вас нет сохранённых новостей`;
+      this.infoKeywords.textContent = '';
+      this.infoSubTitle.childNodes[0].textContent = 'Воспользуйтесь поиском на главной, чтобы сохранить карточки новостей!';
+    }
+  }
+
+
   findArticle(url) {
-    console.log(`user.js checking ${url}`);
     let result = this.articles.find((article) => {
-      console.log(`comparing to ${article.data.url}`);
       return article.data.url.includes(url);
     });
-    console.log(`overall result: ${result}`);
     return result;
   }
 
   login(name = this.name, token) {
-    console.log(`user.login() as ${this.name}, cookie: ${document.cookie}`);
     this.loggedIn = true;
     this.updateUserName(name);
+    console.log(`updated user name ${this.name}`);
     this.loginFunc();
     if (token && typeof token === 'string') {
-      console.log(`user.login setting token ${typeof token}`);
       localStorage.setItem('jwt', token);
-    } else console.log('token не прошел проверку и не записан в localstorage');
+    }
   }
 
   logout() {
-    console.log(`user.logout`);
     this.loggedIn = false;
     this.updateUserName('User');
     this.updateArticles([]);
     this.logoutFunc();
-    console.log('user.logout removing token');
 
     localStorage.removeItem('jwt');
   }

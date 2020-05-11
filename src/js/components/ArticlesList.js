@@ -7,28 +7,24 @@ export default class ArticlesList extends BaseComponent {
     this.foundArticles = foundArticles;
   }
 
-  updateArticles(newArticles) {
-    this.articles = newArticles;
+  renderResults() {
+
   }
 
-  addArticle(newArticle) {
-    console.log('adding article to savedArticles');
-    this.articles.push(newArticle);
-    this.articles.forEach((article) => { console.log(`article ${article.title.textContent}`); });
+  renderLoader() {
+
   }
 
-  removeArticle(article) {
-    console.log('removing article from savedArticles');
-    this.articles.splice(this.articles.indexOf(article));
+  renderError() {
+
   }
 
-  findArticle(url) {
-    console.log(`user.js checking ${url}`);
-    let result = this.articles.find((article) => {
-      console.log(`comparing to ${article}`);
-      return article.url.includes(url);
-    });
-    return result;
+  showMore() {
+
+  }
+
+  addCard() {
+
   }
 
 }

@@ -17,7 +17,9 @@ export default class NewsApi extends Api {
          + this.apiParams.KEYS_DIVIDER
          + this.apiParams.DATE_TO + this.makeDateStr()
          + this.apiParams.KEYS_DIVIDER
-         + this.apiParams.PAGE_SIZE;
+         + this.apiParams.PAGE_SIZE
+         + this.apiParams.KEYS_DIVIDER
+         + this.apiParams.LANGUAGE;
   }
 
   getNews(keyword) {

@@ -19,7 +19,6 @@ export default class Api {
   }
 
   _resetOptions(method = 'GET', body) {
-    console.log(`resetting options, token: ${this._getToken()}`);
     this.options.headers.authorization = this._getToken();
     this.options.method = method;
     if (!body) delete this.options.body;

@@ -31,7 +31,6 @@ export default class Header extends BaseComponent {
   }
 
   showDesktopNavBar() {
-    console.log('showing desktopNavBar');
     this.desktopNavBar.classList.add('header__navbar_visible');
   }
 
@@ -47,7 +46,6 @@ export default class Header extends BaseComponent {
   }
 
   showLoggedOutMenu() {
-    console.log('showin logged out menu');
     this.inactivePageLinks.forEach((link) => {
       link.classList.remove('header__navbar-item_visible');
     });
@@ -62,7 +60,6 @@ export default class Header extends BaseComponent {
   }
 
   showLoggedInMenu() {
-    console.log('showing logged in menu');
     this.inactivePageLinks.forEach((link) => {
       link.classList.add('header__navbar-item_visible');
     });
@@ -74,12 +71,10 @@ export default class Header extends BaseComponent {
     this.authBtns.forEach((btn) => {
       btn.classList.remove('header__navbar-item_visible');
 
-      console.log(`hiding auth btn ${btn.classList}`);
     });
   }
 
   showNewName(newName) {
-    console.log(`updating username ${newName}`);
     this.logoutBtns.forEach(btn => {
       btn.childNodes[0].nodeValue = newName;
     });

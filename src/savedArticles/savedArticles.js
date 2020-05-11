@@ -2,12 +2,17 @@ import '../vendor/fonts.css';
 import './savedArticles.css';
 import User from '../js/components/User';
 import Article from '../js/components/Article';
-import trashhovericon from '../images/trashhovericon.png';
+import MainApi from '../js/api/MainApi';
+import NewsApi from '../js/api/NewsApi';
+import mainApiParams from '../js/constants/mainApiParams';
+import newsApiParams from '../js/constants/newsApiParams';
+import dateToString from '../js/utils/dateToString';
+import getDaysFromToday from '../js/utils/getDaysFromToday';
+import MESSAGES from '../js/constants/messages';
+import Header from '../js/components/Header';
 
 const articlesContainer = document.querySelector('.articles__container');
 const logoutBtns = document.querySelectorAll('.button_type_logout');
-
-
 const articleTemplate = document.getElementById('article');
 const mobileMenuButton = document.querySelector('.button_type_mobile-menu');
 const mobileMenuClose = document.querySelector('.header__mobile-menu-close');
@@ -17,7 +22,7 @@ const infoKeywords = document.querySelector('.info__keywords');
 
 const savedArticles = [];
 
-
+const icons = { hover: '../images/trashhovericon.png' };
 const sectionToAppend = document.querySelector('.page');
 const searchButton = document.querySelector('.lead__button');
 const preloaderSection = document.querySelector('.preloader-section');
@@ -38,52 +43,79 @@ const inactivePageLinks = document.querySelectorAll('.header__navbar-item_inacti
 
 const authBtns = document.querySelectorAll('.button_type_auth');
 
-/* savedArticles.forEach(article => {
-  console.log(`making article ${articlesContainer.classList}`);
-  let newArticle = new Article(articlesContainer, articleTemplate, article, userCheck);
-  newArticle.block.removeEventListener('click', newArticle.toggleSave);
-  newArticle.keyword.classList.add('article__keyword_visible');
-  newArticle.visible(true);
-  articles.push(newArticle);
-}) */
-
-function userCheck() {
-  return true;
+function makeDateStr(days, format = 'YYYY-MM-DD') { //utils
+  return dateToString(getDaysFromToday(days), format);
 }
 
 
-function countKeywords(articles) {
-  let uniqueKeywords = []
-  articles.forEach(article => {
-    console.log(`comparing ${article.data.keyword}`)
-    if(!uniqueKeywords.includes(article.data.keyword)) uniqueKeywords.push(article.data.keyword);
-  });
-  return uniqueKeywords;
+const header = new Header();
+
+const user = new User(header.showNewName, [], 'User', header.showLoggedInMenu, header.showLoggedOutMenu);
+header.showLoggedOutMenu();
+header.hideDesktopNavBar();
+
+const mainApi = new MainApi(mainApiParams);
+
+
+function addArticle(articleObj) { // cardList ?
+  const { data } = articleObj;
+  if ('_id' in data) delete data._id;
+  mainApi.addArticle(data)
+    .then((res) => {
+      console.log(`added article ${res.data._id}`);
+      articleObj.data_id = res.data._id;
+      user.addArticle(articleObj);
+    })
+    .catch((e) => console.log(`error saving article ${e}`));
 }
 
-countKeywords(savedArticles);
+function removeArticle(articleObj) {
+  mainApi.removeArticle(articleObj.data._id)
+    .then((res) => {
+      user.removeArticle(articleObj);
+      user.renderInfo;
+    })
+    .catch((e) => console.log(`ошибка удаления карточки ${e}`));
+}
 
-infoTitle.textContent = `Грета, у вас ${savedArticles.length} сохранённых новостей`;
-function showInfo() {
-let uniqueKeywords = countKeywords(savedArticles);
-if(uniqueKeywords.length > 3) {
-  infoKeywords.innerHTML = `<b>${uniqueKeywords[0]}</b>, <b>${uniqueKeywords[1]}</b> и <b>${uniqueKeywords.length - 2} другим</b>`
-} else {
-  let text = `${uniqueKeywords[0]}`;
-  uniqueKeywords.forEach((keyword, i) => {
-
-    if(i !=0) text += `, ${keyword}`;
+mainApi.getUserData()
+  .then((res) => {
+    header.showDesktopNavBar();
+    console.log(`got user data: ${res.data.name}`);
+    user.login(res.data.name);
+    user.renderInfo();
   })
-  infoKeywords.textContent = text;
-}
-}
+  .catch((err) => {
+    header.showDesktopNavBar();
+    header.showLoggedOutMenu();
+    console.log(`Initial Auth error: ${err.message}`);
+    document.location.href = '../index.html';
+  });
 
-showInfo()
+mainApi.getArticles()
+  .then((res) => {
+    res.data.forEach((article) => {
+      const newArticle = new Article(
+        articlesContainer,
+        articleTemplate,
+        article,
+        user.isLoggedIn,
+        removeArticle,
+        addArticle,
+        icons,
+      );
+      newArticle.keywordVisible(true);
+      newArticle.visible(true);
+      user.addArticle(newArticle);
+    });
+    user.renderInfo();
+
+  })
+  .catch((err) => console.log(`error in savedArticles.js getArticles (mainApi): ${err}`));
 
 
-
-articlesContainer.addEventListener('mouseover', function(event) {
-  if(!!event.target.closest('.article__save-options')) {
+articlesContainer.addEventListener('mouseover', (event) => {
+  if (event.target.closest('.article__save-options')) {
     let hintBlock = event.target.closest('.article__save-options').querySelector('.article__save-hint');
     hintBlock.classList.toggle('article__save-hint_visible');
   }
@@ -97,8 +129,8 @@ articlesContainer.addEventListener('mouseover', function(event) {
   }
 })
 
-articlesContainer.addEventListener('mouseout', function(event) {
-  if(!!event.target.closest('.article__save-options')) {
+articlesContainer.addEventListener('mouseout', (event) => {
+  if (!!event.target.closest('.article__save-options')) {
     let hintBlock = event.target.closest('.article__save-options').querySelector('.article__save-hint');
     hintBlock.classList.toggle('article__save-hint_visible');
   }
@@ -133,7 +165,6 @@ window.addEventListener('resize', event => {
 
 
 function showLoggedOutMenu() {
-  console.log('showin logged out menu');
   inactivePageLinks.forEach(link => {
     link.classList.remove('header__navbar-item_visible');
   });
@@ -148,20 +179,17 @@ function showLoggedOutMenu() {
 }
 // NavBar handle
 function showLoggedInMenu() {
-  console.log('showing logged in menu');
   inactivePageLinks.forEach(link => {
     link.classList.add('header__navbar-item_visible');
   });
 
   logoutBtns.forEach(btn => {
     btn.classList.add('header__navbar-item_visible');
-  })
+  });
 
   authBtns.forEach(btn => {
     btn.classList.remove('header__navbar-item_visible');
-
-    console.log(`hiding auth btn ${btn.classList}`);
-  })
+  });
 }
 
 
@@ -174,11 +202,16 @@ function toggleMobileMenu (event) {
 
 
 openMobileMenuBtn.addEventListener('click', event => {
+  showLoggedInMenu();
+  toggleMobileMenu();
+  closeMobileMenuBtn.addEventListener('click', toggleMobileMenu);
+});
 
-    showLoggedInMenu();
-  console.log('user loggen in, toggling mobile menu');
-    toggleMobileMenu();
-    closeMobileMenuBtn.addEventListener('click', toggleMobileMenu);
 
-
+logoutBtns.forEach((btn) => {
+  btn.addEventListener('click', (event) => {
+    if (event.target.closest('.header__navbar_type_mobile')) header.toggleMobileMenu();
+    user.logout();
+    location.href = '../index.html';
+  });
 });

@@ -6,6 +6,7 @@ const newsApiParams = {
   KEYS_DIVIDER: '&',
   API_KEY: 'apiKey=b997a4227035424fb8ffa12b20b07861',
   PAGE_SIZE: 'pageSize=100',
+  LANGUAGE: 'language=ru',
   headers: {
     'Content-Type': 'application/json',
   },

@@ -44,7 +44,6 @@ export default class PopupSignup extends Popup {
         this.alertRender(this.nameAlert, result.name);
         break;
       case this.emailInput:
-        console.log(`input email. email check: ${result.email}`);
         this.alertRender(this.emailAlert, result.email);
         break;
       case this.passwordInput:
@@ -70,7 +69,7 @@ export default class PopupSignup extends Popup {
   }
 
   renderLoading(loading) {
-    if(loading) {
+    if (loading) {
       this.submitBtn.textContent = 'Загрузка...';
     } else {
       this.submitBtn.textContent = 'Зарегистрироваться';
